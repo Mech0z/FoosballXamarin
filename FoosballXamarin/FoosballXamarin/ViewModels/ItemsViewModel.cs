@@ -7,6 +7,7 @@ using FoosballXamarin.Models;
 using FoosballXamarin.Views;
 
 using Xamarin.Forms;
+using FoosballXamarin.Services;
 
 namespace FoosballXamarin.ViewModels
 {
@@ -38,7 +39,10 @@ namespace FoosballXamarin.ViewModels
 
 			try
 			{
-				Items.Clear();
+			    var sdf = new MatchService();
+			    await sdf.RefreshDataAsync();
+
+                Items.Clear();
 				var items = await DataStore.GetItemsAsync(true);
 				Items.ReplaceRange(items);
 			}

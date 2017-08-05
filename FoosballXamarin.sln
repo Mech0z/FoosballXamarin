@@ -11,6 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoosballXamarin.UWP", "Foos
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		FoosballXamarin\FoosballXamarin\FoosballXamarin.projitems*{05c39414-5022-4156-9547-e2b7d30f8386}*SharedItemsImports = 4
 		FoosballXamarin\FoosballXamarin\FoosballXamarin.projitems*{3144d162-876f-4747-b54c-d16d1f790fc3}*SharedItemsImports = 13
 		FoosballXamarin\FoosballXamarin\FoosballXamarin.projitems*{5a543ca8-c361-4b46-9632-f0d72a7d4642}*SharedItemsImports = 4
 	EndGlobalSection
