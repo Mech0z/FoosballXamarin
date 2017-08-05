@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              x:Class="FoosballXamarin.Views.ItemDetailPage"
              Title="{Binding Title}"
-             IsBusy="{Binding Loading}">
+             IsBusy="{Binding Loading}"
+             xmlns:vm="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin.UWP"
+             d:DataContext="{d:DesignInstance {x:Type vm:ItemDetailViewModel}}"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d">
 	<StackLayout Spacing="20" Padding="15">
         <Label Text="{Binding User.Username}" FontSize="Medium"/>
         <Label Text="{Binding Item.EloRating}" FontSize="Small"/>
@@ -13,8 +18,7 @@
                   VerticalOptions="FillAndExpand"
                   HasUnevenRows="true"
                   IsPullToRefreshEnabled="true"
-                  IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                  CachingStrategy="RecycleElement">
+                  IsRefreshing="{Binding IsBusy, Mode=OneWay}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
