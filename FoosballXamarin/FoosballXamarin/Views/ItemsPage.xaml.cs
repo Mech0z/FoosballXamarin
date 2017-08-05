@@ -2,7 +2,7 @@
 
 using FoosballXamarin.Models;
 using FoosballXamarin.ViewModels;
-
+using Models;
 using Xamarin.Forms;
 
 namespace FoosballXamarin.Views
@@ -20,7 +20,7 @@ namespace FoosballXamarin.Views
 
 		async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
 		{
-			var item = args.SelectedItem as Item;
+			var item = args.SelectedItem as LeaderboardViewEntry;
 			if (item == null)
 				return;
 

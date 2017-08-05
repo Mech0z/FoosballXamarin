@@ -2,11 +2,9 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-
 using FoosballXamarin.Helpers;
 using FoosballXamarin.Models;
 using FoosballXamarin.Views;
-
 using Xamarin.Forms;
 using FoosballXamarin.Services;
 using Models;
