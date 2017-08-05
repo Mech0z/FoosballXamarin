@@ -9,13 +9,9 @@ namespace FoosballXamarin.Services
 {
     public class UserService : BaseService, IUserService
     {
-        public UserService() : base("http://foosball9000api.sovs.net/api/player/GetUsers")
-        {
-            
-        }
-
         public async Task<List<User>> GetDataAsync()
         {
+            RestUrl = "http://foosball9000api.sovs.net/api/player/GetUsers";
             var response = await _client.GetAsync(HttpUri);
 
             if (!response.IsSuccessStatusCode) return new List<User>();

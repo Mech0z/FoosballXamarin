@@ -10,11 +10,12 @@ namespace FoosballXamarin.Services
         public string RestUrl { get; set; }
         public Uri HttpUri => new Uri(string.Format(RestUrl, string.Empty));
 
-        public BaseService(string url)
+        public BaseService()
         {
-            _client = new HttpClient {MaxResponseContentBufferSize = 256000};
-
-            RestUrl = url;
+            _client = new HttpClient
+            {
+                //MaxResponseContentBufferSize = 256000
+            };
         }
     }
 }

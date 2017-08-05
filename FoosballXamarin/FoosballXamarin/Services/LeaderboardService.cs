@@ -9,13 +9,9 @@ namespace FoosballXamarin.Services
 {
     public class LeaderboardService : BaseService, ILeaderboardService
     {
-
-        public LeaderboardService() : base("http://foosball9000api.sovs.net/api/leaderboard/index")
-        {
-        }
-
         public async Task<List<LeaderboardView>> GetDataAsync()
         {
+            RestUrl = "http://foosball9000api.sovs.net/api/leaderboard/index";
             var response = await _client.GetAsync(HttpUri);
 
             if (!response.IsSuccessStatusCode) return new List<LeaderboardView>();

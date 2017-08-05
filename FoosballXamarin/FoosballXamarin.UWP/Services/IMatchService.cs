@@ -7,5 +7,6 @@ namespace FoosballXamarin.Services
     public interface IMatchService
     {
         Task<List<Match>> GetDataAsync();
+        Task<List<Match>> GetPlayerMatches();
     }
 }
