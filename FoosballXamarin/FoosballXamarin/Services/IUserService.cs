@@ -4,8 +4,8 @@ using Models;
 
 namespace FoosballXamarin.Services
 {
-    public interface IMatchService
+    public interface IUserService
     {
-        Task<List<Match>> GetDataAsync();
+        Task<List<User>> GetDataAsync();
     }
 }

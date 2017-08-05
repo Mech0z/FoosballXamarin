@@ -1,49 +1,29 @@
 ﻿using Models;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using FoosballXamarin.Services;
 
+[assembly: Xamarin.Forms.Dependency(typeof(MatchService))]
 namespace FoosballXamarin.Services
 {
-    public class BaseService
-    {
-        HttpClient client;
-        
-        public string RestUrl { get; set; }
-        public Uri HttpUri => new Uri(string.Format(RestUrl, string.Empty));
-
-        public BaseService()
-        {
-            client = new HttpClient();
-            client.MaxResponseContentBufferSize = 256000;
-
-            RestUrl = "http://foosball9000api.sovs.net/api/match/lastgames?numberofmatches=20";
-        }
-    }
-
     public class MatchService : BaseService, IMatchService
     {
 
-        public MatchService()
+        public MatchService() : base("http://foosball9000api.sovs.net/api/match/lastgames?numberofmatches=20")
         {
         }
 
-        public async Task<List<Match>> RefreshDataAsync()
+        public async Task<List<Match>> GetDataAsync()
         {
-            var response = await client.GetAsync(HttpUri);
-            if (response.IsSuccessStatusCode)
-            {
-                var content = await response.Content.ReadAsStringAsync();
-                var items = JsonConvert.DeserializeObject<List<Match>>(content);
-                return items;
-            }
-            else
-            {
-                return new List<Match>();
-            }
+            var response = await _client.GetAsync(HttpUri);
+
+            if (!response.IsSuccessStatusCode) return new List<Match>();
+
+            var content = await response.Content.ReadAsStringAsync();
+            var items = JsonConvert.DeserializeObject<List<Match>>(content);
+            return items;
         }
     }
 }

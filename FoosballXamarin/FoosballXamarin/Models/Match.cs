@@ -32,25 +32,6 @@ namespace Models
 
         public bool IsThisRandom { get; set; }
 
-        public int Team1HashCode
-        {
-            get
-            {
-                //TODO dont seem optimal to create a list every time
-                var list = new List<string> { PlayerList[0], PlayerList[1] };
-                return list.OrderBy(x => x).GetHashCode();
-            }
-        }
-
-        public int Team2HashCode
-        {
-            get
-            {
-                var list = new List<string> { PlayerList[2], PlayerList[3] };
-                return list.OrderBy(x => x).GetHashCode();
-            }
-        }
-
         public MatchResult MatchResult { get; set; }
 
         public int? Points { get; set; }

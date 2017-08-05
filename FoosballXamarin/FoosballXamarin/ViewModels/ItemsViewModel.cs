@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 
 using FoosballXamarin.Helpers;
@@ -8,18 +9,33 @@ using FoosballXamarin.Views;
 
 using Xamarin.Forms;
 using FoosballXamarin.Services;
+using Models;
 
 namespace FoosballXamarin.ViewModels
 {
 	public class ItemsViewModel : BaseViewModel
 	{
-		public ObservableRangeCollection<Item> Items { get; set; }
-		public Command LoadItemsCommand { get; set; }
+	    private LeaderboardView _selectedLeaderboardView;
+	    public IUserService UserService => DependencyService.Get<IUserService>();
+	    public ILeaderboardService LeaderboardService => DependencyService.Get<ILeaderboardService>();
+        public ObservableRangeCollection<Item> Items { get; set; }
+		public ObservableRangeCollection<User> Users { get; set; }
+		public ObservableRangeCollection<LeaderboardView> Leaderboards { get; set; }
+
+	    public LeaderboardView SelectedLeaderboardView
+	    {
+	        get => _selectedLeaderboardView;
+	        set => SetProperty(ref _selectedLeaderboardView, value);
+	    }
+
+	    public Command LoadItemsCommand { get; set; }
 
 		public ItemsViewModel()
 		{
 			Title = "Browse";
 			Items = new ObservableRangeCollection<Item>();
+            Users = new ObservableRangeCollection<User>();
+            Leaderboards = new ObservableRangeCollection<LeaderboardView>();
 			LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
 			MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
@@ -39,8 +55,10 @@ namespace FoosballXamarin.ViewModels
 
 			try
 			{
-			    var sdf = new MatchService();
-			    await sdf.RefreshDataAsync();
+			    Users.ReplaceRange(await UserService.GetDataAsync());
+                Leaderboards.ReplaceRange(await LeaderboardService.GetDataAsync());
+                SelectedLeaderboardView = Leaderboards.OrderByDescending(x => x.Timestamp).FirstOrDefault();
+
 
                 Items.Clear();
 				var items = await DataStore.GetItemsAsync(true);

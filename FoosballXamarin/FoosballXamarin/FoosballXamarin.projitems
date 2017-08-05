@@ -39,7 +39,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Season.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Settings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\User.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\BaseService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\ILeaderboardService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\IUserService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\LeaderboardService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\MatchService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\UserService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
