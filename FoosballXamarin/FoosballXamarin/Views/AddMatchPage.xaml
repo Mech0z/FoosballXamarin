@@ -7,68 +7,79 @@
              xmlns:vm="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin.UWP"
              d:DataContext="{d:DesignInstance {x:Type vm:AddMatchViewModel}}"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             Title="Start Match"
              mc:Ignorable="d">
     <ContentPage.Content>
         <Grid>
             <Grid.ColumnDefinitions>
-               <ColumnDefinition/> 
-               <ColumnDefinition/> 
+                <ColumnDefinition />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <StackLayout Grid.Column="0">
-                <ListView x:Name="ItemsListView"
-                          ItemsSource="{Binding LeaderboardViewEntries}"
-                          VerticalOptions="Fill"
-                          HorizontalOptions="Fill"                     
-                          HasUnevenRows="true"
-                          IsPullToRefreshEnabled="true"
-                          IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                          ItemSelected="Handle_ItemTapped">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <StackLayout Padding="10">
-                                    <Label Text="{Binding UserName}"
-                                           LineBreakMode="NoWrap"
-                                           Style="{DynamicResource ListItemTextStyle}"
-                                           FontSize="16" />
-                                    <Label Text="{Binding EloRating}"
-                                           LineBreakMode="NoWrap"
-                                           Style="{DynamicResource ListItemTextStyle}"
-                                           FontSize="16" />
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackLayout>
-            <StackLayout Grid.Column="1">
-                <ListView x:Name="AddedPlayerListView"
-                          ItemsSource="{Binding AddedPlayers}"
-                          VerticalOptions="Fill"
-                          HorizontalOptions="Fill"                     
-                          HasUnevenRows="true"
-                          IsPullToRefreshEnabled="true"
-                          IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                          ItemSelected="Handle_AddedPlayerTapped">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <StackLayout Padding="10">
-                                    <Label Text="{Binding UserName}"
-                                           LineBreakMode="NoWrap"
-                                           Style="{DynamicResource ListItemTextStyle}"
-                                           FontSize="16" />
-                                    <Label Text="{Binding EloRating}"
-                                           LineBreakMode="NoWrap"
-                                           Style="{DynamicResource ListItemTextStyle}"
-                                           FontSize="16" />
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackLayout>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ListView x:Name="ItemsListView"
+                      Grid.Column="0"
+                      Grid.RowSpan="2"
+                      ItemsSource="{Binding LeaderboardViewEntries}"
+                      VerticalOptions="Fill"
+                      HorizontalOptions="Fill"
+                      HasUnevenRows="true"
+                      IsPullToRefreshEnabled="true"
+                      IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                      ItemSelected="Handle_ItemTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <Label Text="{Binding UserName}"
+                                       LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemTextStyle}"
+                                       FontSize="16" />
+                                <Label Text="{Binding EloRating}"
+                                       LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemTextStyle}"
+                                       FontSize="16" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ListView x:Name="AddedPlayerListView"
+                      Grid.Column="1"
+                      ItemsSource="{Binding AddedPlayers}"
+                      VerticalOptions="Fill"
+                      HorizontalOptions="Fill"
+                      HasUnevenRows="true"
+                      IsPullToRefreshEnabled="true"
+                      IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                      ItemSelected="Handle_AddedPlayerTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <Label Text="{Binding UserName}"
+                                       LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemTextStyle}"
+                                       FontSize="16" />
+                                <Label Text="{Binding EloRating}"
+                                       LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemTextStyle}"
+                                       FontSize="16" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+            <Button Grid.Column="1"
+                    Grid.Row="1"
+                    Margin="15"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="Center"
+                    Text="Start"/>
         </Grid>
-        
+
     </ContentPage.Content>
 </ContentPage>
