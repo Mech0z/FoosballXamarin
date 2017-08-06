@@ -7,79 +7,81 @@
              xmlns:vm="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin.UWP"
              d:DataContext="{d:DesignInstance {x:Type vm:AddMatchViewModel}}"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             Title="Start Match"
+             Title="Add Match"
              mc:Ignorable="d">
     <ContentPage.Content>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
+                <ColumnDefinition Width="8*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="8*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <ListView x:Name="ItemsListView"
-                      Grid.Column="0"
-                      Grid.RowSpan="2"
-                      ItemsSource="{Binding LeaderboardViewEntries}"
-                      VerticalOptions="Fill"
-                      HorizontalOptions="Fill"
-                      HasUnevenRows="true"
-                      IsPullToRefreshEnabled="true"
-                      IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                      ItemSelected="Handle_ItemTapped">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Padding="10">
-                                <Label Text="{Binding UserName}"
-                                       LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemTextStyle}"
-                                       FontSize="16" />
-                                <Label Text="{Binding EloRating}"
-                                       LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemTextStyle}"
-                                       FontSize="16" />
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <ListView x:Name="AddedPlayerListView"
-                      Grid.Column="1"
-                      ItemsSource="{Binding AddedPlayers}"
-                      VerticalOptions="Fill"
-                      HorizontalOptions="Fill"
-                      HasUnevenRows="true"
-                      IsPullToRefreshEnabled="true"
-                      IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                      ItemSelected="Handle_AddedPlayerTapped">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Padding="10">
-                                <Label Text="{Binding UserName}"
-                                       LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemTextStyle}"
-                                       FontSize="16" />
-                                <Label Text="{Binding EloRating}"
-                                       LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemTextStyle}"
-                                       FontSize="16" />
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            
-            <Button Grid.Column="1"
-                    Grid.Row="1"
-                    Margin="15"
-                    HorizontalOptions="CenterAndExpand"
-                    VerticalOptions="Center"
-                    Text="Start"/>
-        </Grid>
 
+            <StackLayout
+                Grid.Column="0">
+                <Label
+                    FontSize="18"
+                    HorizontalOptions="Center"
+                    Text="{Binding User1.Username}" />
+                <Label
+                    FontSize="18"
+                    HorizontalOptions="Center"
+                    Text="{Binding User2.Username}" />
+            </StackLayout>
+            <Label
+                Grid.Column="1"
+                FontSize="18"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Text="VS" />
+            <StackLayout
+                Grid.Column="2">
+                <Label
+                    FontSize="18"
+                    HorizontalOptions="Center"
+                    Text="{Binding User3.Username}" />
+                <Label
+                    FontSize="18"
+                    HorizontalOptions="Center"
+                    Text="{Binding User4.Username}" />
+            </StackLayout>
+
+            <StackLayout 
+                Grid.Row="1" 
+                Orientation="Horizontal" 
+                HorizontalOptions="Center"
+                Grid.ColumnSpan="3">
+                <Entry
+                    Keyboard="Numeric"
+                    Text="{Binding ScoreTeam1Match1}" />
+                <Entry
+                    Keyboard="Numeric"
+                    Text="{Binding ScoreTeam2Match1}"/>
+            </StackLayout>
+            <StackLayout 
+                Grid.Row="2" 
+                Orientation="Horizontal" 
+                HorizontalOptions="Center"
+                Grid.ColumnSpan="3">
+                
+                <Entry
+                    Keyboard="Numeric"
+                    Text="{Binding ScoreTeam1Match1}" />
+                <Entry
+                    Keyboard="Numeric"
+                    Text="{Binding ScoreTeam2Match1}"/>
+            </StackLayout>
+            <Button
+                Grid.Row="3"
+                Grid.ColumnSpan="3"
+                HorizontalOptions="Center"
+                Text="Submit"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

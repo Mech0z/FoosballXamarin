@@ -28,9 +28,9 @@ namespace FoosballXamarin.Views
 			ItemsListView.SelectedItem = null;
 		}
 
-		async void AddItem_Clicked(object sender, EventArgs e)
+		void Refresh_Clicked(object sender, EventArgs e)
 		{
-			await Navigation.PushAsync(new NewItemPage());
+		    _viewModel.LoadItemsCommand.Execute(this);
 		}
 
 		protected override void OnAppearing()
