@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FoosballXamarin.Helpers;
@@ -35,13 +36,6 @@ namespace FoosballXamarin.ViewModels
 		    set => SetProperty(ref _eloRating, value);
 		}
 
-	    private bool _loading;
-	    public bool Loading
-	    {
-	        get => _loading;
-	        set => SetProperty(ref _loading, value);
-	    }
-
         User _user;
 	    public User User
 	    {
@@ -51,13 +45,22 @@ namespace FoosballXamarin.ViewModels
 
         async Task ExecuteLoadCommand()
         {
-            Loading = true;
-	        var users = await UserService.GetDataAsync();
-	        User = users.SingleOrDefault(x => x.Email == Item.UserName);
+            IsBusy = true;
+            try
+            {
+                var users = await UserService.GetDataAsync();
+                User = users.SingleOrDefault(x => x.Email == Item.UserName);
 
-            LatestMatches.ReplaceRange(await MatchService.GetPlayerMatches());
-
-            Loading = false;
+                LatestMatches.ReplaceRange(await MatchService.GetPlayerMatches());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
     }
 }

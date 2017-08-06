@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              x:Class="FoosballXamarin.Views.ItemDetailPage"
              Title="{Binding Title}"
              IsBusy="{Binding Loading}"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin.UWP"
              d:DataContext="{d:DesignInstance {x:Type vm:ItemDetailViewModel}}"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -69,4 +69,5 @@
             </ListView.ItemTemplate>
         </ListView>
     </StackLayout>
+    
 </ContentPage>
