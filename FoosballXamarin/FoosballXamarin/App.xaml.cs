@@ -28,12 +28,12 @@ namespace FoosballXamarin
                 {
                     new NavigationPage(new ItemsPage())
                     {
-                        Title = "Browse",
+                        Title = "Leaderboard",
                         Icon = Device.OnPlatform<string>("tab_feed.png",null,null)
                     },
-                    new NavigationPage(new AboutPage())
+                    new NavigationPage(new LastMatchesPage())
                     {
-                        Title = "About",
+                        Title = "Last games",
                         Icon = Device.OnPlatform<string>("tab_about.png",null,null)
                     },
                     new NavigationPage(new StartMatchPage())
