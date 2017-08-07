@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Foosball9000Api.RequestResponse;
 using Models;
 
 namespace FoosballXamarin.Services
@@ -8,5 +9,6 @@ namespace FoosballXamarin.Services
     {
         Task<List<Match>> GetDataAsync();
         Task<List<Match>> GetPlayerMatches();
+        Task<bool> SubmitMatches(SaveMatchesRequest request);
     }
 }

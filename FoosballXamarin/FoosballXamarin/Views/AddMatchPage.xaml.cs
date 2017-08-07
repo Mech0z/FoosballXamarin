@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using FoosballXamarin.Helpers;
 using FoosballXamarin.ViewModels;
 using Models;
@@ -15,6 +17,15 @@ namespace FoosballXamarin.Views
             InitializeComponent();
 
             BindingContext = _viewModel = new AddMatchViewModel(viewModelAddedPlayers);
+        }
+
+        private async Task SubmitCommand(object sender, EventArgs e)
+        {
+            var success = await _viewModel.SubmitMatch();
+            if (success)
+            {
+                await Navigation.PushAsync(new ItemsPage());
+            }
         }
     }
 }

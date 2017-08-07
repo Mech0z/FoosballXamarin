@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Foosball9000Api.RequestResponse;
 using FoosballXamarin.Helpers;
 using FoosballXamarin.Services;
+using FoosballXamarin.Views;
 using Models;
 using Xamarin.Forms;
 
@@ -13,6 +16,7 @@ namespace FoosballXamarin.ViewModels
         private readonly ObservableRangeCollection<LeaderboardViewEntry> _viewModelAddedPlayers;
         public IUserService UserService => DependencyService.Get<IUserService>();
         public ILeaderboardService LeaderboardService => DependencyService.Get<ILeaderboardService>();
+        public IMatchService MatchService => DependencyService.Get<IMatchService>();
 
         public ObservableRangeCollection<LeaderboardViewEntry> AddedPlayers { get; set; }
 
@@ -79,6 +83,63 @@ namespace FoosballXamarin.ViewModels
             _viewModelAddedPlayers = viewModelAddedPlayers;
             LoadCommand = new Command(async () => await ExecuteLoadCommand());
             LoadCommand.Execute(this);
+        }
+
+        public async Task<bool> SubmitMatch()
+        {
+            if (IsBusy)
+                return false;
+
+            IsBusy = true;
+
+            try
+            {
+                var users = new List<string>
+                {
+                    User1.Email,
+                    User2.Email,
+                    User3.Email,
+                    User4.Email
+                };
+
+                var request = new SaveMatchesRequest();
+                request.Matches = new List<Match>
+                {
+                    new Match
+                    {
+                        PlayerList = users,
+                        TimeStampUtc = DateTime.Now.AddMinutes(-5),
+                        MatchResult = new MatchResult
+                        {
+                            Team1Score = ScoreTeam1Match1,
+                            Team2Score = ScoreTeam2Match1
+                        }
+                    },
+                    new Match
+                    {
+                        PlayerList = users,
+                        TimeStampUtc = DateTime.Now,
+                        MatchResult = new MatchResult
+                        {
+                            Team1Score = ScoreTeam1Match2,
+                            Team2Score = ScoreTeam2Match2
+                        }
+                    }
+                };
+
+                var success = await MatchService.SubmitMatches(request);
+                return success;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+
+            return false;
         }
 
         async Task ExecuteLoadCommand()

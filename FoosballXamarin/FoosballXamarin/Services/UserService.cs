@@ -11,7 +11,7 @@ namespace FoosballXamarin.Services
     {
         public async Task<List<User>> GetDataAsync()
         {
-            RestUrl = "http://foosball9000api.sovs.net/api/player/GetUsers";
+            RestUrl = App.ApiUrl + "player/GetUsers";
             var response = await _client.GetAsync(HttpUri);
 
             if (!response.IsSuccessStatusCode) return new List<User>();

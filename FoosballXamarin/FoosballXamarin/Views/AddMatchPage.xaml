@@ -72,15 +72,16 @@
                 
                 <Entry
                     Keyboard="Numeric"
-                    Text="{Binding ScoreTeam1Match1}" />
+                    Text="{Binding ScoreTeam1Match2}" />
                 <Entry
                     Keyboard="Numeric"
-                    Text="{Binding ScoreTeam2Match1}"/>
+                    Text="{Binding ScoreTeam2Match2}"/>
             </StackLayout>
             <Button
                 Grid.Row="3"
                 Grid.ColumnSpan="3"
                 HorizontalOptions="Center"
+                Clicked="SubmitCommand"
                 Text="Submit"/>
         </Grid>
     </ContentPage.Content>

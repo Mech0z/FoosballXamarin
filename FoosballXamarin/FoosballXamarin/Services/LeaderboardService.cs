@@ -11,7 +11,7 @@ namespace FoosballXamarin.Services
     {
         public async Task<List<LeaderboardView>> GetDataAsync()
         {
-            RestUrl = "http://foosball9000api.sovs.net/api/leaderboard/index";
+            RestUrl = App.ApiUrl + "leaderboard/index";
             var response = await _client.GetAsync(HttpUri);
 
             if (!response.IsSuccessStatusCode) return new List<LeaderboardView>();
