@@ -24,7 +24,7 @@ namespace FoosballXamarin.Views
             var success = await _viewModel.SubmitMatch();
             if (success)
             {
-                await Navigation.PushAsync(new ItemsPage());
+                await Navigation.PopToRootAsync(true);
             }
         }
     }
