@@ -17,7 +17,7 @@ namespace FoosballXamarin.ViewModels
 
         public LastMatchesViewModel()
 		{
-			Title = "About";
+			Title = "Last Games";
 
 			//OpenWebCommand = new Command(() => Device.OpenUri(new Uri("https://xamarin.com/platform")));
 

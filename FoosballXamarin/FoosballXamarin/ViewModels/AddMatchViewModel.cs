@@ -80,6 +80,8 @@ namespace FoosballXamarin.ViewModels
 
         public AddMatchViewModel(ObservableRangeCollection<LeaderboardViewEntry> viewModelAddedPlayers)
         {
+            Title = "Add Result";
+
             _viewModelAddedPlayers = viewModelAddedPlayers;
             LoadCommand = new Command(async () => await ExecuteLoadCommand());
             LoadCommand.Execute(this);

@@ -21,6 +21,8 @@ namespace FoosballXamarin.ViewModels
         
         public StartMatchViewModel()
         {
+            Title = "Leaderboard";
+
             LeaderboardViewEntries = new ObservableRangeCollection<LeaderboardViewEntry>();
             Users = new ObservableRangeCollection<User>();
             AddedPlayers = new ObservableRangeCollection<LeaderboardViewEntry>();
