@@ -37,7 +37,7 @@ namespace FoosballXamarin.Views
 		{
 			base.OnAppearing();
 
-			if (_viewModel.Items.Count == 0)
+			if (_viewModel.SelectedLeaderboardView == null)
 				_viewModel.LoadItemsCommand.Execute(null);
 		}
 	}

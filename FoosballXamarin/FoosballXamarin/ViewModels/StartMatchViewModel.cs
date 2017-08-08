@@ -66,6 +66,11 @@ namespace FoosballXamarin.ViewModels
 
                 var users = await UserService.GetDataAsync();
 
+                foreach (var entry in newest.Entries)
+                {
+                    entry.Name = users.SingleOrDefault(x => x.Email == entry.UserName).Username;
+                }
+
                 LeaderboardViewEntries.ReplaceRange(newest.Entries);
             }
             catch (Exception ex)

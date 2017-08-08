@@ -97,9 +97,9 @@ namespace FoosballXamarin.ViewModels
                 var users = new List<string>
                 {
                     User1.Email,
+                    User4.Email,
                     User2.Email,
                     User3.Email,
-                    User4.Email
                 };
 
                 var request = new SaveMatchesRequest();
