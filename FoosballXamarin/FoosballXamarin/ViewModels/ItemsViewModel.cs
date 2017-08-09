@@ -16,7 +16,6 @@ namespace FoosballXamarin.ViewModels
 	    private LeaderboardView _selectedLeaderboardView;
 	    public IUserService UserService => DependencyService.Get<IUserService>();
 	    public ILeaderboardService LeaderboardService => DependencyService.Get<ILeaderboardService>();
-        public ObservableRangeCollection<Item> Items { get; set; }
 		public ObservableRangeCollection<User> Users { get; set; }
 		public ObservableRangeCollection<LeaderboardView> Leaderboards { get; set; }
 
@@ -31,17 +30,9 @@ namespace FoosballXamarin.ViewModels
 		public ItemsViewModel()
 		{
 			Title = "Browse";
-			Items = new ObservableRangeCollection<Item>();
             Users = new ObservableRangeCollection<User>();
             Leaderboards = new ObservableRangeCollection<LeaderboardView>();
 			LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-
-			MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
-			{
-				var _item = item as Item;
-				Items.Add(_item);
-				await DataStore.AddItemAsync(_item);
-			});
 		}
 
 		async Task ExecuteLoadItemsCommand()
@@ -56,11 +47,11 @@ namespace FoosballXamarin.ViewModels
 			    Users.ReplaceRange(await UserService.GetDataAsync());
                 Leaderboards.ReplaceRange(await LeaderboardService.GetDataAsync());
                 SelectedLeaderboardView = Leaderboards.OrderByDescending(x => x.Timestamp).FirstOrDefault();
-
-
-                Items.Clear();
-				var items = await DataStore.GetItemsAsync(true);
-				Items.ReplaceRange(items);
+                
+                foreach (var entry in SelectedLeaderboardView.Entries)
+			    {
+			        entry.Name = Users.SingleOrDefault(x => x.Email == entry.UserName).Username;
+			    }
 			}
 			catch (Exception ex)
 			{

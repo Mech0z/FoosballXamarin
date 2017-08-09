@@ -31,19 +31,19 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="10">
-                                <Label Text="{Binding UserName}"
+                            <StackLayout Padding="10" Orientation="Horizontal">
+                                <Label Text="{Binding Name}"
                                        LineBreakMode="NoWrap"
                                        Style="{DynamicResource ListItemTextStyle}"
                                        FontSize="16" />
                                 <Label Text="{Binding EloRating}"
                                        LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemDetailTextStyle}"
-                                       FontSize="13" />
+                                       Style="{DynamicResource ListItemTextStyle}"
+                                       FontSize="16" />
                                 <Label Text="{Binding Form}"
                                        LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemDetailTextStyle}"
-                                       FontSize="13" />
+                                       Style="{DynamicResource ListItemTextStyle}"
+                                       FontSize="16" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
