@@ -14,5 +14,11 @@ namespace FoosballXamarin.Views
 
 		    BindingContext = _viewModel = new LastMatchesViewModel();
         }
-    }
+
+	    protected override void OnAppearing()
+	    {
+            _viewModel.LoadItemsCommand.Execute(this);
+	        base.OnAppearing();
+	    }
+	}
 }
