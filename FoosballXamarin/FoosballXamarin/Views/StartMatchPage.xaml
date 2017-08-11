@@ -76,6 +76,7 @@
             <Button Grid.Column="1"
                     Grid.Row="1"
                     Margin="15"
+                    Scale="1.5"
                     HorizontalOptions="CenterAndExpand"
                     VerticalOptions="Center"
                     Clicked="StartMatchCommand"

@@ -25,6 +25,7 @@ namespace FoosballXamarin.Views
             if (success)
             {
                 await DisplayAlert("Matches added", "Great success!", "OK");
+
                 await Navigation.PopToRootAsync(true);
             }
         }

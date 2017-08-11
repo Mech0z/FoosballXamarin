@@ -35,7 +35,7 @@
                     <Label
                     FontSize="18"
                     HorizontalOptions="Center"
-                    Text="{Binding User2.Username}" />
+                    Text="{Binding User4.Username}" />
                 </StackLayout>
                 <Label
                 Grid.Column="1"
@@ -50,11 +50,11 @@
                 <Label
                     FontSize="18"
                     HorizontalOptions="Center"
-                    Text="{Binding User3.Username}" />
+                    Text="{Binding User2.Username}" />
                 <Label
                     FontSize="18"
                     HorizontalOptions="Center"
-                    Text="{Binding User4.Username}" />
+                    Text="{Binding User3.Username}" />
             </StackLayout>
 
             <StackLayout 
