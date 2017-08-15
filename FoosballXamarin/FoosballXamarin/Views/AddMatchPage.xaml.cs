@@ -21,11 +21,13 @@ namespace FoosballXamarin.Views
 
         private async Task SubmitCommand(object sender, EventArgs e)
         {
+            if (IsBusy)
+                return;
+
             var success = await _viewModel.SubmitMatch();
             if (success)
             {
                 await DisplayAlert("Matches added", "Great success!", "OK");
-
                 await Navigation.PopToRootAsync(true);
             }
         }

@@ -53,6 +53,7 @@ namespace FoosballXamarin.Services
             }
             else
             {
+                Console.WriteLine("added match");
                 return true;
             }
         }
