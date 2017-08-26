@@ -26,8 +26,6 @@ namespace FoosballXamarin.ViewModels
             LeaderboardViewEntries = new ObservableRangeCollection<LeaderboardViewEntry>();
             Users = new ObservableRangeCollection<User>();
             AddedPlayers = new ObservableRangeCollection<LeaderboardViewEntry>();
-            LoadCommand = new Command(async () => await ExecuteLoadCommand());
-            LoadCommand.Execute(this);
 
             MessagingCenter.Subscribe<StartMatchPage, LeaderboardViewEntry>(this, "AddPlayerToGame",(obj, item) =>
             {
@@ -53,11 +51,58 @@ namespace FoosballXamarin.ViewModels
             });
         }
 
-        async Task ExecuteLoadCommand()
+        public async Task Load()
         {
-            if (IsBusy)
+            if (!LeaderboardViewEntries.Any())
+            {
+                await InitialLoad();
                 return;
+            }
 
+            IsBusy = true;
+
+            try
+            {
+                var leaderboardViews = await LeaderboardService.GetDataAsync();
+
+                var newest = leaderboardViews.OrderByDescending(x => x.Timestamp).FirstOrDefault();
+
+                var users = await UserService.GetDataAsync();
+
+                foreach (var entry in newest.Entries)
+                {
+                    entry.Name = users.SingleOrDefault(x => x.Email == entry.UserName).Username;
+                }
+
+                foreach (var entry in newest.Entries)
+                {
+                    var existingUser = LeaderboardViewEntries.SingleOrDefault(x => x.UserName == entry.UserName);
+
+                    if (existingUser != null)
+                    {
+                        existingUser.EloRating = entry.EloRating;
+                    }
+                    else
+                    {
+                        LeaderboardViewEntries.Add(entry);
+                    }
+                }
+
+                LeaderboardViewEntries.ReplaceRange(LeaderboardViewEntries.OrderByDescending(x => x.EloRating).ToList());
+                AddedPlayers.ReplaceRange(AddedPlayers.OrderByDescending(x => x.EloRating).ToList());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        async Task InitialLoad()
+        {
             IsBusy = true;
 
             try

@@ -30,6 +30,12 @@ namespace FoosballXamarin.Views
             }
         }
 
+        protected override async void OnAppearing()
+        {
+            await _viewModel.Load();
+            base.OnAppearing();
+        }
+
         void Handle_AddedPlayerTapped(object sender, SelectedItemChangedEventArgs e)
         {
             if (e.SelectedItem == null)

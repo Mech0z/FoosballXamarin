@@ -26,7 +26,6 @@
                 <ListView x:Name="Team1ListView"
                           Grid.Column="0"
                           HorizontalOptions="Center"
-                          VerticalOptions="FillAndExpand"
                           ItemsSource="{Binding Team1}"
                           IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                           ItemTapped="PlayerClickedCommand">

@@ -35,7 +35,12 @@ namespace FoosballXamarin.Views
 
         private async Task PlayerClickedCommand(object sender, SelectedItemChangedEventArgs e)
         {
-            var user = Team1ListView.SelectedItem as User;
+            var listview = sender as ListView;
+
+            if(listview == null)
+                return;
+
+            var user = listview.SelectedItem as User;
 
             if (user == null)
                 return;
@@ -45,7 +50,7 @@ namespace FoosballXamarin.Views
                 var result = await DisplayActionSheet($"Swap {user.Username} with whom", "Cancel", null,
                     _viewModel.Team2[0].Username, _viewModel.Team2[1].Username);
 
-                if (result == null)
+                if (result == null || result == "Cancel")
                     return;
 
                 var index = _viewModel.Team2.IndexOf(_viewModel.Team2.SingleOrDefault(x => x.Username == result));
@@ -57,7 +62,7 @@ namespace FoosballXamarin.Views
                 var result = await DisplayActionSheet($"Swap {user.Username} with whom", "Cancel", null,
                     _viewModel.Team1[0].Username, _viewModel.Team1[1].Username);
 
-                if (result == null)
+                if (result == null || result == "Cancel")
                     return;
 
                 var index = _viewModel.Team1.IndexOf(_viewModel.Team1.SingleOrDefault(x => x.Username == result));
