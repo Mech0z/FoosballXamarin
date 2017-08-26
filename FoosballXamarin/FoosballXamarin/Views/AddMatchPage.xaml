@@ -7,56 +7,66 @@
              xmlns:vm="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin.UWP"
              d:DataContext="{d:DesignInstance {x:Type vm:AddMatchViewModel}}"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             Title="Add Match"  
-             IsBusy="True"
-             
+             Title="Add Match"             
              mc:Ignorable="d">
     <ContentPage.Content>
-        <Grid>
+      <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="8*"/>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="8*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="0.3*" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-                <StackLayout
-                    Grid.Column="0"
-                    Padding="7"
-                    BackgroundColor="Gray">
-                    <Label
-                    FontSize="18"
-                    HorizontalOptions="Center"
-                    Text="{Binding User1.Username}" />
-                    <Label
-                    FontSize="18"
-                    HorizontalOptions="Center"
-                    Text="{Binding User4.Username}" />
-                </StackLayout>
+                <ListView x:Name="Team1ListView"
+                          Grid.Column="0"
+                          HorizontalOptions="Center"
+                          VerticalOptions="FillAndExpand"
+                          ItemsSource="{Binding Team1}"
+                          IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                          ItemTapped="PlayerClickedCommand">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Padding="10" Orientation="Horizontal">
+                                    <Label Text="{Binding Username}"
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemTextStyle}"
+                                           FontSize="16" />
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                </ListView>
                 <Label
                 Grid.Column="1"
                 FontSize="18"
                 HorizontalOptions="Center"
-                VerticalOptions="Center"
                 Text="VS" />
-            <StackLayout
-                Grid.Column="2"
-                Padding="7"
-                BackgroundColor="Gray">
-                <Label
-                    FontSize="18"
-                    HorizontalOptions="Center"
-                    Text="{Binding User2.Username}" />
-                <Label
-                    FontSize="18"
-                    HorizontalOptions="Center"
-                    Text="{Binding User3.Username}" />
-            </StackLayout>
+                <ListView x:Name="Team2ListView"
+                          Grid.Column="2"
+                          HorizontalOptions="Center"
+                          ItemsSource="{Binding Team2}"
+                          IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                          ItemTapped="PlayerClickedCommand">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Padding="10" Orientation="Horizontal">
+                                    <Label Text="{Binding Username}"
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemTextStyle}"
+                                           FontSize="16" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
 
             <StackLayout 
                 Grid.Row="1" 
@@ -97,7 +107,8 @@
                 HorizontalOptions="Center"
                 Scale="1.5"
                 Clicked="SubmitCommand"
-                Text="Submit"/>
+                Text="Submit"
+                />
         </Grid>
     </ContentPage.Content>
 </ContentPage>
