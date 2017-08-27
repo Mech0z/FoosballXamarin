@@ -7,7 +7,7 @@
              xmlns:vm="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin.UWP"
              d:DataContext="{d:DesignInstance {x:Type vm:AddMatchViewModel}}"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             Title="Add Match"             
+             Title="Add Match"  
              mc:Ignorable="d">
     <ContentPage.Content>
       <Grid>
@@ -105,6 +105,7 @@
                 Grid.ColumnSpan="3"
                 HorizontalOptions="Center"
                 Scale="1.5"
+                IsEnabled="{Binding IsNotSubmitting}"
                 Clicked="SubmitCommand"
                 Text="Submit"
                 />

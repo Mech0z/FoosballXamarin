@@ -51,6 +51,13 @@ namespace FoosballXamarin.ViewModels
             set => SetProperty(ref _scoreTeam2Match2, value);
         }
 
+        bool _isNotSubmitting;
+        public bool IsNotSubmitting
+        {
+            get => _isNotSubmitting;
+            set => SetProperty(ref _isNotSubmitting, value);
+        }
+
         public AddMatchViewModel(ObservableRangeCollection<LeaderboardViewEntry> viewModelAddedPlayers)
         {
             Title = "Add Result";
@@ -60,6 +67,7 @@ namespace FoosballXamarin.ViewModels
             Team2 = new ObservableRangeCollection<User>();
             LoadCommand = new Command(async () => await ExecuteLoadCommand());
             LoadCommand.Execute(this);
+            IsNotSubmitting = true;
         }
 
         public async Task<bool> SubmitMatch()
@@ -68,6 +76,7 @@ namespace FoosballXamarin.ViewModels
                 return false;
 
             IsBusy = true;
+            IsNotSubmitting = false;
 
             try
             {
@@ -114,6 +123,7 @@ namespace FoosballXamarin.ViewModels
             finally
             {
                 IsBusy = false;
+                IsNotSubmitting = true;
             }
 
             return false;
