@@ -62,5 +62,19 @@ namespace FoosballXamarin.Views
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
         }
+
+        private void Handle_UserTapped(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (e.SelectedItem == null)
+                return;
+
+            var user = e.SelectedItem as User;
+
+            MessagingCenter.Send(this, "AddUserToGame", user);
+            //await DisplayAlert("Item Tapped", "An item was tapped.", "OK");
+
+            //Deselect Item
+            ((ListView)sender).SelectedItem = null;
+        }
     }
 }

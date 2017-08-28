@@ -17,6 +17,24 @@ namespace FoosballXamarin.ViewModels
         public ObservableRangeCollection<User> Users { get; set; }
         public ObservableRangeCollection<LeaderboardViewEntry> AddedPlayers { get; set; }
 
+        bool _showAllPlayers;
+        public bool ShowAllPlayers
+        {
+            get => _showAllPlayers;
+            set
+            {
+                SetProperty(ref _showAllPlayers, value);
+                ShowLeaderboard = !value;
+            }
+        }
+
+        bool _showLeaderboard;
+        public bool ShowLeaderboard
+        {
+            get => _showLeaderboard;
+            set => SetProperty(ref _showLeaderboard, value);
+        }
+
         public Command LoadCommand { get; set; }
         
         public StartMatchViewModel()
@@ -26,6 +44,7 @@ namespace FoosballXamarin.ViewModels
             LeaderboardViewEntries = new ObservableRangeCollection<LeaderboardViewEntry>();
             Users = new ObservableRangeCollection<User>();
             AddedPlayers = new ObservableRangeCollection<LeaderboardViewEntry>();
+            ShowLeaderboard = true;
 
             MessagingCenter.Subscribe<StartMatchPage, LeaderboardViewEntry>(this, "AddPlayerToGame",(obj, item) =>
             {
@@ -43,6 +62,41 @@ namespace FoosballXamarin.ViewModels
                 AddedPlayers.Add(item);
                 var ordered = AddedPlayers.OrderByDescending(x => x.EloRating).ToList();
                 AddedPlayers.ReplaceRange(ordered);
+            });
+
+            MessagingCenter.Subscribe<StartMatchPage, User>(this, "AddUserToGame", (obj, item) =>
+            {
+                var alreadyAdded = AddedPlayers.SingleOrDefault(x => x.UserName == item.Email);
+
+                if (alreadyAdded != null)
+                {
+                    AddedPlayers.Remove(alreadyAdded);
+                    return;
+                }
+                
+                if (AddedPlayers.Count >= 4)
+                {
+                    return;
+                }
+
+                var existingUserInCurrentLeaderboard =
+                    LeaderboardViewEntries.SingleOrDefault(x => x.UserName == item.Email);
+
+                if (existingUserInCurrentLeaderboard == null)
+                {
+                    AddedPlayers.Add(new LeaderboardViewEntry
+                    {
+                        Name = item.Username,
+                        EloRating = 1500,
+                        UserName = item.Email
+                    });
+                }
+                else
+                {
+                    AddedPlayers.Add(existingUserInCurrentLeaderboard);
+                    var ordered = AddedPlayers.OrderByDescending(x => x.EloRating).ToList();
+                    AddedPlayers.ReplaceRange(ordered);
+                }
             });
 
             MessagingCenter.Subscribe<StartMatchPage, LeaderboardViewEntry>(this, "AddedPlayerTapped", (obj, item) =>
@@ -88,6 +142,7 @@ namespace FoosballXamarin.ViewModels
                     }
                 }
 
+                Users.ReplaceRange(users);
                 LeaderboardViewEntries.ReplaceRange(LeaderboardViewEntries.OrderByDescending(x => x.EloRating).ToList());
                 AddedPlayers.ReplaceRange(AddedPlayers.OrderByDescending(x => x.EloRating).ToList());
             }
@@ -119,6 +174,7 @@ namespace FoosballXamarin.ViewModels
                 }
 
                 LeaderboardViewEntries.ReplaceRange(newest.Entries);
+                Users.ReplaceRange(users.OrderBy(x => x.Username));
             }
             catch (Exception ex)
             {

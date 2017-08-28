@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage
+    xmlns:forms="using:Xamarin.Forms" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FoosballXamarin.Views.StartMatchPage"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -16,11 +17,22 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition />
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
+
+            <StackLayout Grid.Column="0"
+                         Grid.Row="0"
+                         Orientation="Horizontal">
+                <Label Text="Show all"/>
+                <Switch IsToggled="{Binding ShowAllPlayers}"/>    
+            </StackLayout>
+            
+
             <ListView x:Name="ItemsListView"
                       Grid.Column="0"
+                      Grid.Row="1"
                       Grid.RowSpan="2"
                       ItemsSource="{Binding LeaderboardViewEntries}"
                       VerticalOptions="Fill"
@@ -28,6 +40,7 @@
                       HasUnevenRows="true"
                       IsPullToRefreshEnabled="true"
                       IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                      IsVisible="{Binding ShowLeaderboard}"
                       ItemSelected="Handle_ItemTapped">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -46,8 +59,37 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+
+            <ListView x:Name="ItemsListAllPlayersView"
+                      Grid.Column="0"
+                      Grid.Row="1"
+                      Grid.RowSpan="2"
+                      ItemsSource="{Binding Users}"
+                      VerticalOptions="Fill"
+                      HorizontalOptions="Fill"
+                      HasUnevenRows="true"
+                      IsPullToRefreshEnabled="true"
+                      IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                      IsVisible="{Binding ShowAllPlayers}"
+                      ItemSelected="Handle_UserTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <Label Text="{Binding Username}"
+                                       LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemTextStyle}"
+                                       FontSize="16" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
             <ListView x:Name="AddedPlayerListView"
                       Grid.Column="1"
+                      Grid.Row="0"
+                      Grid.RowSpan="2"
                       ItemsSource="{Binding AddedPlayers}"
                       VerticalOptions="Fill"
                       HorizontalOptions="Fill"
