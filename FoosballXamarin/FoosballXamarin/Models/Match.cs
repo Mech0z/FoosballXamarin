@@ -24,6 +24,8 @@ namespace Models
         /// </summary>
         public List<string> PlayerList { get; set; }
 
+        public List<User> UserList { get; set; }
+
         /// <summary>
         /// True means first player in list is defence and second is offence
         /// </summary>

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using FoosballXamarin.Helpers;
@@ -12,6 +14,7 @@ namespace FoosballXamarin.ViewModels
 	public class LastMatchesViewModel : BaseViewModel
 	{
 	    public IMatchService MatchService => DependencyService.Get<IMatchService>();
+	    public IUserService UserService => DependencyService.Get<IUserService>();
 	    public ObservableRangeCollection<Match> Matches{ get; set; }
 	    public Command LoadItemsCommand { get; set; }
 
@@ -40,7 +43,21 @@ namespace FoosballXamarin.ViewModels
 
 	        try
 	        {
-	            Matches.ReplaceRange(await MatchService.GetDataAsync());
+	            var matches = await MatchService.GetDataAsync();
+	            var users = await UserService.GetDataAsync();
+
+	            foreach (Match match in matches)
+	            {
+	                match.UserList = new List<User>
+	                {
+	                    users.Single(x => x.Email == match.PlayerList[0]),
+	                    users.Single(x => x.Email == match.PlayerList[1]),
+	                    users.Single(x => x.Email == match.PlayerList[2]),
+	                    users.Single(x => x.Email == match.PlayerList[3]),
+	                };
+	            }
+
+                Matches.ReplaceRange(matches);
 	        }
 	        catch (Exception ex)
 	        {

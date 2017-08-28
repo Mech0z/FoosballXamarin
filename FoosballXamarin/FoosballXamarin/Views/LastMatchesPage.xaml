@@ -31,22 +31,22 @@
                             </StackLayout>
                             <StackLayout Padding="10" Orientation="Horizontal">
                                 <StackLayout Orientation="Vertical">
-                                    <Label Text="{Binding PlayerList[0]}"
+                                    <Label Text="{Binding UserList[0].Username}"
                                            LineBreakMode="NoWrap"
                                            Style="{DynamicResource ListItemDetailTextStyle}"
                                            FontSize="16" />
-                                    <Label Text="{Binding PlayerList[1]}"
+                                    <Label Text="{Binding UserList[1].Username}"
                                            LineBreakMode="NoWrap"
                                            Style="{DynamicResource ListItemDetailTextStyle}"
                                            FontSize="16" />
                                 </StackLayout>
                                 <Label>VS</Label>
                                 <StackLayout Orientation="Vertical">
-                                    <Label Text="{Binding PlayerList[2]}"
+                                    <Label Text="{Binding UserList[2].Username}"
                                            LineBreakMode="NoWrap"
                                            Style="{DynamicResource ListItemDetailTextStyle}"
                                            FontSize="16" />
-                                    <Label Text="{Binding PlayerList[3]}"
+                                    <Label Text="{Binding UserList[3].Username}"
                                            LineBreakMode="NoWrap"
                                            Style="{DynamicResource ListItemDetailTextStyle}"
                                            FontSize="16" />
