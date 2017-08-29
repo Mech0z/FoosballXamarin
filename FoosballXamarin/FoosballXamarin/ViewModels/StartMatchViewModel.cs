@@ -142,7 +142,7 @@ namespace FoosballXamarin.ViewModels
                     }
                 }
 
-                Users.ReplaceRange(users);
+                Users.ReplaceRange(users.OrderBy(x => x.Username));
                 LeaderboardViewEntries.ReplaceRange(LeaderboardViewEntries.OrderByDescending(x => x.EloRating).ToList());
                 AddedPlayers.ReplaceRange(AddedPlayers.OrderByDescending(x => x.EloRating).ToList());
             }

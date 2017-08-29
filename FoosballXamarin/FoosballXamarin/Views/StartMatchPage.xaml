@@ -116,7 +116,7 @@
             </ListView>
             
             <Button Grid.Column="1"
-                    Grid.Row="1"
+                    Grid.Row="2"
                     Margin="15"
                     Scale="1.5"
                     HorizontalOptions="CenterAndExpand"
