@@ -21,6 +21,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
                 <ListView x:Name="Team1ListView"
@@ -28,6 +29,7 @@
                           HorizontalOptions="Center"
                           ItemsSource="{Binding Team1}"
                           IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                          
                           ItemTapped="PlayerClickedCommand">
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -52,6 +54,7 @@
                           HorizontalOptions="Center"
                           ItemsSource="{Binding Team2}"
                           IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                          
                           ItemTapped="PlayerClickedCommand">
                     <ListView.ItemTemplate>
                         <DataTemplate>
