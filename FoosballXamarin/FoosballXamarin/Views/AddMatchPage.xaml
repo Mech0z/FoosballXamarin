@@ -21,51 +21,54 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <ListView x:Name="Team1ListView"
-                      Grid.Column="0"
-                      HorizontalOptions="Center"
-                      ItemsSource="{Binding Team1}"
-                      IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                      ItemTapped="PlayerClickedCommand">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Padding="10" Orientation="Horizontal">
-                                <Label Text="{Binding Username}"
-                                       LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemTextStyle}"
-                                       FontSize="16" />
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <Label
+                <ListView x:Name="Team1ListView"
+                          Grid.Column="0"
+                          HorizontalOptions="Center"
+                          ItemsSource="{Binding Team1}"
+                          IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                          
+                          ItemTapped="PlayerClickedCommand">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Padding="10" Orientation="Horizontal">
+                                    <Label Text="{Binding Username}"
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemTextStyle}"
+                                           FontSize="16" />
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                </ListView>
+                <Label
                 Grid.Column="1"
                 FontSize="18"
                 HorizontalOptions="Center"
                 Text="VS" />
-            <ListView x:Name="Team2ListView"
-                      Grid.Column="2"
-                      HorizontalOptions="Center"
-                      ItemsSource="{Binding Team2}"
-                      IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                      ItemTapped="PlayerClickedCommand">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Padding="10" Orientation="Horizontal">
-                                <Label Text="{Binding Username}"
-                                       LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemTextStyle}"
-                                       FontSize="16" />
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                <ListView x:Name="Team2ListView"
+                          Grid.Column="2"
+                          HorizontalOptions="Center"
+                          ItemsSource="{Binding Team2}"
+                          IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                          
+                          ItemTapped="PlayerClickedCommand">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Padding="10" Orientation="Horizontal">
+                                    <Label Text="{Binding Username}"
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemTextStyle}"
+                                           FontSize="16" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
 
 
             <Entry
