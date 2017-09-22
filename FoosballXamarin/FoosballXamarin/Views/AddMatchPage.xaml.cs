@@ -51,10 +51,16 @@ namespace FoosballXamarin.Views
                     _viewModel.Team2[0].Username, _viewModel.Team2[1].Username);
 
                 if (result == null || result == "Cancel")
-                    return;
+                {
 
-                var index = _viewModel.Team2.IndexOf(_viewModel.Team2.SingleOrDefault(x => x.Username == result));
-                SwapPlayer(user, index);
+                }
+                else
+                {
+
+                    var index = _viewModel.Team2.IndexOf(_viewModel.Team2.SingleOrDefault(x => x.Username == result));
+                    SwapPlayer(user, index);
+                }
+
                 Team1ListView.SelectedItem = null;
             }
             else
@@ -63,10 +69,14 @@ namespace FoosballXamarin.Views
                     _viewModel.Team1[0].Username, _viewModel.Team1[1].Username);
 
                 if (result == null || result == "Cancel")
-                    return;
+                {
 
-                var index = _viewModel.Team1.IndexOf(_viewModel.Team1.SingleOrDefault(x => x.Username == result));
-                SwapPlayer(user, index);
+                }
+                else
+                {
+                    var index = _viewModel.Team1.IndexOf(_viewModel.Team1.SingleOrDefault(x => x.Username == result));
+                    SwapPlayer(user, index);
+                }
                 Team2ListView.SelectedItem = null;
             }
         }
