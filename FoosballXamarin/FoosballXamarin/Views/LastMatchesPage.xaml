@@ -20,13 +20,14 @@
                     <ViewCell>
                         <StackLayout Padding="10">
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding TimeStampUtc}"
+                                <Label Text="{Binding TimeStampUtc, StringFormat='{}{0:dd/MM/yyyy}'}"
                                        LineBreakMode="NoWrap"
                                        Style="{DynamicResource ListItemTextStyle}"
                                        FontSize="16" />
                                 <Label Text="{Binding Points}"
                                        LineBreakMode="NoWrap"
                                        Style="{DynamicResource ListItemDetailTextStyle}"
+                                       FontAttributes="Bold"
                                        FontSize="16" />
                             </StackLayout>
                             <StackLayout Padding="10" Orientation="Horizontal">

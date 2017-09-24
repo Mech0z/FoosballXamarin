@@ -21,36 +21,10 @@ namespace FoosballXamarin.ViewModels
         public ObservableRangeCollection<LeaderboardViewEntry> AddedPlayers { get; set; }
         public ObservableRangeCollection<User> Team1 { get; set; }
         public ObservableRangeCollection<User> Team2 { get; set; }
+        public Match Match1 { get; set; }
+        public Match Match2 { get; set; }
         public Command LoadCommand { get; set; }
-
-        int _scoreTeam1Match1;
-        public int ScoreTeam1Match1
-        {
-            get => _scoreTeam1Match1;
-            set => SetProperty(ref _scoreTeam1Match1, value);
-        }
-
-        int _scoreTeam2Match1;
-        public int ScoreTeam2Match1
-        {
-            get => _scoreTeam2Match1;
-            set => SetProperty(ref _scoreTeam2Match1, value);
-        }
-
-        int _scoreTeam1Match2;
-        public int ScoreTeam1Match2
-        {
-            get => _scoreTeam1Match2;
-            set => SetProperty(ref _scoreTeam1Match2, value);
-        }
-
-        int _scoreTeam2Match2;
-        public int ScoreTeam2Match2
-        {
-            get => _scoreTeam2Match2;
-            set => SetProperty(ref _scoreTeam2Match2, value);
-        }
-
+        
         bool _isNotSubmitting;
         public bool IsNotSubmitting
         {
@@ -68,6 +42,8 @@ namespace FoosballXamarin.ViewModels
             LoadCommand = new Command(async () => await ExecuteLoadCommand());
             LoadCommand.Execute(this);
             IsNotSubmitting = true;
+            Match1 = new Match();
+            Match2 = new Match();
         }
 
         public async Task<bool> SubmitMatch()
@@ -89,29 +65,29 @@ namespace FoosballXamarin.ViewModels
                 };
 
                 var request = new SaveMatchesRequest();
-                request.Matches = new List<Match>
+
+
+                Match1.PlayerList = users;
+                Match1.TimeStampUtc = DateTime.Now.AddMinutes(-5);
+
+                Match2.PlayerList = users;
+                Match2.TimeStampUtc = DateTime.Now;
+                
+                request.Matches = new List<Match>();
+
+                if (!Match1.IsValid && !Match2.IsValid)
                 {
-                    new Match
-                    {
-                        PlayerList = users,
-                        TimeStampUtc = DateTime.Now.AddMinutes(-5),
-                        MatchResult = new MatchResult
-                        {
-                            Team1Score = ScoreTeam1Match1,
-                            Team2Score = ScoreTeam2Match1
-                        }
-                    },
-                    new Match
-                    {
-                        PlayerList = users,
-                        TimeStampUtc = DateTime.Now,
-                        MatchResult = new MatchResult
-                        {
-                            Team1Score = ScoreTeam1Match2,
-                            Team2Score = ScoreTeam2Match2
-                        }
-                    }
-                };
+                    return false;
+                }
+
+                if (Match1.IsValid)
+                {
+                    request.Matches.Add(Match1);
+                }
+                if (Match2.IsValid)
+                {
+                    request.Matches.Add(Match2);
+                }
 
                 var success = await MatchService.SubmitMatches(request);
                 return success;

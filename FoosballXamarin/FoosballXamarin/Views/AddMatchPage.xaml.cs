@@ -31,6 +31,10 @@ namespace FoosballXamarin.Views
                 await DisplayAlert("Matches added", "Great success!", "OK");
                 await Navigation.PopToRootAsync(true);
             }
+            else
+            {
+                await DisplayAlert("Error", "Match validation failed", "OK");
+            }
         }
 
         private async Task PlayerClickedCommand(object sender, SelectedItemChangedEventArgs e)

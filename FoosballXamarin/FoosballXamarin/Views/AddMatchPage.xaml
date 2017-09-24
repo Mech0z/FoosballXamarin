@@ -36,13 +36,10 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="10" Orientation="Horizontal">
-                                <Label Text="{Binding Username}"
-                                       LineBreakMode="NoWrap"
-                                       HorizontalTextAlignment="Center"
-                                       Style="{DynamicResource ListItemTextStyle}"
-                                       FontSize="16" />
-                            </StackLayout>
+                            <Label Text="{Binding Username}"
+                                   HorizontalTextAlignment="Center"
+                                   Style="{DynamicResource ListItemTextStyle}"
+                                   FontSize="16" />
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -65,13 +62,10 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="10" Orientation="Horizontal">
-                                <Label Text="{Binding Username}"
-                                       LineBreakMode="NoWrap"
-                                       HorizontalTextAlignment="Center"
-                                       Style="{DynamicResource ListItemTextStyle}"
-                                       FontSize="16" />
-                            </StackLayout>
+                            <Label Text="{Binding Username}"
+                                   HorizontalTextAlignment="Center"
+                                   Style="{DynamicResource ListItemTextStyle}"
+                                   FontSize="16" />
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -84,14 +78,14 @@
                 Keyboard="Numeric"
                 FontSize="40"
                 HorizontalTextAlignment="Center"
-                Text="{Binding ScoreTeam1Match1}" />
+                Text="{Binding Match1.MatchResult.Team1Score}" />
             <Entry
                 Grid.Row="2"
                 Grid.Column="2"
                 Keyboard="Numeric"
                 FontSize="40"
                 HorizontalTextAlignment="Center"
-                Text="{Binding ScoreTeam2Match1}" />
+                Text="{Binding Match1.MatchResult.Team2Score}" />
 
             <Entry
                 Grid.Column="0"
@@ -99,16 +93,27 @@
                 Keyboard="Numeric"
                 FontSize="40"
                 HorizontalTextAlignment="Center"
-                Text="{Binding ScoreTeam1Match2}" />
+                Text="{Binding Match2.MatchResult.Team1Score}" />
             <Entry
                 Grid.Column="2"
                 Grid.Row="3"
                 Keyboard="Numeric"
                 FontSize="40"
                 HorizontalTextAlignment="Center"
-                Text="{Binding ScoreTeam2Match2}" />
-            <Button
+                Text="{Binding Match2.MatchResult.Team2Score}" />
+            
+            <Label
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
                 Grid.Row="4"
+                Text="{Binding Match1.MatchValidationErrorText}"/>
+            <Label
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Grid.Row="4"
+                Text="{Binding Match2.MatchValidationErrorText}"/>
+            <Button
+                Grid.Row="5"
                 Grid.ColumnSpan="3"
                 HorizontalOptions="Center"
                 Scale="1.5"
