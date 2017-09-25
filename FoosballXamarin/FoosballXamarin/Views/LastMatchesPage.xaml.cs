@@ -1,5 +1,4 @@
-﻿
-using FoosballXamarin.ViewModels;
+﻿using FoosballXamarin.ViewModels;
 using Xamarin.Forms;
 
 namespace FoosballXamarin.Views

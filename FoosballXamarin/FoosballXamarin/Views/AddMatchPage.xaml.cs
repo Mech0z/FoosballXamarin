@@ -33,7 +33,7 @@ namespace FoosballXamarin.Views
             }
             else
             {
-                await DisplayAlert("Error", "Match validation failed", "OK");
+                await DisplayAlert("Error", _viewModel.ErrorMessage, "OK");
             }
         }
 

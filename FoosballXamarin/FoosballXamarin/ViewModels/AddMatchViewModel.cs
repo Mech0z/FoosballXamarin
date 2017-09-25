@@ -21,8 +21,22 @@ namespace FoosballXamarin.ViewModels
         public ObservableRangeCollection<LeaderboardViewEntry> AddedPlayers { get; set; }
         public ObservableRangeCollection<User> Team1 { get; set; }
         public ObservableRangeCollection<User> Team2 { get; set; }
-        public Match Match1 { get; set; }
-        public Match Match2 { get; set; }
+
+        Match _match1;
+        public Match Match1
+        {
+            get => _match1;
+            set => SetProperty(ref _match1, value);
+        }
+
+        Match _match2;
+        public Match Match2
+        {
+            get => _match2;
+            set => SetProperty(ref _match2, value);
+        }
+
+        public string ErrorMessage { get; set; }
         public Command LoadCommand { get; set; }
         
         bool _isNotSubmitting;
@@ -75,21 +89,33 @@ namespace FoosballXamarin.ViewModels
                 
                 request.Matches = new List<Match>();
 
-                if (!Match1.IsValid && !Match2.IsValid)
+                if (!Match1.HaveScore && !Match2.HaveScore)
                 {
+                    ErrorMessage = "At least add one score";
                     return false;
                 }
 
-                if (Match1.IsValid)
+                if (Match1.HaveScore)
                 {
+                    if (!Match1.IsValid)
+                    {
+                        ErrorMessage = Match1.MatchValidationErrorText;
+                        return false;
+                    }
                     request.Matches.Add(Match1);
                 }
-                if (Match2.IsValid)
+                if (Match2.HaveScore)
                 {
+                    if (!Match2.IsValid)
+                    {
+                        ErrorMessage = Match2.MatchValidationErrorText;
+                        return false;
+                    }
                     request.Matches.Add(Match2);
                 }
 
                 var success = await MatchService.SubmitMatches(request);
+                MessagingCenter.Send(this, "MatchAddedSuccessfully");
                 return success;
             }
             catch (Exception ex)

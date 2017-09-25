@@ -4,8 +4,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FoosballXamarin.Views.AddMatchPage"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin.UWP"
-             d:DataContext="{d:DesignInstance {x:Type vm:AddMatchViewModel}}"
+             xmlns:viewModels="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin.Android"
+             d:DataContext="{d:DesignInstance {x:Type viewModels:AddMatchViewModel}}"
+             xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              Title="Add Match"
              mc:Ignorable="d">
@@ -57,7 +58,6 @@
                       HorizontalOptions="Center"
                       ItemsSource="{Binding Team2}"
                       IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-
                       ItemTapped="PlayerClickedCommand">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -72,35 +72,41 @@
             </ListView>
 
 
-            <Entry
+            <numeric:SfNumericUpDown
                 Grid.Row="2"
                 Grid.Column="0"
-                Keyboard="Numeric"
-                FontSize="40"
-                HorizontalTextAlignment="Center"
-                Text="{Binding Match1.MatchResult.Team1Score}" />
-            <Entry
+                AllowNull="True"
+                Minimum="0"
+                Maximum="99"
+                MaximumDecimalDigits="0"
+                StepValue="1"
+                Value="{Binding Match1.MatchResult.Team1Score, Mode=TwoWay}" />
+            <numeric:SfNumericUpDown
                 Grid.Row="2"
                 Grid.Column="2"
-                Keyboard="Numeric"
-                FontSize="40"
-                HorizontalTextAlignment="Center"
-                Text="{Binding Match1.MatchResult.Team2Score}" />
+                AllowNull="True"
+                Minimum="0"
+                Maximum="99"
+                MaximumDecimalDigits="0"
+                Value="{Binding Match1.MatchResult.Team2Score, Mode=TwoWay}" />
 
-            <Entry
+            <numeric:SfNumericUpDown
                 Grid.Column="0"
                 Grid.Row="3"
-                Keyboard="Numeric"
-                FontSize="40"
-                HorizontalTextAlignment="Center"
-                Text="{Binding Match2.MatchResult.Team1Score}" />
-            <Entry
+                AllowNull="True"
+                Minimum="0"
+                Maximum="99"
+                MaximumDecimalDigits="0"
+                Value="{Binding Match2.MatchResult.Team1Score}" />
+            <numeric:SfNumericUpDown
                 Grid.Column="2"
                 Grid.Row="3"
-                Keyboard="Numeric"
-                FontSize="40"
-                HorizontalTextAlignment="Center"
-                Text="{Binding Match2.MatchResult.Team2Score}" />
+                AllowNull="True"
+                Minimum="0"
+                Maximum="99"
+                MaximumDecimalDigits="0"
+                StepValue="1"
+                Value="{Binding Match2.MatchResult.Team2Score}" />
             
             <Label
                 Grid.Column="0"
@@ -116,6 +122,7 @@
                 Grid.Row="5"
                 Grid.ColumnSpan="3"
                 HorizontalOptions="Center"
+                VerticalOptions="Center"
                 Scale="1.5"
                 IsEnabled="{Binding IsNotSubmitting}"
                 Clicked="SubmitCommand"

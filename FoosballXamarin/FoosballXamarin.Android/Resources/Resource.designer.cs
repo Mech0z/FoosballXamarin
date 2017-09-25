@@ -26,6 +26,7 @@ namespace FoosballXamarin.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::Com.Syncfusion.Numerictextbox.Resource.String.library_name = global::FoosballXamarin.Droid.Resource.String.library_name;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::FoosballXamarin.Droid.Resource.Attribute.actionBarSize;
 		}
 		
@@ -1557,6 +1558,9 @@ namespace FoosballXamarin.Droid
 			// aapt resource value: 0x7f060010
 			public const int abc_text_size_title_material_toolbar = 2131099664;
 			
+			// aapt resource value: 0x7f060074
+			public const int button_font_size = 2131099764;
+			
 			// aapt resource value: 0x7f060009
 			public const int cardview_compat_inset_shadow = 2131099657;
 			
@@ -1658,6 +1662,9 @@ namespace FoosballXamarin.Droid
 			
 			// aapt resource value: 0x7f060050
 			public const int disabled_alpha_material_light = 2131099728;
+			
+			// aapt resource value: 0x7f060075
+			public const int font_size = 2131099765;
 			
 			// aapt resource value: 0x7f060051
 			public const int highlight_alpha_material_colored = 2131099729;
@@ -2200,14 +2207,17 @@ namespace FoosballXamarin.Droid
 			// aapt resource value: 0x7f0200a0
 			public const int mr_ic_play_light = 2130837664;
 			
-			// aapt resource value: 0x7f0200a3
-			public const int notification_template_icon_bg = 2130837667;
+			// aapt resource value: 0x7f0200a4
+			public const int notification_template_icon_bg = 2130837668;
 			
 			// aapt resource value: 0x7f0200a1
 			public const int profile_generic = 2130837665;
 			
 			// aapt resource value: 0x7f0200a2
 			public const int slideout = 2130837666;
+			
+			// aapt resource value: 0x7f0200a3
+			public const int updownbuttons = 2130837667;
 			
 			static Drawable()
 			{
@@ -3000,6 +3010,9 @@ namespace FoosballXamarin.Droid
 			// aapt resource value: 0x7f080021
 			public const int abc_toolbar_collapse_description = 2131230753;
 			
+			// aapt resource value: 0x7f080026
+			public const int app_name = 2131230758;
+			
 			// aapt resource value: 0x7f080023
 			public const int appbar_scrolling_view_behavior = 2131230755;
 			
@@ -3008,6 +3021,9 @@ namespace FoosballXamarin.Droid
 			
 			// aapt resource value: 0x7f080025
 			public const int character_counter_pattern = 2131230757;
+			
+			// aapt resource value: 0x7f080027
+			public const int library_name = 2131230759;
 			
 			// aapt resource value: 0x7f080000
 			public const int mr_button_content_description = 2131230720;

@@ -27,6 +27,7 @@ namespace FoosballXamarin.ViewModels
             Matches = new ObservableRangeCollection<Match>();
 		    LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             LoadItemsCommand.Execute(this);
+		    MessagingCenter.Subscribe<AddMatchViewModel>(this, "MatchAddedSuccessfully", async (sender) => await ExecuteLoadItemsCommand());
         }
 
         /// <summary>
@@ -36,9 +37,6 @@ namespace FoosballXamarin.ViewModels
 
 	    async Task ExecuteLoadItemsCommand()
 	    {
-	        if (IsBusy)
-	            return;
-
 	        IsBusy = true;
 
 	        try

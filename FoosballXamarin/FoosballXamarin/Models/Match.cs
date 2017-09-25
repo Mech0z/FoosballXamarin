@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using FoosballXamarin.Helpers;
 
 namespace Models
 {
-    public class Match
+    public class Match : ObservableObject
     {
         public bool ScoreIsHighEnough => MatchResult.Team1Score >= 8 || MatchResult.Team2Score >= 8;
 
@@ -27,28 +27,41 @@ namespace Models
 
         public String SeasonName { get; set; }
 
+        public bool HaveScore => MatchResult.Team1Score != 0 || MatchResult.Team2Score != 0;
+
         public bool IsValid
         {
             get
             {
+                //if(MatchResult.Team1Score == null && MatchResult.Team2Score != null)
+                //{
+                //    MatchValidationErrorText = "Both teams must have a score";
+                //    return false;
+                //}
+
+                //if (MatchResult.Team2Score == null && MatchResult.Team1Score != null)
+                //{
+                //    MatchValidationErrorText = "Both teams must have a score";
+                //    return false;
+                //}
 
                 if (MatchResult.Team1Score >= MatchResult.Team2Score + 2 ||
                     MatchResult.Team2Score >= MatchResult.Team1Score + 2)
                 {
-                    MatchValidationErrorText = "A team must win with at least 2 points";
                 }
                 else
                 {
+                    MatchValidationErrorText = "A team must win with at least 2 points";
                     return false;
                 }
 
                 if (MatchResult.Team1Score >= 8 ||
                     MatchResult.Team2Score >= 8)
                 {
-                    MatchValidationErrorText = "Winning team must have at least 8 points";
                 }
                 else
                 {
+                    MatchValidationErrorText = "Winning team must have at least 8 points";
                     return false;
                 }
 
