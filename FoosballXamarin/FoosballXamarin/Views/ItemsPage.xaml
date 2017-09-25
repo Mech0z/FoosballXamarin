@@ -6,20 +6,20 @@
              Title="{Binding Title}"
              x:Name="BrowseItemsPage"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin.UWP"
-             d:DataContext="{d:DesignInstance {x:Type vm:ItemsViewModel}}"
+             d:DataContext="{d:DesignInstance {x:Type viewModels:ItemsViewModel}}"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin.Android"
              mc:Ignorable="d">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Refresh" Clicked="Refresh_Clicked" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <Picker 
+            <Picker
                 ItemsSource="{Binding Leaderboards}"
                 SelectedItem="{Binding SelectedLeaderboardView}"
-                ItemDisplayBinding="{Binding SeasonName}"/>
-            
+                ItemDisplayBinding="{Binding SeasonName}" />
+
             <ListView x:Name="ItemsListView"
                       ItemsSource="{Binding SelectedLeaderboardView.Entries}"
                       VerticalOptions="FillAndExpand"
@@ -31,20 +31,25 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="10" Orientation="Horizontal">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="10*" />
+                                    <ColumnDefinition Width="3*" />
+                                    <ColumnDefinition Width="4*" />
+                                </Grid.ColumnDefinitions>
                                 <Label Text="{Binding Name}"
+                                       Grid.Column="0"
                                        LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemTextStyle}"
-                                       FontSize="16" />
+                                       Style="{DynamicResource ListItemTextStyle}" />
                                 <Label Text="{Binding EloRating}"
+                                       Grid.Column="1"
                                        LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemTextStyle}"
-                                       FontSize="16" />
+                                       Style="{DynamicResource ListItemTextStyle}" />
                                 <Label Text="{Binding Form}"
+                                       Grid.Column="2"
                                        LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemTextStyle}"
-                                       FontSize="16" />
-                            </StackLayout>
+                                       Style="{DynamicResource ListItemTextStyle}" />
+                            </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
