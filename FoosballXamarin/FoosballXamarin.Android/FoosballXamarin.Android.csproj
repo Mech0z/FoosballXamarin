@@ -74,6 +74,15 @@
     <Reference Include="Syncfusion.SfNumericUpDown.XForms.Android, Version=15.3451.0.26, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Syncfusion.Xamarin.SfNumericUpDown.15.3.0.26\lib\MonoAndroid10\Syncfusion.SfNumericUpDown.XForms.Android.dll</HintPath>
     </Reference>
+    <Reference Include="Syncfusion.SfSparkline.Android, Version=15.3451.0.26, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.SfSparkline.15.3.0.26\lib\MonoAndroid10\Syncfusion.SfSparkline.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfSparkline.XForms, Version=15.3451.0.26, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.SfSparkline.15.3.0.26\lib\MonoAndroid10\Syncfusion.SfSparkline.XForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfSparkline.XForms.Android, Version=15.3451.0.26, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Syncfusion.Xamarin.SfSparkline.15.3.0.26\lib\MonoAndroid10\Syncfusion.SfSparkline.XForms.Android.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Xml" />

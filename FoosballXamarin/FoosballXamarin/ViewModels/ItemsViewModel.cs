@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -54,6 +55,8 @@ namespace FoosballXamarin.ViewModels
 			        {
 			            entry.Rank = leaderboard.Entries.IndexOf(entry) + 1;
 			            entry.Name = Users.SingleOrDefault(x => x.Email == entry.UserName).Username;
+
+			            entry.FormList = GenerateFormList(entry.Form);
                     }
 			    }
 			}
@@ -72,5 +75,17 @@ namespace FoosballXamarin.ViewModels
 				IsBusy = false;
 			}
 		}
+
+	    private List<Form> GenerateFormList(string entryForm)
+	    {
+	        var result = new List<Form>();
+            
+            foreach (char t in entryForm)
+	        {
+	            result.Add(t == 'W' ? new Form(1) : new Form(-1));
+	        }
+
+	        return result;
+	    }
 	}
 }

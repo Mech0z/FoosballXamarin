@@ -6,6 +6,7 @@
              Title="{Binding Title}"
              x:Name="BrowseItemsPage"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sparkline="clr-namespace:Syncfusion.SfSparkline.XForms;assembly=Syncfusion.SfSparkline.XForms" 
              d:DataContext="{d:DesignInstance {x:Type viewModels:ItemsViewModel}}"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin.Android"
@@ -58,13 +59,13 @@
                                        HorizontalOptions="Start"
                                        LineBreakMode="NoWrap"
                                        Style="{DynamicResource ListItemTextStyle}"/>
-                                <Label Text="{Binding Form}"
+                                <sparkline:SfWinLossSparkline  
                                        Grid.Column="4"
-                                       LineBreakMode="NoWrap"
-                                       VerticalOptions="Center"
-                                       HorizontalOptions="Center"
-                                       FontSize="Micro"
-                                       Style="{DynamicResource ListItemTextStyle}" />
+                                       Color="LawnGreen"
+                                       ItemsSource="{Binding FormList}"
+                                       Margin="5"
+                                       YBindingPath="Value"
+                                        />
                                 <Label Text="{Binding EloRating}"
                                        Grid.Column="5"
                                        LineBreakMode="NoWrap"
