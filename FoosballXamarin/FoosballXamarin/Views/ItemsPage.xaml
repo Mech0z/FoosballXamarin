@@ -33,20 +33,40 @@
                         <ViewCell>
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="10*" />
-                                    <ColumnDefinition Width="3*" />
+                                    <ColumnDefinition Width="1.5*" />
+                                    <ColumnDefinition Width="8*" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="4*" />
+                                    <ColumnDefinition Width="3*" />
                                 </Grid.ColumnDefinitions>
-                                <Label Text="{Binding Name}"
+
+                                <Label Text="{Binding Rank}"
                                        Grid.Column="0"
                                        LineBreakMode="NoWrap"
                                        Style="{DynamicResource ListItemTextStyle}" />
-                                <Label Text="{Binding EloRating}"
+                                <Label Text="{Binding Name}"
                                        Grid.Column="1"
                                        LineBreakMode="NoWrap"
                                        Style="{DynamicResource ListItemTextStyle}" />
-                                <Label Text="{Binding Form}"
+                                <Label Text="{Binding WinPercent, StringFormat='{0:N1}'}"
                                        Grid.Column="2"
+                                       LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemTextStyle}"/>
+                                <Label Text="%"
+                                       Grid.Column="3"
+                                       HorizontalOptions="Start"
+                                       LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemTextStyle}"/>
+                                <Label Text="{Binding Form}"
+                                       Grid.Column="4"
+                                       LineBreakMode="NoWrap"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center"
+                                       FontSize="Micro"
+                                       Style="{DynamicResource ListItemTextStyle}" />
+                                <Label Text="{Binding EloRating}"
+                                       Grid.Column="5"
                                        LineBreakMode="NoWrap"
                                        Style="{DynamicResource ListItemTextStyle}" />
                             </Grid>

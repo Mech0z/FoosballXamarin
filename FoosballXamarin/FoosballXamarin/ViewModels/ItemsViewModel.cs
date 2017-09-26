@@ -48,9 +48,13 @@ namespace FoosballXamarin.ViewModels
                 Leaderboards.ReplaceRange(await LeaderboardService.GetDataAsync());
                 SelectedLeaderboardView = Leaderboards.OrderByDescending(x => x.Timestamp).FirstOrDefault();
                 
-                foreach (var entry in SelectedLeaderboardView.Entries)
+                foreach (var leaderboard in Leaderboards)
 			    {
-			        entry.Name = Users.SingleOrDefault(x => x.Email == entry.UserName).Username;
+			        foreach (var entry in leaderboard.Entries)
+			        {
+			            entry.Rank = leaderboard.Entries.IndexOf(entry) + 1;
+			            entry.Name = Users.SingleOrDefault(x => x.Email == entry.UserName).Username;
+                    }
 			    }
 			}
 			catch (Exception ex)
