@@ -13,29 +13,39 @@
     <ContentPage.Content>
         <Grid>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="8*" />
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="8*" />
+                <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="3*" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
 
 
             <Label Text="Team 1"
-                   Grid.Column="0"
-                   Grid.Row="0"/>
+                   Grid.Column="1"
+                   Grid.Row="0"
+                   HorizontalTextAlignment="Center"
+                   FontSize="Large"/>
             <Label Text="Team 2"
-                   Grid.Column="2"
-                   Grid.Row="0"/>
+                   Grid.Column="3"
+                   Grid.Row="0"
+                   HorizontalTextAlignment="Center"
+                   FontSize="Large"/>
             <ListView x:Name="Team1ListView"
-                      Grid.Column="0"
+                      Grid.Column="1"
                       Grid.Row="1"
                       HorizontalOptions="Center"
                       ItemsSource="{Binding Team1}"
@@ -54,7 +64,7 @@
                 </ListView.ItemTemplate>
             </ListView>
             <ListView x:Name="Team2ListView"
-                      Grid.Column="2"
+                      Grid.Column="3"
                       Grid.Row="1"
                       HorizontalOptions="Center"
                       ItemsSource="{Binding Team2}"
@@ -74,60 +84,103 @@
 
             <Label Text="Match 1"
                    Grid.Column="1"
-                   Grid.Row="2"/>
+                   Grid.ColumnSpan="3"
+                   Grid.Row="2"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   FontSize="Large"/>
             
             <numeric:SfNumericUpDown
+                Grid.Column="1"
                 Grid.Row="3"
-                Grid.Column="0"
                 AllowNull="True"
                 Minimum="0"
                 Maximum="99"
                 MaximumDecimalDigits="0"
                 StepValue="1"
+                TextAlignment="Center"
+                SpinButtonAlignment="Left"
                 Value="{Binding Match1.MatchResult.Team1Score, Mode=TwoWay}" />
+
+            <Label Text="-"
+                   Grid.Column="2"
+                   Grid.Row="3"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   FontSize="Large" />
+
             <numeric:SfNumericUpDown
+                Grid.Column="3"
                 Grid.Row="3"
-                Grid.Column="2"
                 AllowNull="True"
                 Minimum="0"
                 Maximum="99"
                 MaximumDecimalDigits="0"
+                TextAlignment="Center"
+                SpinButtonAlignment="Right"
                 Value="{Binding Match1.MatchResult.Team2Score, Mode=TwoWay}" />
 
+            <Label
+                Grid.Column="1"
+                Grid.ColumnSpan="3"
+                Grid.Row="4"
+                Text="{Binding Match1.MatchValidationErrorText}"/>
+            
             <Label Text="Match 2"
                    Grid.Column="1"
-                   Grid.Row="4"/>
+                   Grid.ColumnSpan="3"
+                   Grid.Row="5"
+                   HorizontalTextAlignment="Center"
+                   FontSize="Large" />
             <numeric:SfNumericUpDown
-                Grid.Column="0"
-                Grid.Row="5"
+                Grid.Column="1"
+                Grid.Row="6"
                 AllowNull="True"
                 Minimum="0"
                 Maximum="99"
                 MaximumDecimalDigits="0"
+                TextAlignment="Center"
+                SpinButtonAlignment="Left"
                 Value="{Binding Match2.MatchResult.Team1Score}" />
+            
+            <Label Text="-"
+                   Grid.Column="2"
+                   Grid.Row="6"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   FontSize="Large" />
+            
             <numeric:SfNumericUpDown
-                Grid.Column="2"
-                Grid.Row="5"
+                Grid.Column="3"
+                Grid.Row="6"
                 AllowNull="True"
                 Minimum="0"
                 Maximum="99"
                 MaximumDecimalDigits="0"
                 StepValue="1"
+                TextAlignment="Center"
+                SpinButtonAlignment="Right"
                 Value="{Binding Match2.MatchResult.Team2Score}" />
             
             <Label
-                Grid.Column="0"
+                Grid.Column="1"
                 Grid.ColumnSpan="3"
-                Grid.Row="5"
-                Text="{Binding Match1.MatchValidationErrorText}"/>
-            <Label
-                Grid.Column="0"
-                Grid.ColumnSpan="3"
-                Grid.Row="4"
+                Grid.Row="7"
                 Text="{Binding Match2.MatchValidationErrorText}"/>
+
+            <Label
+                Grid.Column="1"
+                Grid.ColumnSpan="3"
+                Grid.Row="8"
+                FontSize="Small"
+                HorizontalTextAlignment="Center"
+                Margin="3"
+                Text="*Matches with 0 - 0 score are not submitted"/>
+
             <Button
                 Grid.Column="1"
-                Grid.Row="6"
+                Grid.ColumnSpan="3"
+                Grid.Row="9"
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
                 Scale="1.5"
