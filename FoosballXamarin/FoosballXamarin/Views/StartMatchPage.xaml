@@ -5,10 +5,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FoosballXamarin.Views.StartMatchPage"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin.UWP"
+             xmlns:vm="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin.Android"
              d:DataContext="{d:DesignInstance {x:Type vm:StartMatchViewModel}}"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             Title="Start Match"
+             Title="Start Match - Choose 4 players"
              mc:Ignorable="d">
     <ContentPage.Content>
         <Grid>
@@ -18,22 +18,24 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition />
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="2*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <StackLayout Grid.Column="0"
                          Grid.Row="0"
+                         VerticalOptions="Center"
+                         HorizontalOptions="Center"
                          Orientation="Horizontal">
                 <Label Text="Show all"/>
                 <Switch IsToggled="{Binding ShowAllPlayers}"/>    
             </StackLayout>
             
-
             <ListView x:Name="ItemsListView"
                       Grid.Column="0"
                       Grid.Row="1"
-                      Grid.RowSpan="2"
+                      Grid.RowSpan="3"
                       ItemsSource="{Binding LeaderboardViewEntries}"
                       VerticalOptions="Fill"
                       HorizontalOptions="Fill"
@@ -86,9 +88,15 @@
                 </ListView.ItemTemplate>
             </ListView>
 
+            <Label Text="Added Players"
+                   HorizontalTextAlignment="Center"
+                   FontSize="Medium"
+                   Grid.Column="1"
+                   Grid.Row="0"/>
+            
             <ListView x:Name="AddedPlayerListView"
                       Grid.Column="1"
-                      Grid.Row="0"
+                      Grid.Row="1"
                       Grid.RowSpan="2"
                       ItemsSource="{Binding AddedPlayers}"
                       VerticalOptions="Fill"
@@ -116,13 +124,13 @@
             </ListView>
             
             <Button Grid.Column="1"
-                    Grid.Row="2"
+                    Grid.Row="3"
                     Margin="15"
                     Scale="1.5"
                     HorizontalOptions="CenterAndExpand"
                     VerticalOptions="Center"
                     Clicked="StartMatchCommand"
-                    Text="Start"/>
+                    Text="Next"/>
         </Grid>
 
     </ContentPage.Content>

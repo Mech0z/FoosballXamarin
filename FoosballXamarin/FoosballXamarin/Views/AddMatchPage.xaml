@@ -18,7 +18,8 @@
                 <ColumnDefinition Width="8*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.5*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -26,9 +27,16 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
+
+            <Label Text="Team 1"
+                   Grid.Column="0"
+                   Grid.Row="0"/>
+            <Label Text="Team 2"
+                   Grid.Column="2"
+                   Grid.Row="0"/>
             <ListView x:Name="Team1ListView"
                       Grid.Column="0"
-                      Grid.Row="0"
+                      Grid.Row="1"
                       HorizontalOptions="Center"
                       ItemsSource="{Binding Team1}"
                       IsRefreshing="{Binding IsBusy, Mode=OneWay}"
@@ -45,16 +53,9 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Label
-                Grid.Column="1"
-                Grid.Row="0"
-                FontSize="18"
-                HorizontalOptions="Center"
-                VerticalTextAlignment="Center"
-                Text="VS" />
             <ListView x:Name="Team2ListView"
                       Grid.Column="2"
-                      Grid.Row="0"
+                      Grid.Row="1"
                       HorizontalOptions="Center"
                       ItemsSource="{Binding Team2}"
                       IsRefreshing="{Binding IsBusy, Mode=OneWay}"
@@ -71,9 +72,12 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-
+            <Label Text="Match 1"
+                   Grid.Column="1"
+                   Grid.Row="2"/>
+            
             <numeric:SfNumericUpDown
-                Grid.Row="2"
+                Grid.Row="3"
                 Grid.Column="0"
                 AllowNull="True"
                 Minimum="0"
@@ -82,7 +86,7 @@
                 StepValue="1"
                 Value="{Binding Match1.MatchResult.Team1Score, Mode=TwoWay}" />
             <numeric:SfNumericUpDown
-                Grid.Row="2"
+                Grid.Row="3"
                 Grid.Column="2"
                 AllowNull="True"
                 Minimum="0"
@@ -90,9 +94,12 @@
                 MaximumDecimalDigits="0"
                 Value="{Binding Match1.MatchResult.Team2Score, Mode=TwoWay}" />
 
+            <Label Text="Match 2"
+                   Grid.Column="1"
+                   Grid.Row="4"/>
             <numeric:SfNumericUpDown
                 Grid.Column="0"
-                Grid.Row="3"
+                Grid.Row="5"
                 AllowNull="True"
                 Minimum="0"
                 Maximum="99"
@@ -100,7 +107,7 @@
                 Value="{Binding Match2.MatchResult.Team1Score}" />
             <numeric:SfNumericUpDown
                 Grid.Column="2"
-                Grid.Row="3"
+                Grid.Row="5"
                 AllowNull="True"
                 Minimum="0"
                 Maximum="99"
@@ -111,7 +118,7 @@
             <Label
                 Grid.Column="0"
                 Grid.ColumnSpan="3"
-                Grid.Row="4"
+                Grid.Row="5"
                 Text="{Binding Match1.MatchValidationErrorText}"/>
             <Label
                 Grid.Column="0"
@@ -119,14 +126,14 @@
                 Grid.Row="4"
                 Text="{Binding Match2.MatchValidationErrorText}"/>
             <Button
-                Grid.Row="5"
-                Grid.ColumnSpan="3"
+                Grid.Column="1"
+                Grid.Row="6"
                 HorizontalOptions="Center"
                 VerticalOptions="Center"
                 Scale="1.5"
                 IsEnabled="{Binding IsNotSubmitting}"
                 Clicked="SubmitCommand"
-                Text="Submit" />
+                Text="Submit Matches" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

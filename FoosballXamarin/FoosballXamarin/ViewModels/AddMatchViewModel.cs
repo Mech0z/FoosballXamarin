@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Foosball9000Api.RequestResponse;
 using FoosballXamarin.Helpers;
 using FoosballXamarin.Services;
-using FoosballXamarin.Views;
 using Models;
 using Xamarin.Forms;
 

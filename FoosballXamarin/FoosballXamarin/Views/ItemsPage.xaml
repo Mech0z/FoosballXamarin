@@ -61,7 +61,8 @@
                                        Style="{DynamicResource ListItemTextStyle}"/>
                                 <sparkline:SfWinLossSparkline  
                                        Grid.Column="4"
-                                       Color="LawnGreen"
+                                       Color="DarkGreen"
+                                        NegativePointColor="DarkRed"
                                        ItemsSource="{Binding FormList}"
                                        Margin="5"
                                        YBindingPath="Value"
