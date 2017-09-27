@@ -14,57 +14,86 @@
                   VerticalOptions="FillAndExpand"
                   HasUnevenRows="true"
                   IsPullToRefreshEnabled="true"
+                  SeparatorColor="Black"
                   IsRefreshing="{Binding IsBusy, Mode=OneWay}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Padding="10">
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding TimeStampUtc, StringFormat='{}{0:dd/MM/yyyy}'}"
-                                       LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemTextStyle}"
-                                       FontSize="16" />
-                                <Label Text="{Binding Points}"
-                                       LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemDetailTextStyle}"
-                                       FontAttributes="Bold"
-                                       FontSize="16" />
-                            </StackLayout>
-                            <StackLayout Padding="10" Orientation="Horizontal">
-                                <StackLayout Orientation="Vertical">
-                                    <Label Text="{Binding UserList[0].Username}"
-                                           LineBreakMode="NoWrap"
-                                           Style="{DynamicResource ListItemDetailTextStyle}"
-                                           FontSize="16" />
-                                    <Label Text="{Binding UserList[1].Username}"
-                                           LineBreakMode="NoWrap"
-                                           Style="{DynamicResource ListItemDetailTextStyle}"
-                                           FontSize="16" />
-                                </StackLayout>
-                                <Label>VS</Label>
-                                <StackLayout Orientation="Vertical">
-                                    <Label Text="{Binding UserList[2].Username}"
-                                           LineBreakMode="NoWrap"
-                                           Style="{DynamicResource ListItemDetailTextStyle}"
-                                           FontSize="16" />
-                                    <Label Text="{Binding UserList[3].Username}"
-                                           LineBreakMode="NoWrap"
-                                           Style="{DynamicResource ListItemDetailTextStyle}"
-                                           FontSize="16" />
-                                </StackLayout>
-                            </StackLayout>
-                            <StackLayout Padding="13" Orientation="Horizontal">
-                                <Label Text="{Binding MatchResult.Team1Score}"
-                                       LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemDetailTextStyle}"
-                                       FontSize="13" />
-                                <Label>-</Label>
-                                <Label Text="{Binding MatchResult.Team2Score}"
-                                       LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemDetailTextStyle}"
-                                       FontSize="13" />
-                            </StackLayout>
-                        </StackLayout>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.5*"/>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="5*"/>
+                                <ColumnDefinition Width="0.5"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="10"/>
+                            </Grid.RowDefinitions>
+                            
+                            <Label Text="{Binding TimeStampUtc, StringFormat='{}{0:dd/MM/yyyy}'}"
+                                   Grid.Column="1"
+                                   Grid.Row="1"
+                                   LineBreakMode="NoWrap"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="Center"
+                                   FontSize="Medium" />
+                            <Label Text="{Binding Points}"
+                                   Grid.Column="3"
+                                   Grid.Row="1"
+                                   LineBreakMode="NoWrap"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="Center"
+                                   FontAttributes="Bold"
+                                   FontSize="Medium" />
+
+                            <Label Text="{Binding UserList[0].Username}"
+                                   Grid.Column="1"
+                                   Grid.Row="2"
+                                   HorizontalTextAlignment="Center"
+                                   FontSize="Medium" />
+                            <Label Text="{Binding UserList[1].Username}"
+                                   Grid.Column="1"
+                                   Grid.Row="3"
+                                   HorizontalTextAlignment="Center"
+                                   FontSize="Medium" />
+                            
+                            <Label Text="{Binding UserList[2].Username}"
+                                   Grid.Column="3"
+                                   Grid.Row="2"
+                                   HorizontalTextAlignment="Center"
+                                   FontSize="Medium" />
+                            <Label Text="{Binding UserList[3].Username}"
+                                   Grid.Column="3"
+                                   Grid.Row="3"
+                                   HorizontalTextAlignment="Center"
+                                   FontSize="Medium" />
+                            
+                            <Label Text="{Binding MatchResult.Team1Score}"
+                                   Grid.Column="1"
+                                   Grid.Row="4"
+                                   HorizontalTextAlignment="End"
+                                   VerticalTextAlignment="Center"
+                                   FontSize="Medium" />
+                            <Label Text="-"
+                                   Grid.Column="2"
+                                   Grid.Row="4"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="Center"
+                                   FontSize="Medium"/>
+                            <Label Text="{Binding MatchResult.Team2Score}"
+                                   Grid.Column="3"
+                                   Grid.Row="4"
+                                   HorizontalTextAlignment="Start"
+                                   VerticalTextAlignment="Center"
+                                   FontSize="Medium"/>
+                        </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
