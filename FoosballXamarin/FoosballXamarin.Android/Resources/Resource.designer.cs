@@ -26,7 +26,6 @@ namespace FoosballXamarin.Droid
 		
 		public static void UpdateIdValues()
 		{
-			global::Com.Syncfusion.Numerictextbox.Resource.String.library_name = global::FoosballXamarin.Droid.Resource.String.library_name;
 			global::Syncfusion.SfSparkline.Android.Resource.String.library_name = global::FoosballXamarin.Droid.Resource.String.library_name;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::FoosballXamarin.Droid.Resource.Attribute.actionBarSize;
 		}

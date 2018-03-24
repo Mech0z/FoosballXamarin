@@ -1,8 +1,11 @@
 ﻿{
   "dependencies": {
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.4.0",
-    "Newtonsoft.Json": "10.0.3",
-    "Xamarin.Forms": "2.3.4.267"
+    "Newtonsoft.Json": "11.0.2",
+    "Syncfusion.Xamarin.SfNumericTextBox": "16.1.0.26",
+    "Syncfusion.Xamarin.SfNumericUpDown": "16.1.0.26",
+    "Syncfusion.Xamarin.SfSparkline": "16.1.0.26",
+    "Xamarin.Forms": "2.4.0.280"
   },
   "frameworks": {
     "uap10.0.10586": {}
