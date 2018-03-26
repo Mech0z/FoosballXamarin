@@ -6,9 +6,11 @@ using FoosballXamarin.Helpers;
 using FoosballXamarin.ViewModels;
 using Models;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace FoosballXamarin.Views
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AddMatchPage : ContentPage
     {
         readonly AddMatchViewModel _viewModel;

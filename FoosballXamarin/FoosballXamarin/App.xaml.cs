@@ -40,6 +40,11 @@ namespace FoosballXamarin
                         Title = "Add Match",
                         Icon = Device.OnPlatform<string>("tab_about.png",null,null)
                     },
+                    new NavigationPage(new LoginPage())
+                    {
+                        Title = "Login",
+                        Icon = Device.OnPlatform<string>("tab_about.png",null,null)
+                    },
                 }
             };
 

@@ -49,12 +49,17 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\MatchService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\UserService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AddMatchViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\LoginViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\StartMatchViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\LastMatchesPage.xaml.cs">
       <DependentUpon>LastMatchesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\AddMatchPage.xaml.cs">
       <DependentUpon>AddMatchPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\StartMatchPage.xaml.cs">
       <DependentUpon>StartMatchPage.xaml</DependentUpon>
@@ -90,6 +95,12 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AddMatchPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
 </Project>
