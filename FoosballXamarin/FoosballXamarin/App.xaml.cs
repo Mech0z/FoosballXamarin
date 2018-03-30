@@ -1,5 +1,4 @@
 ﻿using FoosballXamarin.Views;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,7 +18,7 @@ namespace FoosballXamarin
 			SetMainPage();
 		}
 
-		public static void SetMainPage()
+        public static void SetMainPage()
 		{
             Current.MainPage = new TabbedPage
             {
@@ -42,7 +41,12 @@ namespace FoosballXamarin
                     },
                     new NavigationPage(new LoginPage())
                     {
-                        Title = "Login",
+                        Title = "Account",
+                        Icon = Device.OnPlatform<string>("tab_about.png",null,null)
+                    },
+                    new NavigationPage(new AdministrationPage())
+                    {
+                        Title = "Admin",
                         Icon = Device.OnPlatform<string>("tab_about.png",null,null)
                     },
                 }

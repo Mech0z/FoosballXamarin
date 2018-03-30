@@ -38,6 +38,7 @@ namespace FoosballXamarin.ViewModels
             if (IsLoggedIn)
             {
                 Email = Application.Current.Properties["Email"] as string;
+                MessagingCenter.Send(this, "LoginSuccessful");
             }
         }
 
@@ -48,6 +49,7 @@ namespace FoosballXamarin.ViewModels
             if (success)
             {
                 IsLoggedIn = true;
+                MessagingCenter.Send(this, "LoginSuccessful");
             }
 
             return true;
@@ -59,6 +61,7 @@ namespace FoosballXamarin.ViewModels
             if (success)
             {
                 IsLoggedIn = false;
+                MessagingCenter.Send(this, "LogoutSuccessful");
             }
         }
     }

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DataContext="{d:DesignInstance viewModels:AdministrationViewModel, IsDesignTimeCreatable=True}"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin.UWP"
+             xmlns:helpers="clr-namespace:FoosballXamarin.Helpers;assembly=FoosballXamarin.UWP"
+             x:Class="FoosballXamarin.Views.AdministrationPage"
+             mc:Ignorable="d">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout IsVisible="{Binding Path=IsAdmin}">
+                <Label Text="Administration"
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand" />
+            </StackLayout>
+            <StackLayout VerticalOptions="Start" IsVisible="{Binding IsAdmin, Converter={helpers:BoolToOppositeBoolConverter}}">
+                <Label Text="Login with admin account"
+                       VerticalOptions="CenterAndExpand" 
+                       HorizontalOptions="CenterAndExpand" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
