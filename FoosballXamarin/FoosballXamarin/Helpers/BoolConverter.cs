@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace FoosballXamarin.Helpers
 {
-    public class BoolToOppositeBoolConverter : IValueConverter
+    public class BoolToOppositeBoolConverter : IValueConverter, IMarkupExtension
     {
         public object Convert(object value, Type targetType, object parameter,
             System.Globalization.CultureInfo culture)
@@ -25,5 +26,9 @@ namespace FoosballXamarin.Helpers
             throw new NotSupportedException();
         }
 
+        public object ProvideValue(IServiceProvider serviceProvider)
+        {
+            return this;
+        }
     }
 }
