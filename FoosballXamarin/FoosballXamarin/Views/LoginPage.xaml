@@ -43,6 +43,7 @@
             <StackLayout IsVisible="{Binding IsLoggedIn}">
                 <Label Text="Logged in as:"/>
                 <Label Text="{Binding Email}"/>
+                <Button Text="Logout" Clicked="LogoutCommand"/>
             </StackLayout>
 
         </StackLayout>

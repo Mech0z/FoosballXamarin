@@ -73,11 +73,40 @@ namespace FoosballXamarin.Services
 
             return !deserializedResponse.LoginFailed;
         }
-    }
 
-    public interface ILoginService
-    {
-        Task<bool> Login(string email, string password, bool rememberMe);
-        Task<bool> ValidateLogin();
+        public async Task<bool> Logout()
+        {
+            if (!Application.Current.Properties.ContainsKey("Token")) return false;
+            
+            var token = Application.Current.Properties["Token"] as string;
+            var email = Application.Current.Properties["Email"] as string;
+
+            var deviceName = CrossDeviceInfo.Current.DeviceName;
+            var request = new LogoutRequest
+            {
+                Email = email,
+                Token = token,
+                DeviceName = deviceName
+            };
+
+            RestUrl = App.ApiUrl + "Account/Logout";
+            
+            var jsonRequest = JsonConvert.SerializeObject(request);
+            var contentType = "application/json";
+
+            var response = await _client.PostAsync(HttpUri, new StringContent(jsonRequest, Encoding.UTF8, contentType));
+         
+            if (!response.IsSuccessStatusCode) return false;
+
+            var content = await response.Content.ReadAsStringAsync();
+            var deserializedResponse = JsonConvert.DeserializeObject<bool>(content);
+
+            Application.Current.Properties.Remove("Email");
+            Application.Current.Properties.Remove("Token");
+            Application.Current.Properties.Remove("ExpiryTime");
+            await Application.Current.SavePropertiesAsync();
+
+            return deserializedResponse;
+        }
     }
 }

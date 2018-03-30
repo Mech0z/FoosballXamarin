@@ -24,5 +24,10 @@ namespace FoosballXamarin.Views
 	    {
 	        await _viewModel.LoginCommand();
 	    }
+
+	    private async Task LogoutCommand(object sender, EventArgs e)
+	    {
+	        await _viewModel.Logout();
+	    }
 	}
 }

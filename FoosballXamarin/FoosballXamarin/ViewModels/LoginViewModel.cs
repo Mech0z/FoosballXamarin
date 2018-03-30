@@ -48,5 +48,14 @@ namespace FoosballXamarin.ViewModels
 
             return true;
         }
+
+        public async Task Logout()
+        {
+            var success = await LoginService.Logout();
+            if (success)
+            {
+                IsLoggedIn = false;
+            }
+        }
     }
 }
