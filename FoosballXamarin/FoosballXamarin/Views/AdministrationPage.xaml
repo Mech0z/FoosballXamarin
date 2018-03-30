@@ -44,8 +44,8 @@
                         <Label Text="{Binding SelectedUser.RolesAsString}"/>
                     </StackLayout>
                     <StackLayout Orientation="Horizontal">
-                        <Button Text="Change Password"/>
-                        <Button Text="Change roles"/>
+                        <Button Text="Change Password" Clicked="ChangeUserPassWordClicked"/>
+                        <Button Text="Add Player role" Clicked="AddPlayerRoleClicked"/>
                     </StackLayout>
                 </StackLayout>
             </StackLayout>

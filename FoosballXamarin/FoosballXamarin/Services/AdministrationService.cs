@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using FoosballXamarin.Models;
+using FoosballXamarin.Models.Dtos;
 using FoosballXamarin.Services;
 using FoosballXamarin.UWP.Models.Dtos;
 using Newtonsoft.Json;
@@ -23,7 +24,7 @@ namespace FoosballXamarin.Services
             var email = Application.Current.Properties["Email"] as string;
 
             var deviceName = CrossDeviceInfo.Current.DeviceName;
-            var request = new LogoutRequest
+            var request = new BaseRequest
             {
                 Email = email,
                 Token = token,
@@ -53,11 +54,13 @@ namespace FoosballXamarin.Services
             var email = Application.Current.Properties["Email"] as string;
 
             var deviceName = CrossDeviceInfo.Current.DeviceName;
-            var request = new LogoutRequest
+            var request = new ChangeUserPasswordRequest
             {
                 Email = email,
                 Token = token,
-                DeviceName = deviceName
+                DeviceName = deviceName,
+                NewPassword = newPassword,
+                UserEmail = userEmail
             };
 
             RestUrl = App.ApiUrl + "Administration/ChangeUserPassword";
@@ -83,11 +86,13 @@ namespace FoosballXamarin.Services
             var email = Application.Current.Properties["Email"] as string;
 
             var deviceName = CrossDeviceInfo.Current.DeviceName;
-            var request = new LogoutRequest
+            var request = new ChangeUserRolesRequest
             {
                 Email = email,
                 Token = token,
-                DeviceName = deviceName
+                DeviceName = deviceName,
+                UserEmail = userEmail,
+                NewUserRoles = newUserRoles
             };
 
             RestUrl = App.ApiUrl + "Administration/ChangeUserRoles";

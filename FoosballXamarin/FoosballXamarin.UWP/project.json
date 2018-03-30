@@ -1,6 +1,7 @@
 ﻿{
   "dependencies": {
-    "Microsoft.NETCore.UniversalWindowsPlatform": "5.4.0",
+    "Acr.UserDialogs": "6.5.1",
+    "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.8",
     "Newtonsoft.Json": "11.0.2",
     "Syncfusion.Xamarin.SfNumericTextBox": "16.1.0.32",
     "Syncfusion.Xamarin.SfNumericUpDown": "16.1.0.32",
