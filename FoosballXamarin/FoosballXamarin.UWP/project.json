@@ -2,10 +2,11 @@
   "dependencies": {
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.4.0",
     "Newtonsoft.Json": "11.0.2",
-    "Syncfusion.Xamarin.SfNumericTextBox": "16.1.0.26",
-    "Syncfusion.Xamarin.SfNumericUpDown": "16.1.0.26",
-    "Syncfusion.Xamarin.SfSparkline": "16.1.0.26",
-    "Xamarin.Forms": "2.4.0.280"
+    "Syncfusion.Xamarin.SfNumericTextBox": "16.1.0.32",
+    "Syncfusion.Xamarin.SfNumericUpDown": "16.1.0.32",
+    "Syncfusion.Xamarin.SfSparkline": "16.1.0.32",
+    "Xam.Plugin.DeviceInfo": "3.1.0",
+    "Xamarin.Forms": "2.5.0.280555"
   },
   "frameworks": {
     "uap10.0.10586": {}

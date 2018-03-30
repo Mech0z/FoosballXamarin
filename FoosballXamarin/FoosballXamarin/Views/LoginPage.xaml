@@ -33,7 +33,7 @@
             <Entry Text="{Binding Password}" 
                    HorizontalTextAlignment="Center" />
 
-            <Button Text="Login" />
+            <Button Text="Login" Clicked="LoginCommand"/>
             <Button Text="Create user" IsEnabled="False"/>
             <Button Text="Request password" IsEnabled="False"/>
 

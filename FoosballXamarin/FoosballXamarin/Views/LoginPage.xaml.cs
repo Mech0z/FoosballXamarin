@@ -20,7 +20,7 @@ namespace FoosballXamarin.Views
 
 		    BindingContext = _viewModel = new LoginViewModel();
 		}
-
+        
 	    private async Task LoginCommand(object sender, EventArgs e)
 	    {
 	        await _viewModel.LoginCommand();

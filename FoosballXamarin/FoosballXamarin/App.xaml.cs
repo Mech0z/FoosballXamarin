@@ -8,7 +8,7 @@ namespace FoosballXamarin
 {
 	public partial class App : Application
 	{
-        public static string ApiUrl = "http://foosballapi.azurewebsites.net/api/";
+        public static string ApiUrl = "https://foosballapi.azurewebsites.net/api/";
 
         public static INavigation Navigation { get; set; }
 

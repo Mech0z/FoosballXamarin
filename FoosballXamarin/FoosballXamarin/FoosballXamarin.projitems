@@ -33,6 +33,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\LeaderboardLine.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\LeaderboardView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\LeaderboardViewEntry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\LoginRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\LoginResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Match.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\MatchResultcs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\MatchupResult.cs" />
@@ -41,11 +43,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Season.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Settings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\User.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ValidateLoginRequest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\BaseService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\ILeaderboardService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\IMatchService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\IUserService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\LeaderboardService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\LoginService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\MatchService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\UserService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AddMatchViewModel.cs" />
