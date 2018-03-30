@@ -1,17 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using FoosballXamarin.Models.Identity;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using System.Threading.Tasks;
+using FoosballXamarin.Services;
+using Xamarin.Forms;
 
 namespace FoosballXamarin.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
-        public string Email { get; set; }
+        public ILoginService LoginService => DependencyService.Get<ILoginService>();
+        
+        private string _email;
+        public string Email
+        {
+            get => _email;
+            set => SetProperty(ref _email, value);
+        }
         public string Password { get; set; }
         public bool RememberMe { get; set; }
         bool _isLoggedIn;
@@ -29,8 +31,12 @@ namespace FoosballXamarin.ViewModels
 
         public async Task<bool> LoginCommand()
         {
-            //await LoginService.Login(Email, Password, true);
-            await LoginService.ValidateLogin();
+            var success = await LoginService.Login(Email, Password, true);
+
+            if (success)
+            {
+                IsLoggedIn = true;
+            }
 
             return true;
         }

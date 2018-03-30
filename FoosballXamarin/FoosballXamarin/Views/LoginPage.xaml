@@ -36,7 +36,7 @@
                            HorizontalTextAlignment="Center" />
                     <Switch IsToggled="{Binding RememberMe}" />
 
-                    <Button Text="Login" Clicked="LoginCommandClicked"/>
+                    <Button Text="Login" Clicked="LoginCommand"/>
                     <Button Text="Create user" IsEnabled="False"/>
                     <Button Text="Request password" IsEnabled="False"/>
             </StackLayout>
@@ -44,9 +44,6 @@
                 <Label Text="Logged in as:"/>
                 <Label Text="{Binding Email}"/>
             </StackLayout>
-            <Button Text="Login" Clicked="LoginCommand"/>
-            <Button Text="Create user" IsEnabled="False"/>
-            <Button Text="Request password" IsEnabled="False"/>
 
         </StackLayout>
     </ContentPage.Content>
