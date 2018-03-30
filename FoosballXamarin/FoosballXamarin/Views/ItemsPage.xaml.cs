@@ -18,8 +18,7 @@ namespace FoosballXamarin.Views
 
 		async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
 		{
-			var item = args.SelectedItem as LeaderboardViewEntry;
-			if (item == null)
+		    if (!(args.SelectedItem is LeaderboardViewEntry item))
 				return;
 
 			await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));

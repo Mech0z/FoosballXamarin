@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Foosball9000Api.RequestResponse;
+using FoosballXamarin.UWP.Models.Dtos;
 using Models;
 
 namespace FoosballXamarin.Services

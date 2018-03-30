@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Models;
 
-namespace Foosball9000Api.RequestResponse
+namespace FoosballXamarin.UWP.Models.Dtos
 {
     public class SaveMatchesRequest
     {

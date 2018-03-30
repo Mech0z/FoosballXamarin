@@ -1,4 +1,4 @@
-﻿namespace FoosballXamarin.Models
+﻿namespace FoosballXamarin.UWP.Models.Dtos
 {
     public class BaseRequest
     {

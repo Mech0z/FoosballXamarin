@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FoosballXamarin.Models
+namespace FoosballXamarin.UWP.Models.Dtos
 {
     public class LoginResponse
     {

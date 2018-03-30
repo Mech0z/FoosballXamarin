@@ -1,4 +1,7 @@
-﻿using FoosballXamarin.ViewModels;
+﻿using System.Threading.Tasks;
+using FoosballXamarin.Models;
+using FoosballXamarin.ViewModels;
+using Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -9,12 +12,18 @@ namespace FoosballXamarin.Views
 	{
 	    private readonly AdministrationViewModel _viewModel;
 
-	    public bool IsAdmin => _viewModel.IsAdmin;
-
 		public AdministrationPage ()
 		{
 		    BindingContext = _viewModel = new AdministrationViewModel();
 			InitializeComponent ();
 		}
+
+	    private async Task ItemsSelectedCommand(object sender, SelectedItemChangedEventArgs e)
+	    {
+	        if (!(e.SelectedItem is UserMapping user))
+	            return;
+
+	        await _viewModel.ItemsSelectedCommand(user);
+	    }
 	}
 }

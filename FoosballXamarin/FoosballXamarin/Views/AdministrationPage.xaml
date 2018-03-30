@@ -14,6 +14,40 @@
                 <Label Text="Administration"
                     VerticalOptions="CenterAndExpand" 
                     HorizontalOptions="CenterAndExpand" />
+
+                <ListView x:Name="ItemsListView"
+                      ItemsSource="{Binding UserMappings}"
+                      VerticalOptions="FillAndExpand"
+                      HasUnevenRows="true"
+                      IsPullToRefreshEnabled="true"
+                      IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                      ItemSelected="ItemsSelectedCommand">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding DisplayName}"
+                                       LineBreakMode="NoWrap"
+                                       Style="{DynamicResource ListItemTextStyle}" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <StackLayout >
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Selected user: "/>
+                        <Label Text="{Binding SelectedUser.DisplayName}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Roles: "/>
+                        <Label Text="{Binding SelectedUser.RolesAsString}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Button Text="Change Password"/>
+                        <Button Text="Change roles"/>
+                    </StackLayout>
+                </StackLayout>
             </StackLayout>
             <StackLayout VerticalOptions="Start" IsVisible="{Binding IsAdmin, Converter={helpers:BoolToOppositeBoolConverter}}">
                 <Label Text="Login with admin account"

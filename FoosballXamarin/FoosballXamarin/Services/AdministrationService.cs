@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using FoosballXamarin.Models;
-using FoosballXamarin.Models.Requests;
 using FoosballXamarin.Services;
+using FoosballXamarin.UWP.Models.Dtos;
 using Newtonsoft.Json;
 using Plugin.DeviceInfo;
 using Xamarin.Forms;
@@ -41,7 +42,7 @@ namespace FoosballXamarin.Services
             var content = await response.Content.ReadAsStringAsync();
             var deserializedResponse = JsonConvert.DeserializeObject<GetUserMappingsResponse>(content);
             
-            return deserializedResponse.Users;
+            return deserializedResponse.Users.Select(x => new UserMapping(x)).ToList();
         }
 
         public async Task<bool> ChangeUserPassword(string userEmail, string newPassword)

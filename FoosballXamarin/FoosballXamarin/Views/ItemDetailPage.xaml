@@ -5,9 +5,9 @@
              Title="{Binding Title}"
              IsBusy="{Binding Loading}"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             d:DataContext="{d:DesignInstance {x:Type viewModels:ItemDetailViewModel}}"
+             d:DataContext="{d:DesignInstance {x:Type viewModels1:ItemDetailViewModel}}"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:viewModels="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin.Android"
+             xmlns:viewModels1="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin.UWP"
              mc:Ignorable="d">
 	<StackLayout Spacing="20" Padding="15">
         <Label Text="{Binding User.Username}" FontSize="Medium"/>

@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Foosball9000Api.RequestResponse;
 using FoosballXamarin.Services;
+using FoosballXamarin.UWP.Models.Dtos;
 
 [assembly: Xamarin.Forms.Dependency(typeof(MatchService))]
 namespace FoosballXamarin.Services

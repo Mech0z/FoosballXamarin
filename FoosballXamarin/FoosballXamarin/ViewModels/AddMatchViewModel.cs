@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Foosball9000Api.RequestResponse;
 using FoosballXamarin.Helpers;
 using FoosballXamarin.Services;
+using FoosballXamarin.UWP.Models.Dtos;
 using Models;
 using Xamarin.Forms;
 

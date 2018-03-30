@@ -3,6 +3,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FoosballXamarin.Models;
 using FoosballXamarin.Services;
+using FoosballXamarin.UWP.Models.Dtos;
 using Newtonsoft.Json;
 using Plugin.DeviceInfo;
 using Xamarin.Forms;

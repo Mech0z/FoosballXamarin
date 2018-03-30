@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using FoosballXamarin.Helpers;
 using FoosballXamarin.Models;
@@ -10,6 +11,7 @@ namespace FoosballXamarin.ViewModels
     public class AdministrationViewModel : BaseViewModel
     {
         public IAdministrationService AdministrationService => DependencyService.Get<IAdministrationService>();
+        public IUserService UserService => DependencyService.Get<IUserService>();
 
         public ObservableRangeCollection<UserMapping> UserMappings{ get; set; }
         bool _isAdmin;
@@ -17,6 +19,21 @@ namespace FoosballXamarin.ViewModels
         {
             get => _isAdmin;
             set => SetProperty(ref _isAdmin, value);
+        }
+
+        private UserMapping _selectedUser;
+        public UserMapping SelectedUser
+        {
+            get => _selectedUser;
+            set => SetProperty(ref _selectedUser, value);
+        }
+
+        public async Task ItemsSelectedCommand(object sender)
+        {
+            if (sender is UserMapping selectedUser)
+            {
+                SelectedUser = selectedUser;
+            }
         }
 
         public AdministrationViewModel()
@@ -31,7 +48,14 @@ namespace FoosballXamarin.ViewModels
             if(Application.Current.Properties.ContainsKey("Email"))
             {
                 var result = await AdministrationService.GetUsermappings();
-                UserMappings.AddRange(result);
+                var users = await UserService.GetDataAsync();
+
+                foreach (UserMapping mapping in result)
+                {
+                    mapping.DisplayName = users.SingleOrDefault(x => x.Email == mapping.Email)?.Username;
+                }
+
+                UserMappings.AddRange(result.OrderBy(x => x.DisplayName));
                 IsAdmin = true;
             }
             else
