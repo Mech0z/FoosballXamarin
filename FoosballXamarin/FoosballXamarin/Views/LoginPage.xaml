@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoosballXamarin.Views.LoginPage"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DataContext="{d:DesignInstance vm:LoginViewModel, IsDesignTimeCreatable=True}"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin.UWP"
+             mc:Ignorable="d">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Start">
+            <Label Text="Login"
+                   FontSize="Large"
+                   HorizontalTextAlignment="Center"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand" />
+
+            <Label Text="Email"
+                   HorizontalTextAlignment="Center"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand" />
+
+            <Entry Text="{Binding Email}"
+                   HorizontalTextAlignment="Center"
+                   WidthRequest="100" />
+
+            <Label Text="Password"
+                   HorizontalTextAlignment="Center"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand" />
+
+            <Entry Text="{Binding Password}" 
+                   HorizontalTextAlignment="Center" />
+
+            <Button Text="Login" />
+            <Button Text="Create user" IsEnabled="False"/>
+            <Button Text="Request password" IsEnabled="False"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
