@@ -16,14 +16,15 @@ namespace FoosballXamarin.Views
 
 		public LoginPage ()
 		{
+            BindingContext = _viewModel = new LoginViewModel();
 			InitializeComponent ();
-
-		    BindingContext = _viewModel = new LoginViewModel();
 		}
 
-	    private async Task LoginCommand(object sender, EventArgs e)
+	    private async Task LoginCommandClicked(object sender, EventArgs e)
 	    {
 	        await _viewModel.LoginCommand();
 	    }
+
+        
 	}
 }

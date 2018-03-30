@@ -4,39 +4,46 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FoosballXamarin.Views.LoginPage"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             d:DataContext="{d:DesignInstance vm:LoginViewModel, IsDesignTimeCreatable=True}"
+             d:DataContext="{d:DesignInstance viewModels1:LoginViewModel, IsDesignTimeCreatable=True}"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:vm="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin.UWP"
+             xmlns:helpers1="clr-namespace:FoosballXamarin.Helpers;assembly=FoosballXamarin.UWP"
+             xmlns:viewModels1="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin.UWP"
              mc:Ignorable="d">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="Start">
-            <Label Text="Login"
-                   FontSize="Large"
-                   HorizontalTextAlignment="Center"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand" />
+        <StackLayout>
+            <StackLayout VerticalOptions="Start" IsVisible="{Binding IsLoggedIn, Converter={helpers1:BoolToOppositeBoolConverter}}">
+                    <Label Text="Login"
+                           FontSize="Large"
+                           HorizontalTextAlignment="Center"
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalOptions="CenterAndExpand" />
 
-            <Label Text="Email"
-                   HorizontalTextAlignment="Center"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand" />
+                    <Label Text="Email"
+                           HorizontalTextAlignment="Center"
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalOptions="CenterAndExpand" />
 
-            <Entry Text="{Binding Email}"
-                   HorizontalTextAlignment="Center"
-                   WidthRequest="100" />
+                    <Entry Text="{Binding Email}"
+                           HorizontalTextAlignment="Center"
+                           WidthRequest="100" />
 
-            <Label Text="Password"
-                   HorizontalTextAlignment="Center"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand" />
+                    <Label Text="Password"
+                           HorizontalTextAlignment="Center"
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalOptions="CenterAndExpand" />
 
-            <Entry Text="{Binding Password}" 
-                   HorizontalTextAlignment="Center" />
+                    <Entry Text="{Binding Password}" 
+                           HorizontalTextAlignment="Center" />
+                    <Switch IsToggled="{Binding RememberMe}" />
 
-            <Button Text="Login" />
-            <Button Text="Create user" IsEnabled="False"/>
-            <Button Text="Request password" IsEnabled="False"/>
-
+                    <Button Text="Login" Clicked="LoginCommandClicked"/>
+                    <Button Text="Create user" IsEnabled="False"/>
+                    <Button Text="Request password" IsEnabled="False"/>
+            </StackLayout>
+            <StackLayout IsVisible="{Binding IsLoggedIn}">
+                <Label Text="Logged in as:"/>
+                <Label Text="{Binding Email}"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
