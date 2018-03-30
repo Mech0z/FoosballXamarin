@@ -24,7 +24,5 @@ namespace FoosballXamarin.Views
 	    {
 	        await _viewModel.LoginCommand();
 	    }
-
-        
 	}
 }

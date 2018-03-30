@@ -27,6 +27,14 @@ namespace FoosballXamarin.ViewModels
         {
             Email = "madsskipper@gmail.com";
             Password = "Super123!";
+
+            //Todo do in background
+            Device.BeginInvokeOnMainThread(() => { ValidateLogin(); });
+        }
+
+        public async Task ValidateLogin()
+        {
+            IsLoggedIn =  await LoginService.ValidateLogin();
         }
 
         public async Task<bool> LoginCommand()
