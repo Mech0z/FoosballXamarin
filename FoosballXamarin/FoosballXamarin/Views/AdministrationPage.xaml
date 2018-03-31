@@ -45,7 +45,8 @@
                     </StackLayout>
                     <StackLayout Orientation="Horizontal">
                         <Button Text="Change Password" Clicked="ChangeUserPassWordClicked"/>
-                        <Button Text="Add Player role" Clicked="AddPlayerRoleClicked"/>
+                        <Button Text="Add role" Clicked="AddPlayerRoleClicked"/>
+                        <Button Text="Remove role" Clicked="RemovePlayerRoleClicked"/>
                     </StackLayout>
                 </StackLayout>
             </StackLayout>

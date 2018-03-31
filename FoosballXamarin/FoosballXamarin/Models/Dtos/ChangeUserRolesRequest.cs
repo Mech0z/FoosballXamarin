@@ -6,6 +6,6 @@ namespace FoosballXamarin.Models.Dtos
     public class ChangeUserRolesRequest : BaseRequest
     {
         public string UserEmail { get; set; }
-        public List<string> NewUserRoles { get; set; }
+        public List<string> Roles { get; set; }
     }
 }

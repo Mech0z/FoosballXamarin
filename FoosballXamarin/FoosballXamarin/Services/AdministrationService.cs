@@ -92,7 +92,7 @@ namespace FoosballXamarin.Services
                 Token = token,
                 DeviceName = deviceName,
                 UserEmail = userEmail,
-                NewUserRoles = newUserRoles
+                Roles = newUserRoles
             };
 
             RestUrl = App.ApiUrl + "Administration/ChangeUserRoles";
