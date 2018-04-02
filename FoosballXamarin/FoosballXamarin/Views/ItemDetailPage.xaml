@@ -16,6 +16,7 @@
         <ListView x:Name="ItemsListView"
                   ItemsSource="{Binding LatestMatches}"
                   VerticalOptions="FillAndExpand"
+                  HorizontalOptions="FillAndExpand"
                   HasUnevenRows="true"
                   IsPullToRefreshEnabled="true"
                   IsRefreshing="{Binding IsBusy, Mode=OneWay}">
@@ -23,46 +24,69 @@
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Padding="10">
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding TimeStampUtc}"
-                                       LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemTextStyle}"
-                                       FontSize="16" />
+                            <Label Text="{Binding TimeStampUtc, StringFormat='{0:d MMMM, yyyy HH:mm}'}"
+                                    HorizontalTextAlignment="Center"
+                                    FontSize="16" />
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
                                 <Label Text="{Binding Points}"
-                                       LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemDetailTextStyle}"
-                                       FontSize="16" />
-                            </StackLayout>
-                            <StackLayout Padding="10" Orientation="Horizontal">
+                                       FontSize="13"
+                                       FontAttributes="Bold"
+                                       HorizontalTextAlignment="Center"
+                                       Grid.Column="1"
+                                       Grid.Row="0"/>
                                 <Label Text="{Binding PlayerList[0]}"
-                                       LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemDetailTextStyle}"
+                                       Grid.Column="0"
+                                       Grid.Row="0"
+                                       HorizontalTextAlignment="Center"
                                        FontSize="16" />
                                 <Label Text="{Binding PlayerList[1]}"
-                                       LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemDetailTextStyle}"
+                                       Grid.Column="0"
+                                       Grid.Row="1"
+                                       HorizontalTextAlignment="Center"
                                        FontSize="16" />
-                                <Label>VS</Label>
+                                <Label Text="{Binding MatchResult.Team1Score}"
+                                       Grid.Column="0"
+                                       Grid.Row="2"
+                                       FontSize="13" 
+                                       HorizontalTextAlignment="Center"
+                                       FontAttributes="Bold"/>
+                                <Label Text="VS"
+                                       Grid.Column="1"
+                                       Grid.Row="1"
+                                       HorizontalTextAlignment="Center"/>
                                 <Label Text="{Binding PlayerList[2]}"
-                                       LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemDetailTextStyle}"
+                                       Grid.Column="2"
+                                       Grid.Row="0"
+                                       HorizontalTextAlignment="Center"
                                        FontSize="16" />
                                 <Label Text="{Binding PlayerList[3]}"
-                                       LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemDetailTextStyle}"
+                                       Grid.Column="2"
+                                       Grid.Row="1"
+                                       HorizontalTextAlignment="Center"
                                        FontSize="16" />
-                            </StackLayout>
-                            <StackLayout Padding="13" Orientation="Horizontal">
-                                <Label Text="{Binding MatchResult.Team1Score}"
-                                       LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemDetailTextStyle}"
-                                       FontSize="13" />
-                                <Label> - </Label>
                                 <Label Text="{Binding MatchResult.Team2Score}"
-                                       LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemDetailTextStyle}"
-                                       FontSize="13" />
-                            </StackLayout>
+                                       FontSize="13" 
+                                       Grid.Column="2"
+                                       Grid.Row="2"
+                                       HorizontalTextAlignment="Center"
+                                       FontAttributes="Bold"/>
+                                <Label Text="-" 
+                                       FontAttributes="Bold" 
+                                       FontSize="13"
+                                       HorizontalTextAlignment="Center"
+                                       Grid.Column="1"
+                                       Grid.Row="2"/>
+                            </Grid>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
