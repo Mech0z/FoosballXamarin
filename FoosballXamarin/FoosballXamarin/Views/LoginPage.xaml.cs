@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
 using FoosballXamarin.ViewModels;
-using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace FoosballXamarin.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class LoginPage : ContentPage
+	public partial class LoginPage
 	{
 	    private readonly LoginViewModel _viewModel;
 

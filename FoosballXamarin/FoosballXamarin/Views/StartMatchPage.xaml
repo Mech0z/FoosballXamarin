@@ -5,9 +5,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FoosballXamarin.Views.StartMatchPage"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin.Android"
-             d:DataContext="{d:DesignInstance {x:Type vm:StartMatchViewModel}}"
+             d:DataContext="{d:DesignInstance {x:Type viewModels:StartMatchViewModel}}"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin.UWP"
              Title="Start Match - Choose 4 players"
              mc:Ignorable="d">
     <ContentPage.Content>

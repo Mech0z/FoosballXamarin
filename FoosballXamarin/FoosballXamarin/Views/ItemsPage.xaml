@@ -7,9 +7,9 @@
              x:Name="BrowseItemsPage"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:sparkline="clr-namespace:Syncfusion.SfSparkline.XForms;assembly=Syncfusion.SfSparkline.XForms" 
-             d:DataContext="{d:DesignInstance {x:Type viewModels:ItemsViewModel}}"
+             d:DataContext="{d:DesignInstance {x:Type viewModels1:ItemsViewModel}}"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:viewModels="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin.Android"
+             xmlns:viewModels1="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin.UWP"
              mc:Ignorable="d">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Refresh" Clicked="Refresh_Clicked" />

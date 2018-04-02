@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using FoosballXamarin.Services;
 using Xamarin.Forms;
 
@@ -7,7 +8,7 @@ namespace FoosballXamarin.ViewModels
     public class LoginViewModel : BaseViewModel
     {
         public ILoginService LoginService => DependencyService.Get<ILoginService>();
-        
+        public Command LoadItemsCommand { get; set; }
         private string _email;
         public string Email
         {
@@ -27,9 +28,26 @@ namespace FoosballXamarin.ViewModels
         {
             Email = "madsskipper@gmail.com";
             Password = "Super123!";
+            
+            LoadItemsCommand = new Command(async () => await ExecuteLoadCommand());
+            LoadItemsCommand.Execute(this);
+        }
 
-            //Todo do in background so we dont lock app bootup
-            Device.BeginInvokeOnMainThread(() => { ValidateLogin(); });
+        async Task ExecuteLoadCommand()
+        {
+            IsBusy = true;
+            try
+            {
+                await ValidateLogin();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
         public async Task ValidateLogin()
@@ -42,26 +60,49 @@ namespace FoosballXamarin.ViewModels
             }
         }
 
-        public async Task<bool> LoginCommand()
+        public async Task LoginCommand()
         {
-            var success = await LoginService.Login(Email, Password, true);
-
-            if (success)
+            IsBusy = true;
+            try
             {
-                IsLoggedIn = true;
-                MessagingCenter.Send(this, "LoginSuccessful");
+                var success = await LoginService.Login(Email, Password, true);
+                if (success)
+                {
+                    IsLoggedIn = true;
+                    MessagingCenter.Send(this, "LoginSuccessful");
+                }
             }
-
-            return true;
+            catch (Exception e)
+            {
+                MessagingCenter.Send(this, "Login failed");
+                Console.WriteLine(e);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
         public async Task Logout()
         {
-            var success = await LoginService.Logout();
-            if (success)
+            IsBusy = true;
+            try
             {
-                IsLoggedIn = false;
-                MessagingCenter.Send(this, "LogoutSuccessful");
+                var success = await LoginService.Logout();
+                if (success)
+                {
+                    IsLoggedIn = false;
+                    MessagingCenter.Send(this, "LogoutSuccessful");
+                }
+            }
+            catch (Exception e)
+            {
+                MessagingCenter.Send(this, "Logout failed");
+                Console.WriteLine(e);
+            }
+            finally
+            {
+                IsBusy = false;
             }
         }
     }
