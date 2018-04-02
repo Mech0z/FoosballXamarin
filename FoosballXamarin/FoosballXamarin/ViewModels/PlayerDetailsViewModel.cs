@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace FoosballXamarin.ViewModels
 {
-	public class ItemDetailViewModel : BaseViewModel
+	public class PlayerDetailsViewModel : BaseViewModel
 	{
 	    public IUserService UserService => DependencyService.Get<IUserService>();
 	    public IMatchService MatchService => DependencyService.Get<IMatchService>();
@@ -18,7 +18,7 @@ namespace FoosballXamarin.ViewModels
         public LeaderboardViewEntry Item { get; set; }
 	    public ObservableRangeCollection<Match> LatestMatches { get; set; }
 
-        public ItemDetailViewModel(LeaderboardViewEntry item)
+        public PlayerDetailsViewModel(LeaderboardViewEntry item)
 		{
 			Title = item.UserName;
 			Item = item;
