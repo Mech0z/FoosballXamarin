@@ -51,7 +51,7 @@ namespace FoosballXamarin.ViewModels
                 var users = await UserService.GetDataAsync();
                 User = users.SingleOrDefault(x => x.Email == Item.UserName);
 
-                LatestMatches.ReplaceRange(await MatchService.GetPlayerMatches());
+                LatestMatches.ReplaceRange(await MatchService.GetPlayerMatches(Item.UserName));
             }
             catch (Exception e)
             {

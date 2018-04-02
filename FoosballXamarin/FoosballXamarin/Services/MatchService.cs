@@ -25,9 +25,9 @@ namespace FoosballXamarin.Services
             return items;
         }
 
-        public async Task<List<Match>> GetPlayerMatches()
+        public async Task<List<Match>> GetPlayerMatches(string email)
         {
-            RestUrl = App.ApiUrl + "player/GetPlayerMatches?email=maso@seges.dk";
+            RestUrl = App.ApiUrl + $"player/GetPlayerMatches?email={email}";
             var response = await _client.GetAsync(HttpUri);
 
             if (!response.IsSuccessStatusCode) return new List<Match>();
