@@ -92,9 +92,10 @@ namespace FoosballXamarin.Views
 	            $"User {_viewModel.SelectedUser.DisplayName} will loose role {result}");
 	        if (toSave)
 	        {
-	            _viewModel.SelectedUser.Roles.Add(result);
+	            var updatedList = _viewModel.SelectedUser.Roles.ToList();
+	            updatedList.Remove(result);
 	            var changeResult = await _viewModel.AdministrationService.ChangeUserRoles(_viewModel.SelectedUser.Email,
-	                _viewModel.SelectedUser.Roles.ToList());
+	                updatedList);
 
 	            if (changeResult)
 	            {

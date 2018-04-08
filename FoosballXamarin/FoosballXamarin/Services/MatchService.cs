@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using FoosballXamarin.Services;
 using FoosballXamarin.UWP.Models.Dtos;
+using Plugin.DeviceInfo;
+using Xamarin.Forms;
 
 [assembly: Xamarin.Forms.Dependency(typeof(MatchService))]
 namespace FoosballXamarin.Services
@@ -39,6 +41,14 @@ namespace FoosballXamarin.Services
 
         public async Task<bool> SubmitMatches(SaveMatchesRequest request)
         {
+            var token = Application.Current.Properties["Token"] as string;
+            var email = Application.Current.Properties["Email"] as string;
+
+            var deviceName = CrossDeviceInfo.Current.DeviceName;
+            request.Email = email;
+            request.DeviceName = deviceName;
+            request.Token = token;
+
             RestUrl = App.ApiUrl + "match/SaveMatch";
             
             var jsonRequest = JsonConvert.SerializeObject(request);

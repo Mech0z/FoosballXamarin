@@ -26,6 +26,13 @@ namespace FoosballXamarin.ViewModels
 	        set => SetProperty(ref _selectedLeaderboardView, value);
 	    }
 
+	    private bool _isLandscapeMode;
+	    public bool IsLandscapeMode
+	    {
+	        get => _isLandscapeMode;
+	        set => SetProperty(ref _isLandscapeMode, value);
+	    }
+
 	    public Command LoadItemsCommand { get; set; }
 
 		public ItemsViewModel()
@@ -35,6 +42,11 @@ namespace FoosballXamarin.ViewModels
             Leaderboards = new ObservableRangeCollection<LeaderboardView>();
 			LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 		}
+
+	    public void UpdateOrientationCommand(double height, double width)
+	    {
+	        IsLandscapeMode = height < width;
+	    }
 
 		async Task ExecuteLoadItemsCommand()
 		{

@@ -38,5 +38,13 @@ namespace FoosballXamarin.Views
 
 			_viewModel.LoadItemsCommand.Execute(null);
 		}
+
+	    private void OrientationChangedEvent(object sender, EventArgs e)
+	    {
+	        if (sender is Page page)
+	        {
+                _viewModel.UpdateOrientationCommand(page.Height, page.Width);
+	        }
+	    }
 	}
 }

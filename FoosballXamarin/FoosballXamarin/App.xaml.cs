@@ -1,4 +1,6 @@
 ﻿using FoosballXamarin.Views;
+using Microsoft.AspNet.SignalR.Client;
+using Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -7,7 +9,9 @@ namespace FoosballXamarin
 {
 	public partial class App : Application
 	{
-        public static string ApiUrl = "https://foosballapi.azurewebsites.net/api/";
+        //public static string ApiUrl = "https://foosballapi.azurewebsites.net/api/";
+        public static string ServerUrl = "http://localhost:5000/";
+        public static string ApiUrl = ServerUrl + "api/";
 
         public static INavigation Navigation { get; set; }
 
@@ -16,6 +20,17 @@ namespace FoosballXamarin
 			InitializeComponent();
 
 			SetMainPage();
+		    var hubConnection = new HubConnection(ServerUrl);
+		    // Create a proxy to the 'ChatHub' SignalR Hub
+		    var chatHubProxy = hubConnection.CreateHubProxy("MatchHub");
+
+            // Wire up a handler for the 'UpdateChatMessage' for the server
+            // to be called on our client
+		    chatHubProxy.On<Match>("NewMatch", message => 
+		        MessagingCenter.Send(this, "NewMatchAdded", message));
+
+		    // Start the connection
+		    hubConnection.Start();
 		}
 
         public static void SetMainPage()
