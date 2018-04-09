@@ -70,5 +70,6 @@ namespace Models
         }
 
         public string MatchValidationErrorText { get; set; }
+        public string SubmittedBy { get; set; }
     }
 }

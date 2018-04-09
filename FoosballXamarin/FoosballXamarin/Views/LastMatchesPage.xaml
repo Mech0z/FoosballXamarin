@@ -93,6 +93,13 @@
                                    HorizontalTextAlignment="Start"
                                    VerticalTextAlignment="Center"
                                    FontSize="Medium"/>
+
+                            <Label Text="{Binding SubmittedBy}"
+                                    Grid.Column="3"
+                                    Grid.Row="4"
+                                    HorizontalOptions="End"
+                                    FontSize="Micro"
+                                    VerticalTextAlignment="Center"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
