@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
+using Acr.UserDialogs;
+using FoosballXamarin.Helpers;
 using FoosballXamarin.ViewModels;
 using Models;
 using Xamarin.Forms;
@@ -26,6 +30,21 @@ namespace FoosballXamarin.Views
             }
             else
             {
+                if (!Application.Current.Properties.ContainsKey("Email") )
+                {
+                    await UserDialogs.Instance.AlertAsync("Login required!");
+                    return;
+                }
+
+                var email = Application.Current.Properties["Email"] as string;
+                var roles = Application.Current.Properties["Roles"] as List<string>;
+                var emails = _viewModel.AddedPlayers.Select(player => player.UserName);
+                if (!emails.Contains(email) && !roles.Contains("Admin"))
+                {
+                    await UserDialogs.Instance.AlertAsync("Must participate or be admin to submit match!");
+                    return;
+                }
+
                 await Navigation.PushAsync(new AddMatchPage(_viewModel.AddedPlayers));
             }
         }

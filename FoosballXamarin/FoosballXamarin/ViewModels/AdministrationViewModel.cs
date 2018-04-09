@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FoosballXamarin.Helpers;
@@ -45,23 +46,26 @@ namespace FoosballXamarin.ViewModels
 
         private async Task CheckRolesCommand()
         {
-            if(Application.Current.Properties.ContainsKey("Email"))
+            if(Application.Current.Properties.ContainsKey("Email") && Application.Current.Properties.ContainsKey("Roles"))
             {
-                var result = await AdministrationService.GetUsermappings();
-                var users = await UserService.GetDataAsync();
-
-                foreach (UserMapping mapping in result)
+                if (Application.Current.Properties["Roles"] is List<string> roles && roles.Contains("Admin"))
                 {
-                    mapping.DisplayName = users.SingleOrDefault(x => x.Email == mapping.Email)?.Username;
-                }
+                    var result = await AdministrationService.GetUsermappings();
+                    var users = await UserService.GetDataAsync();
 
-                UserMappings.AddRange(result.OrderBy(x => x.DisplayName));
-                IsAdmin = true;
+                    foreach (UserMapping mapping in result)
+                    {
+                        mapping.DisplayName = users.SingleOrDefault(x => x.Email == mapping.Email)?.Username;
+                    }
+
+                    UserMappings.AddRange(result.OrderBy(x => x.DisplayName));
+                    IsAdmin = true;
+                    return;
+                }
             }
-            else
-            {
-                IsAdmin = false;
-            }
+            
+            SelectedUser = null;
+            IsAdmin = false;
         }
     }
 }

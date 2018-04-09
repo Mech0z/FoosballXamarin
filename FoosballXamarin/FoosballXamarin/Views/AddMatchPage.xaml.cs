@@ -43,12 +43,7 @@ namespace FoosballXamarin.Views
         {
             var listview = sender as ListView;
 
-            if(listview == null)
-                return;
-
-            var user = listview.SelectedItem as User;
-
-            if (user == null)
+            if (!(listview?.SelectedItem is User user))
                 return;
 
             if (_viewModel.Team1.Contains(user))

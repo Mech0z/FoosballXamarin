@@ -39,6 +39,7 @@ namespace FoosballXamarin.Services
             Application.Current.Properties["Email"] = email;
             Application.Current.Properties["Token"] = deserializedResponse.Token;
             Application.Current.Properties["ExpiryTime"] = deserializedResponse.ExpiryTime;
+            Application.Current.Properties["Roles"] = deserializedResponse.Roles;
 
             await Application.Current.SavePropertiesAsync();
 

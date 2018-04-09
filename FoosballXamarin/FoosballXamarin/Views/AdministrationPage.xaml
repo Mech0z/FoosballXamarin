@@ -44,6 +44,10 @@
                         <Label Text="{Binding SelectedUser.RolesAsString}"/>
                     </StackLayout>
                     <StackLayout Orientation="Horizontal">
+                        <Label Text="Email: "/>
+                        <Label Text="{Binding SelectedUser.Email}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
                         <Button Text="Change Password" Clicked="ChangeUserPassWordClicked"/>
                         <Button Text="Add role" Clicked="AddPlayerRoleClicked"/>
                         <Button Text="Remove role" Clicked="RemovePlayerRoleClicked"/>
