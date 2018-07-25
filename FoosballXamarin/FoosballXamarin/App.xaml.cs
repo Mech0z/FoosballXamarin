@@ -1,6 +1,4 @@
 ﻿using FoosballXamarin.Views;
-using Microsoft.AspNet.SignalR.Client;
-using Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,18 +17,9 @@ namespace FoosballXamarin
 		{
 			InitializeComponent();
 
-			SetMainPage();
-		    var hubConnection = new HubConnection(ServerUrl);
-		    // Create a proxy to the 'ChatHub' SignalR Hub
-		    var chatHubProxy = hubConnection.CreateHubProxy("MatchHub");
+		    Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MTAzMjBAMzEzNjJlMzIyZTMwaHJPSFdxU01JZnY1VEsxRG1xMG1XODMxWkVtNzVsK1lBTmQzRXRRRkl4MD0=");
 
-            // Wire up a handler for the 'UpdateChatMessage' for the server
-            // to be called on our client
-		    chatHubProxy.On<Match>("NewMatch", message => 
-		        MessagingCenter.Send(this, "NewMatchAdded", message));
-
-		    // Start the connection
-		    hubConnection.Start();
+            SetMainPage();
 		}
 
         public static void SetMainPage()

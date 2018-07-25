@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using Newtonsoft.Json;
+using Plugin.DeviceInfo;
 using Xamarin.Forms;
 
 namespace FoosballXamarin.Services
@@ -24,9 +25,9 @@ namespace FoosballXamarin.Services
 
         public HttpRequestMessage GetRequest(string uri, object bodyContent)
         {
-            var token = Application.Current.Properties["Token"] as string;
-            var email = Application.Current.Properties["Email"] as string;
-            var deviceName = Application.Current.Properties["DeviceName"] as string;
+            var token = Application.Current.Properties.ContainsKey("Token") ? Application.Current.Properties["Token"] as string : "";
+            var email = Application.Current.Properties.ContainsKey("Email") ? Application.Current.Properties["Email"] as string : "";
+            var deviceName = CrossDeviceInfo.Current.DeviceName;
 
             var jsonRequest = JsonConvert.SerializeObject(bodyContent);
             var contentType = "application/json";

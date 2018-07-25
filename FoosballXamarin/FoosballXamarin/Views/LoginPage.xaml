@@ -4,10 +4,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FoosballXamarin.Views.LoginPage"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             d:DataContext="{d:DesignInstance viewModels1:LoginViewModel, IsDesignTimeCreatable=True}"
+             d:DataContext="{d:DesignInstance viewModels:LoginViewModel, IsDesignTimeCreatable=True}"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:helpers1="clr-namespace:FoosballXamarin.Helpers;assembly=FoosballXamarin.UWP"
-             xmlns:viewModels1="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin.UWP"
+             xmlns:viewModels="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin.UWP"
+             xmlns:helpers="clr-namespace:FoosballXamarin.Helpers;assembly=FoosballXamarin.UWP"
              IsBusy="{Binding IsBusy}"
              mc:Ignorable="d">
     <ContentPage.Content>
@@ -16,11 +16,11 @@
             <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
 
                 <StackLayout 
-                    IsEnabled="{Binding IsBusy, Converter={helpers1:BoolToOppositeBoolConverter}}"
+                    IsEnabled="{Binding IsBusy, Converter={helpers:BoolToOppositeBoolConverter}}"
                     VerticalOptions="Start" 
                     HorizontalOptions="FillAndExpand"
                     Orientation="Vertical"
-                    IsVisible="{Binding IsLoggedIn, Converter={helpers1:BoolToOppositeBoolConverter}}">
+                    IsVisible="{Binding IsLoggedIn, Converter={helpers:BoolToOppositeBoolConverter}}">
                     <Label Text="Login"
                            FontSize="Large"
                            HorizontalTextAlignment="Center"

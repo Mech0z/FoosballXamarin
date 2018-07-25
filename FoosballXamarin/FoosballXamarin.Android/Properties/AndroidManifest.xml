@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.companyname.FoosballXamarin" android:versionName="1.13" android:installLocation="auto" android:versionCode="5">
-	<uses-sdk android:minSdkVersion="15" />
-	<application android:label="Fozzie"></application>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.companyname.FoosballXamarin" android:versionName="1.14" android:installLocation="auto" android:versionCode="6">
+	<uses-sdk android:minSdkVersion="24" />
+	<application android:label="Fozzie2"></application>
 </manifest>
