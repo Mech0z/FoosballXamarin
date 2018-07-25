@@ -18,7 +18,23 @@ namespace FoosballXamarin.ViewModels
         public LeaderboardViewEntry Item { get; set; }
 	    public ObservableRangeCollection<Match> LatestMatches { get; set; }
 
-        public PlayerDetailsViewModel(LeaderboardViewEntry item)
+	    public ObservableRangeCollection<Match> FilteredMatches
+	    {
+	        get
+	        {
+	            var success = int.TryParse(SelectedLimit, out var parsedValue);
+
+                if(LatestMatches.Count == 0)
+                    return new ObservableRangeCollection<Match>();
+
+	            return success
+	                ? new ObservableRangeCollection<Match>(LatestMatches.OrderBy(x => x.TimeStampUtc)
+	                    .TakeLast(parsedValue))
+	                : LatestMatches;
+	        }
+	    }
+
+	    public PlayerDetailsViewModel(LeaderboardViewEntry item)
 		{
 			Title = item.UserName;
 			Item = item;
@@ -27,16 +43,52 @@ namespace FoosballXamarin.ViewModels
 
 		    LoadItemsCommand = new Command(async () => await ExecuteLoadCommand());
             LoadItemsCommand.Execute(this);
-        }
+		    SelectedLimit = LimitRanges.FirstOrDefault();
+		}
 
-		private int _eloRating;
+        public List<string> LimitRanges => new List<string>{"10", "25", "100", "All"};
+
+	    private string _selectedLimit;
+	    public string SelectedLimit
+	    {
+	        get => _selectedLimit;
+	        set
+	        {
+	            SetProperty(ref _selectedLimit, value);
+	            OnPropertyChanged(nameof(FilteredMatches));
+            }
+	    }
+
+	    private int _eloRating;
         public int EloRating
 		{
 			get => _eloRating;
 		    set => SetProperty(ref _eloRating, value);
 		}
 
-        User _user;
+	    private DateTime _fromDate;
+	    public DateTime FromDate
+	    {
+	        get => _fromDate;
+	        set
+	        {
+	            SetProperty(ref _fromDate, value);
+	            OnPropertyChanged(nameof(FilteredMatches));
+            }
+	    }
+
+	    private DateTime _toDate;
+	    public DateTime ToDate
+	    {
+	        get => _toDate;
+	        set
+	        {
+	            SetProperty(ref _toDate, value);
+	            OnPropertyChanged(nameof(FilteredMatches));
+	        }
+	    }
+
+	    User _user;
 	    public User User
 	    {
 	        get => _user;
@@ -52,6 +104,7 @@ namespace FoosballXamarin.ViewModels
                 User = users.SingleOrDefault(x => x.Email == Item.UserName);
 
                 LatestMatches.ReplaceRange(await MatchService.GetPlayerMatches(Item.UserName));
+                OnPropertyChanged(nameof(FilteredMatches));
             }
             catch (Exception e)
             {

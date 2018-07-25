@@ -5,8 +5,8 @@
             x:Class="FoosballXamarin.Views.PlayerDetailsPage"
             d:DataContext="{d:DesignInstance viewModels:PlayerDetailsViewModel, IsDesignTimeCreatable=True}"
             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-            xmlns:viewModels="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin.UWP"
             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:viewModels="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin.UWP"
             mc:Ignorable="d">
     <!--Pages can be added as references or inline-->
     <ContentPage Title="User">
@@ -17,8 +17,12 @@
     </ContentPage>
     <ContentPage Title="Latest matches">
         <StackLayout>
-            <ListView x:Name="ItemsListView"
-                      ItemsSource="{Binding LatestMatches}"
+            <Picker Title="Limit" 
+                    ItemsSource="{Binding LimitRanges}"
+                    SelectedItem="{Binding SelectedLimit}"
+                    />
+                <ListView x:Name="ItemsListView"
+                      ItemsSource="{Binding FilteredMatches}"
                       VerticalOptions="FillAndExpand"
                       HorizontalOptions="FillAndExpand"
                       HasUnevenRows="true"
@@ -98,4 +102,5 @@
             </ListView>
         </StackLayout>
     </ContentPage>
+    <ContentPage Title="Achievements" />
 </TabbedPage>
