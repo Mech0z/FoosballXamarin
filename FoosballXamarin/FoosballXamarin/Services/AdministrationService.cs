@@ -20,23 +20,11 @@ namespace FoosballXamarin.Services
         {
             if (!Application.Current.Properties.ContainsKey("Token")) return new List<UserMapping>();
             
-            var token = Application.Current.Properties["Token"] as string;
-            var email = Application.Current.Properties["Email"] as string;
-
-            var deviceName = CrossDeviceInfo.Current.DeviceName;
-            var request = new BaseRequest
-            {
-                Email = email,
-                Token = token,
-                DeviceName = deviceName
-            };
-
             RestUrl = App.ApiUrl + "Administration/GetUserMappings";
-            
-            var jsonRequest = JsonConvert.SerializeObject(request);
-            var contentType = "application/json";
 
-            var response = await _client.PostAsync(HttpUri, new StringContent(jsonRequest, Encoding.UTF8, contentType));
+            var messageBody = GetRequest(RestUrl, "");
+
+            var response = await _client.SendAsync(messageBody);
          
             if (!response.IsSuccessStatusCode) return new List<UserMapping>();
 
@@ -50,25 +38,17 @@ namespace FoosballXamarin.Services
         {
             if (!Application.Current.Properties.ContainsKey("Token")) return false;
             
-            var token = Application.Current.Properties["Token"] as string;
-            var email = Application.Current.Properties["Email"] as string;
-
-            var deviceName = CrossDeviceInfo.Current.DeviceName;
             var request = new ChangeUserPasswordRequest
             {
-                Email = email,
-                Token = token,
-                DeviceName = deviceName,
                 NewPassword = newPassword,
                 UserEmail = userEmail
             };
 
             RestUrl = App.ApiUrl + "Administration/ChangeUserPassword";
-            
-            var jsonRequest = JsonConvert.SerializeObject(request);
-            var contentType = "application/json";
 
-            var response = await _client.PostAsync(HttpUri, new StringContent(jsonRequest, Encoding.UTF8, contentType));
+            var messageBody = GetRequest(RestUrl, request);
+
+            var response = await _client.SendAsync(messageBody);
          
             if (!response.IsSuccessStatusCode) return false;
 
@@ -82,25 +62,17 @@ namespace FoosballXamarin.Services
         {
             if (!Application.Current.Properties.ContainsKey("Token")) return false;
             
-            var token = Application.Current.Properties["Token"] as string;
-            var email = Application.Current.Properties["Email"] as string;
-
-            var deviceName = CrossDeviceInfo.Current.DeviceName;
             var request = new ChangeUserRolesRequest
             {
-                Email = email,
-                Token = token,
-                DeviceName = deviceName,
                 UserEmail = userEmail,
                 Roles = newUserRoles
             };
 
             RestUrl = App.ApiUrl + "Administration/ChangeUserRoles";
-            
-            var jsonRequest = JsonConvert.SerializeObject(request);
-            var contentType = "application/json";
 
-            var response = await _client.PostAsync(HttpUri, new StringContent(jsonRequest, Encoding.UTF8, contentType));
+            var messageBody = GetRequest(RestUrl, request);
+
+            var response = await _client.SendAsync(messageBody);
          
             if (!response.IsSuccessStatusCode) return false;
 

@@ -27,7 +27,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helpers\BoolConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Achievements.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\BaseDataObject.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Dtos\BaseRequest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Dtos\ChangeUserPasswordRequest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Dtos\ChangeUserRolesRequest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\LeaderboardLine.cs" />
@@ -35,7 +34,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\LeaderboardViewEntry.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Dtos\LoginRequest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Dtos\LoginResponse.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Dtos\LogoutRequest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Match.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\MatchResultcs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\MatchupResult.cs" />
@@ -47,7 +45,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Settings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\User.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\UserMapping.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Dtos\ValidateLoginRequest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\AdministrationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\BaseService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\IAdministrationService.cs" />

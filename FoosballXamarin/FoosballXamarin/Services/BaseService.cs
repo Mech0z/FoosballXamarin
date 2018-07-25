@@ -1,5 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
+using Newtonsoft.Json;
+using Xamarin.Forms;
 
 namespace FoosballXamarin.Services
 {
@@ -16,6 +20,26 @@ namespace FoosballXamarin.Services
             {
                 //MaxResponseContentBufferSize = 256000
             };
+        }
+
+        public HttpRequestMessage GetRequest(string uri, object bodyContent)
+        {
+            var token = Application.Current.Properties["Token"] as string;
+            var email = Application.Current.Properties["Email"] as string;
+            var deviceName = Application.Current.Properties["DeviceName"] as string;
+
+            var jsonRequest = JsonConvert.SerializeObject(bodyContent);
+            var contentType = "application/json";
+
+            var httpRequest = new HttpRequestMessage(HttpMethod.Post, RestUrl)
+            {
+                Content = new StringContent(jsonRequest, Encoding.UTF8, contentType)
+            };
+            httpRequest.Headers.Add("Email", new List<string> { email });
+            httpRequest.Headers.Add("Token", new List<string> { token });
+            httpRequest.Headers.Add("DeviceName", new List<string> { deviceName });
+
+            return httpRequest;
         }
     }
 }

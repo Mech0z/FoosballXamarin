@@ -1,7 +1,6 @@
 ﻿using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using FoosballXamarin.Models;
 using FoosballXamarin.Services;
 using FoosballXamarin.UWP.Models.Dtos;
 using Newtonsoft.Json;
@@ -49,24 +48,12 @@ namespace FoosballXamarin.Services
         public async Task<bool> ValidateLogin()
         {
             if (!Application.Current.Properties.ContainsKey("Token")) return false;
-            
-            var token = Application.Current.Properties["Token"] as string;
-            var email = Application.Current.Properties["Email"] as string;
-
-            var deviceName = CrossDeviceInfo.Current.DeviceName;
-            var request = new ValidateLoginRequest
-            {
-                Email = email,
-                Token = token,
-                DeviceName = deviceName
-            };
 
             RestUrl = App.ApiUrl + "Account/ValidateLogin";
-            
-            var jsonRequest = JsonConvert.SerializeObject(request);
-            var contentType = "application/json";
 
-            var response = await _client.PostAsync(HttpUri, new StringContent(jsonRequest, Encoding.UTF8, contentType));
+            var messageBody = GetRequest(RestUrl, "");
+
+            var response = await _client.SendAsync(messageBody);
          
             if (!response.IsSuccessStatusCode) return false;
 
@@ -80,23 +67,11 @@ namespace FoosballXamarin.Services
         {
             if (!Application.Current.Properties.ContainsKey("Token")) return false;
             
-            var token = Application.Current.Properties["Token"] as string;
-            var email = Application.Current.Properties["Email"] as string;
-
-            var deviceName = CrossDeviceInfo.Current.DeviceName;
-            var request = new LogoutRequest
-            {
-                Email = email,
-                Token = token,
-                DeviceName = deviceName
-            };
-
             RestUrl = App.ApiUrl + "Account/Logout";
-            
-            var jsonRequest = JsonConvert.SerializeObject(request);
-            var contentType = "application/json";
 
-            var response = await _client.PostAsync(HttpUri, new StringContent(jsonRequest, Encoding.UTF8, contentType));
+            var messageBody = GetRequest(RestUrl, "");
+            
+            var response = await _client.SendAsync(messageBody);
          
             if (!response.IsSuccessStatusCode) return false;
 
