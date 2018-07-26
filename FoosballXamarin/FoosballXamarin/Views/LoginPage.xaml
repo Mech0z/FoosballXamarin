@@ -6,8 +6,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              d:DataContext="{d:DesignInstance viewModels:LoginViewModel, IsDesignTimeCreatable=True}"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:viewModels="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin.UWP"
-             xmlns:helpers="clr-namespace:FoosballXamarin.Helpers;assembly=FoosballXamarin.UWP"
+             xmlns:viewModels="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin"
+             xmlns:helpers="clr-namespace:FoosballXamarin.Helpers;assembly=FoosballXamarin"
              IsBusy="{Binding IsBusy}"
              mc:Ignorable="d">
     <ContentPage.Content>

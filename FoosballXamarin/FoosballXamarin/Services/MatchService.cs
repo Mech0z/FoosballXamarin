@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using FoosballXamarin.Services;
 using FoosballXamarin.UWP.Models.Dtos;
-using Plugin.DeviceInfo;
 using Xamarin.Forms;
 
 [assembly: Xamarin.Forms.Dependency(typeof(MatchService))]

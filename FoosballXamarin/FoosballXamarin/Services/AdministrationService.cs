@@ -1,14 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using FoosballXamarin.Models;
 using FoosballXamarin.Models.Dtos;
 using FoosballXamarin.Services;
 using FoosballXamarin.UWP.Models.Dtos;
 using Newtonsoft.Json;
-using Plugin.DeviceInfo;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(AdministrationService))]

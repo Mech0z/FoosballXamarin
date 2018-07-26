@@ -6,7 +6,7 @@
             d:DataContext="{d:DesignInstance viewModels:PlayerDetailsViewModel, IsDesignTimeCreatable=True}"
             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-            xmlns:viewModels="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin.UWP"
+            xmlns:viewModels="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin"
             mc:Ignorable="d">
     <!--Pages can be added as references or inline-->
     <ContentPage Title="User">

@@ -28,8 +28,8 @@ namespace FoosballXamarin.ViewModels
                     return new ObservableRangeCollection<Match>();
 
 	            return success
-	                ? new ObservableRangeCollection<Match>(LatestMatches.OrderBy(x => x.TimeStampUtc)
-	                    .TakeLast(parsedValue))
+	                ? new ObservableRangeCollection<Match>(LatestMatches.OrderByDescending(x => x.TimeStampUtc)
+	                    .Take(parsedValue))
 	                : LatestMatches;
 	        }
 	    }

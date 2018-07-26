@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using FoosballXamarin.Services;
 using FoosballXamarin.UWP.Models.Dtos;
 using Newtonsoft.Json;
-using Plugin.DeviceInfo;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(LoginService))]
@@ -14,7 +13,7 @@ namespace FoosballXamarin.Services
     {
         public async Task<bool> Login(string email, string password, bool rememberMe)
         {
-            var deviceName = CrossDeviceInfo.Current.DeviceName;
+            var deviceName = "App";
             var request = new LoginRequest
             {
                 Email = email,

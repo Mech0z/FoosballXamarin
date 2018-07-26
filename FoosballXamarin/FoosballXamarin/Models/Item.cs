@@ -1,19 +1,11 @@
-﻿namespace FoosballXamarin.Models
-{
-    public class Item : BaseDataObject
-	{
-		string text = string.Empty;
-		public string Text
-		{
-			get { return text; }
-			set { SetProperty(ref text, value); }
-		}
+﻿using System;
 
-		string description = string.Empty;
-		public string Description
-		{
-			get { return description; }
-			set { SetProperty(ref description, value); }
-		}
-	}
+namespace FoosballXamarin.Models
+{
+    public class Item
+    {
+        public string Id { get; set; }
+        public string Text { get; set; }
+        public string Description { get; set; }
+    }
 }

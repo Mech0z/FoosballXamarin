@@ -2,10 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             d:DataContext="{d:DesignInstance viewModels:AdministrationViewModel, IsDesignTimeCreatable=True}"
+             d:DataContext="{d:DesignInstance viewModels1:AdministrationViewModel, IsDesignTimeCreatable=True}"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:viewModels="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin.UWP"
-             xmlns:helpers="clr-namespace:FoosballXamarin.Helpers;assembly=FoosballXamarin.UWP"
+             xmlns:viewModels1="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin"
+             xmlns:helpers="clr-namespace:FoosballXamarin.Helpers;assembly=FoosballXamarin"
              x:Class="FoosballXamarin.Views.AdministrationPage"
              mc:Ignorable="d">
     <ContentPage.Content>
