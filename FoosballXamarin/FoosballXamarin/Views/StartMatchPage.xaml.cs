@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
 using FoosballXamarin.Helpers;
+using FoosballXamarin.Models;
 using FoosballXamarin.ViewModels;
 using Models;
 using Xamarin.Forms;

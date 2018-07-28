@@ -1,6 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
-<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             x:Class="FoosballXamarin.Views.PlayerDetailsPage"
             d:DataContext="{d:DesignInstance viewModels:PlayerDetailsViewModel, IsDesignTimeCreatable=True}"
@@ -8,11 +6,30 @@
             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
             xmlns:viewModels="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin"
             mc:Ignorable="d">
-    <!--Pages can be added as references or inline-->
     <ContentPage Title="User">
         <StackLayout Spacing="20" Padding="15">
             <Label Text="{Binding User.Username}" FontSize="Medium" />
-            <Label Text="{Binding Item.EloRating}" FontSize="Small" />
+
+            <ListView x:Name="PlayerHistoryListView"
+                      ItemsSource="{Binding PlayerLeaderBoardHistory}"
+                      HorizontalOptions="FillAndExpand"
+                      HasUnevenRows="true"
+                      IsPullToRefreshEnabled="true"
+                      IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding SeasonName}" />
+                                <Label Text="{Binding Rank}"/>
+                                <Label Text="{Binding EloRating}"/>
+                                <Label Text="{Binding DisplayGamesDistribution}"/>
+                                <Label Text="{Binding WinPercent, StringFormat='{0:N1}'}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage>
     <ContentPage Title="Latest matches">

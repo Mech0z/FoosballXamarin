@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using FoosballXamarin.Helpers;
+using FoosballXamarin.Models;
 using FoosballXamarin.Services;
 using FoosballXamarin.Views;
 using Models;

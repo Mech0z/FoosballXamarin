@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using FoosballXamarin.Helpers;
+using FoosballXamarin.Models;
 using FoosballXamarin.ViewModels;
 using Models;
 using Xamarin.Forms;

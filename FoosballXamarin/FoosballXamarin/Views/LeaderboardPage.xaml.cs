@@ -1,4 +1,5 @@
 ﻿using System;
+using FoosballXamarin.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using FoosballXamarin.ViewModels;

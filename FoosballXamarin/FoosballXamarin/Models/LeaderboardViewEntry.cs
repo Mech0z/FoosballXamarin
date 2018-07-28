@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Models;
 
-namespace Models
+namespace FoosballXamarin.Models
 {
     public class LeaderboardViewEntry
     {
@@ -19,14 +20,5 @@ namespace Models
         public string Form { get; set; }
         public double WinPercent => (double)Wins / (Losses + Wins) * 100;
         public List<Form> FormList { get; set; }
-    }
-
-    public class Form
-    {
-        public Form(int value)
-        {
-            Value = value;
-        }
-        public int Value { get; set; }
     }
 }

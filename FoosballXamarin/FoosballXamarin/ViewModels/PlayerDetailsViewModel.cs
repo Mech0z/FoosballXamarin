@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FoosballXamarin.Helpers;
+using FoosballXamarin.Models;
+using FoosballXamarin.Models.Dtos;
 using FoosballXamarin.Services;
 using Models;
 using Xamarin.Forms;
@@ -40,6 +42,7 @@ namespace FoosballXamarin.ViewModels
 			Item = item;
 
             LatestMatches = new ObservableRangeCollection<Match>();
+            PlayerLeaderBoardHistory = new ObservableRangeCollection<PlayerLeaderboardEntry>();
 
 		    LoadItemsCommand = new Command(async () => await ExecuteLoadCommand());
             LoadItemsCommand.Execute(this);
@@ -88,7 +91,18 @@ namespace FoosballXamarin.ViewModels
 	        }
 	    }
 
-	    User _user;
+	    private ObservableRangeCollection<PlayerLeaderboardEntry> _playerLeaderBoardHistory;
+	    public ObservableRangeCollection<PlayerLeaderboardEntry> PlayerLeaderBoardHistory
+        {
+	        get => _playerLeaderBoardHistory;
+	        set
+	        {
+	            SetProperty(ref _playerLeaderBoardHistory, value);
+	            OnPropertyChanged(nameof(PlayerLeaderBoardHistory));
+	        }
+	    }
+
+        User _user;
 	    public User User
 	    {
 	        get => _user;
@@ -103,6 +117,8 @@ namespace FoosballXamarin.ViewModels
                 var users = await UserService.GetDataAsync();
                 User = users.SingleOrDefault(x => x.Email == Item.UserName);
 
+                var historyData = await UserService.GetPlayerSeasonHistory(User.Email);
+                PlayerLeaderBoardHistory.ReplaceRange(historyData.PlayerLeaderboardEntries.OrderByDescending(x => x.SeasonName));
                 LatestMatches.ReplaceRange(await MatchService.GetPlayerMatches(Item.UserName));
                 OnPropertyChanged(nameof(FilteredMatches));
             }
