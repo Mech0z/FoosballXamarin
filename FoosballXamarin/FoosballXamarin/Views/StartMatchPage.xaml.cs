@@ -23,11 +23,11 @@ namespace FoosballXamarin.Views
             BindingContext = _viewModel = new StartMatchViewModel();
         }
 
-        private async Task StartMatchCommand(object sender, EventArgs e)
+        private async void StartMatchCommand(object sender, EventArgs e)
         {
             if (_viewModel.AddedPlayers.Count != 4)
             {
-                await DisplayAlert("Error", "Must select 4 players", "OK");
+                await UserDialogs.Instance.AlertAsync("Must select 4 players!");
             }
             else
             {

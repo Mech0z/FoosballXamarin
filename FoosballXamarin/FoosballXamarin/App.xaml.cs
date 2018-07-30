@@ -7,8 +7,8 @@ namespace FoosballXamarin
 {
     public partial class App : Application
     {
-        //public static string ServerUrl = "http://betafoosballapi.azurewebsites.net/";
-        public static string ServerUrl = "http://localhost:5000/";
+        public static string ServerUrl = "http://betafoosballapi.azurewebsites.net/";
+        //public static string ServerUrl = "http://localhost:5000/";
         public static string ApiUrl = ServerUrl + "api/";
 
         public App()

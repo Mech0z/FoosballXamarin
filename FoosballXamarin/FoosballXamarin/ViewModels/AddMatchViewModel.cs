@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FoosballXamarin.Helpers;
+using FoosballXamarin.Models;
 using FoosballXamarin.Services;
 using FoosballXamarin.UWP.Models.Dtos;
 using Models;
