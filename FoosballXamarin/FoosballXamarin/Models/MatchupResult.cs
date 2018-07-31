@@ -11,7 +11,7 @@ namespace Models
         public int Team1HashCode
         {
             get
-            {
+            { 
                 //TODO dont seem optimal to create a list every time
                 var list = new List<string> {UserList[0], UserList[1]};
                 return list.OrderBy(x => x).GetHashCode();

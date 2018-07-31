@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("FoosballXamarin.UWP")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Fozzie")]
+[assembly: AssemblyDescription("Foosball management system")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("FoosballXamarin.UWP")]
