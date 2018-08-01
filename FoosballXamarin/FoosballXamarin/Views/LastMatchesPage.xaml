@@ -43,7 +43,7 @@
                                    LineBreakMode="NoWrap"
                                    HorizontalTextAlignment="Center"
                                    VerticalTextAlignment="Center"
-                                   FontSize="Medium" />
+                                   FontSize="Small" />
                             <Label Text="{Binding Points}"
                                    Grid.Column="3"
                                    Grid.Row="1"
@@ -51,48 +51,48 @@
                                    HorizontalTextAlignment="Center"
                                    VerticalTextAlignment="Center"
                                    FontAttributes="Bold"
-                                   FontSize="Medium" />
+                                   FontSize="Small" />
 
                             <Label Text="{Binding UserList[0].Username}"
                                    Grid.Column="1"
                                    Grid.Row="2"
                                    HorizontalTextAlignment="Center"
-                                   FontSize="Medium" />
+                                   FontSize="Small" />
                             <Label Text="{Binding UserList[1].Username}"
                                    Grid.Column="1"
                                    Grid.Row="3"
                                    HorizontalTextAlignment="Center"
-                                   FontSize="Medium" />
+                                   FontSize="Small" />
                             
                             <Label Text="{Binding UserList[2].Username}"
                                    Grid.Column="3"
                                    Grid.Row="2"
                                    HorizontalTextAlignment="Center"
-                                   FontSize="Medium" />
+                                   FontSize="Small" />
                             <Label Text="{Binding UserList[3].Username}"
                                    Grid.Column="3"
                                    Grid.Row="3"
                                    HorizontalTextAlignment="Center"
-                                   FontSize="Medium" />
+                                   FontSize="Small" />
                             
                             <Label Text="{Binding MatchResult.Team1Score}"
                                    Grid.Column="1"
                                    Grid.Row="4"
                                    HorizontalTextAlignment="End"
                                    VerticalTextAlignment="Center"
-                                   FontSize="Medium" />
+                                   FontSize="Small" />
                             <Label Text="-"
                                    Grid.Column="2"
                                    Grid.Row="4"
                                    HorizontalTextAlignment="Center"
                                    VerticalTextAlignment="Center"
-                                   FontSize="Medium"/>
+                                   FontSize="Small"/>
                             <Label Text="{Binding MatchResult.Team2Score}"
                                    Grid.Column="3"
                                    Grid.Row="4"
                                    HorizontalTextAlignment="Start"
                                    VerticalTextAlignment="Center"
-                                   FontSize="Medium"/>
+                                   FontSize="Small"/>
 
                             <Label Text="{Binding SubmittedBy}"
                                     Grid.Column="3"

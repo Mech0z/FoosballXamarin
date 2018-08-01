@@ -35,7 +35,7 @@ namespace FoosballXamarin.ViewModels
 
         public LeaderBoardViewModel()
         {
-            Title = "Browse";
+            Title = "Leaderboard";
             Users = new ObservableRangeCollection<User>();
             Leaderboards = new ObservableRangeCollection<LeaderboardView>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
