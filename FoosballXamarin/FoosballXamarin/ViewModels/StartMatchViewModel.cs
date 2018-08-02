@@ -91,6 +91,8 @@ namespace FoosballXamarin.ViewModels
                         EloRating = 1500,
                         UserName = item.Email
                     });
+                    var ordered = AddedPlayers.OrderByDescending(x => x.EloRating).ToList();
+                    AddedPlayers.ReplaceRange(ordered);
                 }
                 else
                 {
