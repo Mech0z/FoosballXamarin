@@ -40,15 +40,12 @@ namespace FoosballXamarin.Services
 
         public async Task<bool> SubmitMatches(SaveMatchesRequest request)
         {
-            var email = Application.Current.Properties["Email"] as string;
-            request.Email = email;
-
             RestUrl = App.ApiUrl + "match/SaveMatch";
-            
-            var jsonRequest = JsonConvert.SerializeObject(request);
-            string contentType = "application/json";
+            var email = Application.Current.Properties.ContainsKey("Email") ? Application.Current.Properties["Email"] as string : "";
+            request.Email = email;
+            var httpRequestMessage = GetRequest(RestUrl, request);
 
-            var response = await _client.PostAsync(HttpUri, new StringContent(jsonRequest, Encoding.UTF8, contentType));
+            var response = await _client.SendAsync(httpRequestMessage);
 
             if (!response.IsSuccessStatusCode)
             {
