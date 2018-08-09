@@ -1,11 +1,10 @@
-﻿using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms.Xaml;
 using FoosballXamarin.Views;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace FoosballXamarin
 {
-    public partial class App : Application
+    public partial class App
     {
         public static string ServerUrl = "http://betafoosballapi.azurewebsites.net/";
         //public static string ServerUrl = "http://localhost:5000/";
@@ -15,7 +14,6 @@ namespace FoosballXamarin
         {
             InitializeComponent();
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MTAzMjBAMzEzNjJlMzIyZTMwaHJPSFdxU01JZnY1VEsxRG1xMG1XODMxWkVtNzVsK1lBTmQzRXRRRkl4MD0=");
-
             MainPage = new MainPage();
         }
 

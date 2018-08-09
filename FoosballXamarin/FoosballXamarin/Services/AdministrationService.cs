@@ -6,6 +6,7 @@ using FoosballXamarin.Models.Dtos;
 using FoosballXamarin.Services;
 using FoosballXamarin.UWP.Models.Dtos;
 using Newtonsoft.Json;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(AdministrationService))]
@@ -15,7 +16,7 @@ namespace FoosballXamarin.Services
     {
         public async Task<List<UserMapping>> GetUsermappings()
         {
-            if (!Application.Current.Properties.ContainsKey("Token")) return new List<UserMapping>();
+            if (!Preferences.ContainsKey("UserSettings")) return new List<UserMapping>();
             
             RestUrl = App.ApiUrl + "Administration/GetUserMappings";
 
@@ -33,7 +34,7 @@ namespace FoosballXamarin.Services
 
         public async Task<bool> ChangeUserPassword(string userEmail, string newPassword)
         {
-            if (!Application.Current.Properties.ContainsKey("Token")) return false;
+            if (!Preferences.ContainsKey("UserSettings")) return false;
             
             var request = new ChangeUserPasswordRequest
             {
@@ -57,7 +58,7 @@ namespace FoosballXamarin.Services
 
         public async Task<bool> ChangeUserRoles(string userEmail, List<string> newUserRoles)
         {
-            if (!Application.Current.Properties.ContainsKey("Token")) return false;
+            if (!Preferences.ContainsKey("UserSettings")) return false;
             
             var request = new ChangeUserRolesRequest
             {

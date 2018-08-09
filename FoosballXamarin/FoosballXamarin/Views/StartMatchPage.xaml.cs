@@ -1,18 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 using Acr.UserDialogs;
-using FoosballXamarin.Helpers;
 using FoosballXamarin.Models;
 using FoosballXamarin.ViewModels;
 using Models;
+using Newtonsoft.Json;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace FoosballXamarin.Views
 {
-    public partial class StartMatchPage : ContentPage
+    public partial class StartMatchPage
     {
         readonly StartMatchViewModel _viewModel;
 
@@ -31,16 +29,16 @@ namespace FoosballXamarin.Views
             }
             else
             {
-                if (!Application.Current.Properties.ContainsKey("Email") )
+                if (!Preferences.ContainsKey("UserSettings") )
                 {
                     await UserDialogs.Instance.AlertAsync("Login required!");
                     return;
                 }
 
-                var email = Application.Current.Properties["Email"] as string;
-                var roles = Application.Current.Properties["Roles"] as List<string>;
+                var serilizedUserSettings = Preferences.Get("UserSettings", "");
+                var userSettings = JsonConvert.DeserializeObject<UserSettings>(serilizedUserSettings);
                 var emails = _viewModel.AddedPlayers.Select(player => player.UserName);
-                if (!emails.Contains(email) && !roles.Contains("Admin"))
+                if (!emails.Contains(userSettings.Email) && !userSettings.Roles.Contains("Admin"))
                 {
                     await UserDialogs.Instance.AlertAsync("Must participate or be admin to submit match!");
                     return;

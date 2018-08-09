@@ -1,9 +1,11 @@
 ﻿using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using FoosballXamarin.Models;
 using FoosballXamarin.Services;
 using FoosballXamarin.UWP.Models.Dtos;
 using Newtonsoft.Json;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(LoginService))]
@@ -13,7 +15,7 @@ namespace FoosballXamarin.Services
     {
         public async Task<bool> Login(string email, string password, bool rememberMe)
         {
-            var deviceName = "App";
+            var deviceName = DeviceInfo.Name;
             var request = new LoginRequest
             {
                 Email = email,
@@ -34,19 +36,22 @@ namespace FoosballXamarin.Services
             var content = await response.Content.ReadAsStringAsync();
             var deserializedResponse = JsonConvert.DeserializeObject<LoginResponse>(content);
 
-            Application.Current.Properties["Email"] = email;
-            Application.Current.Properties["Token"] = deserializedResponse.Token;
-            Application.Current.Properties["ExpiryTime"] = deserializedResponse.ExpiryTime;
-            Application.Current.Properties["Roles"] = deserializedResponse.Roles;
-
-            await Application.Current.SavePropertiesAsync();
+            var userSettings = new UserSettings
+            {
+                Email = email,
+                ExpiryTime = deserializedResponse.ExpiryTime,
+                Roles = deserializedResponse.Roles,
+                Token = deserializedResponse.Token
+            };
+            var serializeObject = JsonConvert.SerializeObject(userSettings);
+            Preferences.Set("UserSettings", serializeObject);
 
             return !deserializedResponse.LoginFailed;
         }
 
         public async Task<bool> ValidateLogin()
         {
-            if (!Application.Current.Properties.ContainsKey("Token")) return false;
+            if (!Preferences.ContainsKey("UserSettings")) return false;
 
             RestUrl = App.ApiUrl + "Account/ValidateLogin";
 
@@ -59,12 +64,21 @@ namespace FoosballXamarin.Services
             var content = await response.Content.ReadAsStringAsync();
             var deserializedResponse = JsonConvert.DeserializeObject<LoginResponse>(content);
 
+            if (!deserializedResponse.LoginFailed)
+            {
+                var serilizedUserSettings = Preferences.Get("UserSettings", "");
+                var userSettings = JsonConvert.DeserializeObject<UserSettings>(serilizedUserSettings);
+                userSettings.ExpiryTime = deserializedResponse.ExpiryTime;
+                var serializedObject = JsonConvert.SerializeObject(userSettings);
+                Preferences.Set("UserSettings", serializedObject);
+            }
+
             return !deserializedResponse.LoginFailed;
         }
 
         public async Task<bool> Logout()
         {
-            if (!Application.Current.Properties.ContainsKey("Token")) return false;
+            if (!Preferences.ContainsKey("UserSettings")) return false;
             
             RestUrl = App.ApiUrl + "Account/Logout";
 
@@ -77,10 +91,7 @@ namespace FoosballXamarin.Services
             var content = await response.Content.ReadAsStringAsync();
             var deserializedResponse = JsonConvert.DeserializeObject<bool>(content);
 
-            Application.Current.Properties.Remove("Email");
-            Application.Current.Properties.Remove("Token");
-            Application.Current.Properties.Remove("ExpiryTime");
-            await Application.Current.SavePropertiesAsync();
+            Preferences.Clear();
 
             return deserializedResponse;
         }

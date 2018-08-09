@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
+using FoosballXamarin.Models;
 using FoosballXamarin.Services;
+using Newtonsoft.Json;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace FoosballXamarin.ViewModels
@@ -28,7 +31,7 @@ namespace FoosballXamarin.ViewModels
         {
             Email = "madsskipper@gmail.com";
             Password = "Super123!";
-            
+
             LoadItemsCommand = new Command(async () => await ExecuteLoadCommand());
             LoadItemsCommand.Execute(this);
         }
@@ -53,9 +56,12 @@ namespace FoosballXamarin.ViewModels
         public async Task ValidateLogin()
         {
             IsLoggedIn =  await LoginService.ValidateLogin();
-            if (IsLoggedIn)
+            if (IsLoggedIn || Preferences.ContainsKey("UserSettings"))
             {
-                Email = Application.Current.Properties["Email"] as string;
+                var serilizedUserSettings = Preferences.Get("UserSettings", "");
+                var userSettings = JsonConvert.DeserializeObject<UserSettings>(serilizedUserSettings);
+                Email = userSettings.Email;
+                IsLoggedIn = true;
                 MessagingCenter.Send(this, "LoginSuccessful");
             }
         }

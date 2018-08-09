@@ -2,12 +2,11 @@
 using Models;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
+using FoosballXamarin.Models;
 using FoosballXamarin.Services;
 using FoosballXamarin.UWP.Models.Dtos;
-using Xamarin.Forms;
+using Xamarin.Essentials;
 
 [assembly: Xamarin.Forms.Dependency(typeof(MatchService))]
 namespace FoosballXamarin.Services
@@ -41,8 +40,9 @@ namespace FoosballXamarin.Services
         public async Task<bool> SubmitMatches(SaveMatchesRequest request)
         {
             RestUrl = App.ApiUrl + "match/SaveMatch";
-            var email = Application.Current.Properties.ContainsKey("Email") ? Application.Current.Properties["Email"] as string : "";
-            request.Email = email;
+            var serilizedUserSettings = Preferences.Get("UserSettings", "");
+            var userSettings = JsonConvert.DeserializeObject<UserSettings>(serilizedUserSettings);
+            request.Email = userSettings.Email;
             var httpRequestMessage = GetRequest(RestUrl, request);
 
             var response = await _client.SendAsync(httpRequestMessage);

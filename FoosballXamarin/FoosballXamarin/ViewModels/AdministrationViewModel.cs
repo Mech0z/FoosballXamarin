@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using FoosballXamarin.Helpers;
 using FoosballXamarin.Models;
 using FoosballXamarin.Services;
+using Newtonsoft.Json;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace FoosballXamarin.ViewModels
@@ -46,9 +48,12 @@ namespace FoosballXamarin.ViewModels
 
         private async Task CheckRolesCommand()
         {
-            if(Application.Current.Properties.ContainsKey("Email") && Application.Current.Properties.ContainsKey("Roles"))
+            if(Preferences.ContainsKey("UserSettings"))
             {
-                if (Application.Current.Properties["Roles"] is List<string> roles && roles.Contains("Admin"))
+                var serilizedUserSettings = Preferences.Get("UserSettings", "");
+                var userSettings = JsonConvert.DeserializeObject<UserSettings>(serilizedUserSettings);
+
+                if (userSettings.Roles.Contains("Admin"))
                 {
                     var result = await AdministrationService.GetUsermappings();
                     var users = await UserService.GetDataAsync();
