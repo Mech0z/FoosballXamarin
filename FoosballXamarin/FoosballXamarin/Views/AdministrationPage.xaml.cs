@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using FoosballXamarin.Models;
 using FoosballXamarin.ViewModels;
-using Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Acr.UserDialogs;
@@ -11,7 +10,7 @@ using Acr.UserDialogs;
 namespace FoosballXamarin.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class AdministrationPage : ContentPage
+	public partial class AdministrationPage
 	{
 	    private readonly AdministrationViewModel _viewModel;
 

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              d:DataContext="{d:DesignInstance viewModels1:AdministrationViewModel, IsDesignTimeCreatable=True}"
@@ -8,57 +8,59 @@
              xmlns:helpers="clr-namespace:FoosballXamarin.Helpers;assembly=FoosballXamarin"
              x:Class="FoosballXamarin.Views.AdministrationPage"
              mc:Ignorable="d">
-    <ContentPage.Content>
-        <StackLayout>
-            <StackLayout IsVisible="{Binding Path=IsAdmin}">
-                <Label Text="Administration"
-                    VerticalOptions="CenterAndExpand" 
-                    HorizontalOptions="CenterAndExpand" />
+    <ContentPage Title="User management">
+        <ContentPage.Content>
+            <StackLayout>
+                <StackLayout IsVisible="{Binding Path=IsAdmin}">
 
-                <ListView x:Name="ItemsListView"
-                      ItemsSource="{Binding UserMappings}"
-                      VerticalOptions="FillAndExpand"
-                      HasUnevenRows="true"
-                      IsPullToRefreshEnabled="true"
-                      IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                      ItemSelected="ItemsSelectedCommand">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding DisplayName}"
-                                       LineBreakMode="NoWrap"
-                                       Style="{DynamicResource ListItemTextStyle}" />
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                <StackLayout >
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Selected user: "/>
-                        <Label Text="{Binding SelectedUser.DisplayName}"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Roles: "/>
-                        <Label Text="{Binding SelectedUser.RolesAsString}"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Email: "/>
-                        <Label Text="{Binding SelectedUser.Email}"/>
-                    </StackLayout>
-                    <StackLayout Orientation="Horizontal">
-                        <Button Text="Change Password" Clicked="ChangeUserPassWordClicked"/>
-                        <Button Text="Add role" Clicked="AddPlayerRoleClicked"/>
-                        <Button Text="Remove role" Clicked="RemovePlayerRoleClicked"/>
+                    <ListView x:Name="ItemsListView"
+                          ItemsSource="{Binding UserMappings}"
+                          VerticalOptions="FillAndExpand"
+                          HasUnevenRows="true"
+                          IsPullToRefreshEnabled="true"
+                          IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                          ItemSelected="ItemsSelectedCommand">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding DisplayName}"
+                                           LineBreakMode="NoWrap"
+                                           Style="{DynamicResource ListItemTextStyle}" />
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <StackLayout >
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Selected user: "/>
+                            <Label Text="{Binding SelectedUser.DisplayName}"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Roles: "/>
+                            <Label Text="{Binding SelectedUser.RolesAsString}"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Email: "/>
+                            <Label Text="{Binding SelectedUser.Email}"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Button Text="Change Password" Clicked="ChangeUserPassWordClicked"/>
+                            <Button Text="Add role" Clicked="AddPlayerRoleClicked"/>
+                            <Button Text="Remove role" Clicked="RemovePlayerRoleClicked"/>
+                        </StackLayout>
                     </StackLayout>
                 </StackLayout>
+                <StackLayout VerticalOptions="Start" IsVisible="{Binding IsAdmin, Converter={helpers:BoolToOppositeBoolConverter}}">
+                    <Label Text="Login with admin account"
+                           VerticalOptions="CenterAndExpand" 
+                           HorizontalOptions="CenterAndExpand" />
+                </StackLayout>
             </StackLayout>
-            <StackLayout VerticalOptions="Start" IsVisible="{Binding IsAdmin, Converter={helpers:BoolToOppositeBoolConverter}}">
-                <Label Text="Login with admin account"
-                       VerticalOptions="CenterAndExpand" 
-                       HorizontalOptions="CenterAndExpand" />
-            </StackLayout>
-        </StackLayout>
-    </ContentPage.Content>
-</ContentPage>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage Title="Season management">
+
+    </ContentPage>
+</TabbedPage>
