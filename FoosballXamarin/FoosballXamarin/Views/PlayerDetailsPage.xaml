@@ -124,7 +124,46 @@
             <Label Text="Eggs received"/>
             <Label Text="{Binding MatchesReceivedEgg.Count}" />
 
-            <Label Text="Eggs given"/>
+            <ListView x:Name="ItemsListViewReceivedEggs"
+                      ItemsSource="{Binding MatchesReceivedEgg}"
+                      VerticalOptions="FillAndExpand"
+                      HasUnevenRows="true"
+                      RefreshCommand="{Binding LoadItemsCommand}"
+                      IsPullToRefreshEnabled="true"
+                      IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding SeasonName}" />
+                                <Label Text="{Binding TimeStampUtc, StringFormat='{}{0:dd/MM/yyyy}'}" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+                            <Label Text="Eggs given"/>
+
+            <ListView x:Name="ItemsListViewGivenEggs"
+                      ItemsSource="{Binding MatchesGivenEgg}"
+                      VerticalOptions="FillAndExpand"
+                      HasUnevenRows="true"
+                      RefreshCommand="{Binding LoadItemsCommand}"
+                      IsPullToRefreshEnabled="true"
+                      IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding SeasonName}" />
+                                <Label Text="{Binding TimeStampUtc, StringFormat='{}{0:dd/MM/yyyy}'}" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
             <Label Text="{Binding MatchesGivenEgg.Count}" />
         </StackLayout>
     </ContentPage>

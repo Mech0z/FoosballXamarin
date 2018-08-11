@@ -142,11 +142,13 @@ namespace FoosballXamarin.ViewModels
                 User = users.SingleOrDefault(x => x.Email == Item.UserName);
 
                 var historyData = await UserService.GetPlayerSeasonHistory(User.Email);
-                PlayerLeaderBoardHistory.ReplaceRange(historyData.PlayerLeaderboardEntries.OrderByDescending(x => x.SeasonName));
+                PlayerLeaderBoardHistory.ReplaceRange(
+                    historyData.PlayerLeaderboardEntries.OrderByDescending(x => x.SeasonName));
                 LatestMatches.ReplaceRange(await MatchService.GetPlayerMatches(Item.UserName));
-                MatchesGivenEgg.ReplaceRange(historyData.EggStats.MatchesGivenEgg);
-                MatchesReceivedEgg.ReplaceRange(historyData.EggStats.MatchesReceivedEgg);
-
+                MatchesGivenEgg.ReplaceRange(
+                    historyData.EggStats.MatchesGivenEgg.OrderByDescending(x => x.TimeStampUtc));
+                MatchesReceivedEgg.ReplaceRange(
+                    historyData.EggStats.MatchesReceivedEgg.OrderByDescending(x => x.TimeStampUtc));
                 OnPropertyChanged(nameof(FilteredMatches));
             }
             catch (Exception e)
