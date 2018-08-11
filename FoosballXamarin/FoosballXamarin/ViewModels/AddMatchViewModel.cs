@@ -82,7 +82,7 @@ namespace FoosballXamarin.ViewModels
 
 
                 Match1.PlayerList = users;
-                Match1.TimeStampUtc = DateTime.Now.AddMinutes(-5);
+                Match1.TimeStampUtc = DateTime.Now.AddMinutes(-1);
 
                 Match2.PlayerList = users;
                 Match2.TimeStampUtc = DateTime.Now;
