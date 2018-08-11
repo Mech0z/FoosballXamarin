@@ -43,6 +43,8 @@ namespace FoosballXamarin.ViewModels
 
             LatestMatches = new ObservableRangeCollection<Match>();
             PlayerLeaderBoardHistory = new ObservableRangeCollection<PlayerLeaderboardEntry>();
+            MatchesReceivedEgg = new ObservableRangeCollection<Match>();
+            MatchesGivenEgg = new ObservableRangeCollection<Match>();
 
 		    LoadItemsCommand = new Command(async () => await ExecuteLoadCommand());
             LoadItemsCommand.Execute(this);
@@ -102,6 +104,28 @@ namespace FoosballXamarin.ViewModels
 	        }
 	    }
 
+	    private ObservableRangeCollection<Match> _matchesReceivedEgg;
+	    public ObservableRangeCollection<Match> MatchesReceivedEgg
+        {
+	        get => _matchesReceivedEgg;
+	        set
+	        {
+	            SetProperty(ref _matchesReceivedEgg, value);
+	            OnPropertyChanged(nameof(MatchesReceivedEgg));
+	        }
+	    }
+
+	    private ObservableRangeCollection<Match> _matchesGivenEgg;
+	    public ObservableRangeCollection<Match> MatchesGivenEgg
+        {
+	        get => _matchesGivenEgg;
+	        set
+	        {
+	            SetProperty(ref _matchesGivenEgg, value);
+	            OnPropertyChanged(nameof(MatchesGivenEgg));
+	        }
+	    }
+
         User _user;
 	    public User User
 	    {
@@ -120,6 +144,9 @@ namespace FoosballXamarin.ViewModels
                 var historyData = await UserService.GetPlayerSeasonHistory(User.Email);
                 PlayerLeaderBoardHistory.ReplaceRange(historyData.PlayerLeaderboardEntries.OrderByDescending(x => x.SeasonName));
                 LatestMatches.ReplaceRange(await MatchService.GetPlayerMatches(Item.UserName));
+                MatchesGivenEgg.ReplaceRange(historyData.EggStats.MatchesGivenEgg);
+                MatchesReceivedEgg.ReplaceRange(historyData.EggStats.MatchesReceivedEgg);
+
                 OnPropertyChanged(nameof(FilteredMatches));
             }
             catch (Exception e)

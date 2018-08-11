@@ -10,5 +10,6 @@ namespace FoosballXamarin.Models.Dtos
         }
 
         public List<PlayerLeaderboardEntry> PlayerLeaderboardEntries { get; set; }
+        public EggStats EggStats { get; set; }
     }
 }

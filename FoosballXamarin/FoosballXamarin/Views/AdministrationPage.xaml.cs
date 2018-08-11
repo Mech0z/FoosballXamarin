@@ -50,10 +50,11 @@ namespace FoosballXamarin.Views
 	                {
 	                    await UserDialogs.Instance.AlertAsync("Roles updating failed!");
 	                }
-	            }}
+	            }
+            }
 	    }
 
-	    private async Task ChangeUserPassWordClicked(object sender, EventArgs e)
+	    private async void ChangeUserPassWordClicked(object sender, EventArgs e)
 	    {
 	        var newPasswordPromptResult = await UserDialogs.Instance.PromptAsync("", "New Password", "Save", null);
 

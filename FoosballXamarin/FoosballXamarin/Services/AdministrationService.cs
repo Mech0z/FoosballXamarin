@@ -79,5 +79,18 @@ namespace FoosballXamarin.Services
             
             return deserializedResponse;
         }
+
+        public async Task<bool> StartNewSeason()
+        {
+            if (!Preferences.ContainsKey("UserSettings")) return false;
+
+            RestUrl = App.ApiUrl + "SeasonsAdministration/StartNewSeason";
+
+            var messageBody = GetRequest(RestUrl, "");
+
+            var response = await _client.SendAsync(messageBody);
+
+            return response.IsSuccessStatusCode;
+        }
     }
 }

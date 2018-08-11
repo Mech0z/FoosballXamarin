@@ -119,5 +119,13 @@
             </ListView>
         </StackLayout>
     </ContentPage>
-    <ContentPage Title="Achievements" />
+    <ContentPage Title="Achievements" >
+        <StackLayout>
+            <Label Text="Eggs received"/>
+            <Label Text="{Binding MatchesReceivedEgg.Count}" />
+
+            <Label Text="Eggs given"/>
+            <Label Text="{Binding MatchesGivenEgg.Count}" />
+        </StackLayout>
+    </ContentPage>
 </TabbedPage>
