@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using FoosballXamarin.Helpers;
 using FoosballXamarin.Models;
@@ -14,8 +15,11 @@ namespace FoosballXamarin.ViewModels
         public IAdministrationService AdministrationService => DependencyService.Get<IAdministrationService>();
         public IUserService UserService => DependencyService.Get<IUserService>();
 
-        public ObservableRangeCollection<UserMapping> UserMappings{ get; set; }
+        public ObservableRangeCollection<UserMapping> UserMappings { get; set; }
+        public ObservableRangeCollection<Season> Seasons { get; set; }
+        public Command LoadItemsCommand { get; set; }
         bool _isAdmin;
+
         public bool IsAdmin
         {
             get => _isAdmin;
@@ -23,6 +27,7 @@ namespace FoosballXamarin.ViewModels
         }
 
         private UserMapping _selectedUser;
+
         public UserMapping SelectedUser
         {
             get => _selectedUser;
@@ -40,13 +45,18 @@ namespace FoosballXamarin.ViewModels
         public AdministrationViewModel()
         {
             UserMappings = new ObservableRangeCollection<UserMapping>();
-            MessagingCenter.Subscribe<LoginViewModel>(this, "LoginSuccessful", async (sender) => await CheckRolesCommand());
-            MessagingCenter.Subscribe<LoginViewModel>(this, "LogoutSuccessful", async (sender) => await CheckRolesCommand());
+            MessagingCenter.Subscribe<LoginViewModel>(this, "LoginSuccessful",
+                async (sender) => await CheckRolesCommand());
+            MessagingCenter.Subscribe<LoginViewModel>(this, "LogoutSuccessful",
+                async (sender) => await CheckRolesCommand());
+
+            LoadItemsCommand = new Command(async () => await ExecuteLoadCommand());
+            LoadItemsCommand.Execute(this);
         }
 
         private async Task CheckRolesCommand()
         {
-            if(Preferences.ContainsKey("UserSettings"))
+            if (Preferences.ContainsKey("UserSettings"))
             {
                 var serilizedUserSettings = Preferences.Get("UserSettings", "");
                 var userSettings = JsonConvert.DeserializeObject<UserSettings>(serilizedUserSettings);
@@ -66,9 +76,27 @@ namespace FoosballXamarin.ViewModels
                     return;
                 }
             }
-            
+
             SelectedUser = null;
             IsAdmin = false;
+        }
+
+        async Task ExecuteLoadCommand()
+        {
+            IsBusy = true;
+            try
+            {
+                var seasons = await AdministrationService.GetSeasons();
+                Seasons.ReplaceRange(seasons);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
     }
 }

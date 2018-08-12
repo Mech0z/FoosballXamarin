@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Models
+namespace FoosballXamarin.Models
 {
     public class Season
     {

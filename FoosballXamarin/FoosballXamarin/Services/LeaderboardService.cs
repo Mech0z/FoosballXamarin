@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using FoosballXamarin.Models;
 using FoosballXamarin.Services;
 using Models;
 using Newtonsoft.Json;

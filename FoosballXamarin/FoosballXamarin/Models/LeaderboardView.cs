@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using FoosballXamarin.Models;
 
-namespace Models
+namespace FoosballXamarin.Models
 {
     public class LeaderboardView
     {

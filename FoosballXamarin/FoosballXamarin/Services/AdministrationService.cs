@@ -92,5 +92,23 @@ namespace FoosballXamarin.Services
 
             return response.IsSuccessStatusCode;
         }
+
+        public async Task<List<Season>> GetSeasons()
+        {
+            if (!Preferences.ContainsKey("UserSettings")) return new List<Season>();
+
+            RestUrl = App.ApiUrl + "Administration/GetSeasons";
+
+            var messageBody = GetRequest(RestUrl, "");
+
+            var response = await _client.SendAsync(messageBody);
+
+            if (!response.IsSuccessStatusCode) return new List<Season>();
+
+            var content = await response.Content.ReadAsStringAsync();
+            var deserializedResponse = JsonConvert.DeserializeObject<List<Season>>(content);
+
+            return deserializedResponse;
+        }
     }
 }

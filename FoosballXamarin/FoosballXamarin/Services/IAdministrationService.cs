@@ -10,5 +10,6 @@ namespace FoosballXamarin.Services
         Task<bool> ChangeUserPassword(string userEmail, string newPassword);
         Task<bool> ChangeUserRoles(string userEmail, List<string> newUserRoles);
         Task<bool> StartNewSeason();
+        Task<List<Season>> GetSeasons();
     }
 }
