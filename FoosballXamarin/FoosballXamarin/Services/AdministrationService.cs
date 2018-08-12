@@ -97,7 +97,7 @@ namespace FoosballXamarin.Services
         {
             if (!Preferences.ContainsKey("UserSettings")) return new List<Season>();
 
-            RestUrl = App.ApiUrl + "Administration/GetSeasons";
+            RestUrl = App.ApiUrl + "SeasonsAdministration/GetSeasons";
 
             var messageBody = GetRequest(RestUrl, "");
 

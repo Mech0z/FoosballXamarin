@@ -45,6 +45,7 @@ namespace FoosballXamarin.ViewModels
         public AdministrationViewModel()
         {
             UserMappings = new ObservableRangeCollection<UserMapping>();
+            Seasons = new ObservableRangeCollection<Season>();
             MessagingCenter.Subscribe<LoginViewModel>(this, "LoginSuccessful",
                 async (sender) => await CheckRolesCommand());
             MessagingCenter.Subscribe<LoginViewModel>(this, "LogoutSuccessful",
@@ -87,7 +88,7 @@ namespace FoosballXamarin.ViewModels
             try
             {
                 var seasons = await AdministrationService.GetSeasons();
-                Seasons.ReplaceRange(seasons);
+                Seasons.ReplaceRange(seasons.OrderByDescending(x => x.StartDate));
             }
             catch (Exception e)
             {

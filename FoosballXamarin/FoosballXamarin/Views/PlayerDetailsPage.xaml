@@ -143,7 +143,9 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-                            <Label Text="Eggs given"/>
+            <Label Text="Eggs given"/>
+
+            <Label Text="{Binding MatchesGivenEgg.Count}" />
 
             <ListView x:Name="ItemsListViewGivenEggs"
                       ItemsSource="{Binding MatchesGivenEgg}"
@@ -163,8 +165,6 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
-            <Label Text="{Binding MatchesGivenEgg.Count}" />
         </StackLayout>
     </ContentPage>
 </TabbedPage>

@@ -61,6 +61,29 @@
         </ContentPage.Content>
     </ContentPage>
     <ContentPage Title="Season management">
-
+        <ListView x:Name="ItemsListViewSeasons"
+                  ItemsSource="{Binding Seasons}"
+                  VerticalOptions="FillAndExpand"
+                  HasUnevenRows="true"
+                  IsPullToRefreshEnabled="true"
+                  IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding Name}"
+                                   LineBreakMode="NoWrap"
+                                   Style="{DynamicResource ListItemTextStyle}" />
+                            <Label Text="{Binding StartDate}"
+                                   LineBreakMode="NoWrap"
+                                   Style="{DynamicResource ListItemTextStyle}" />
+                            <Label Text="{Binding EndDate}"
+                                   LineBreakMode="NoWrap"
+                                   Style="{DynamicResource ListItemTextStyle}" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </ContentPage>
 </TabbedPage>
