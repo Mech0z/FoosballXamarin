@@ -108,5 +108,10 @@ namespace FoosballXamarin.Views
 	            }
 	        }
 	    }
+
+	    private async Task StartNewSeasonClicked(object sender, EventArgs e)
+	    {
+	        await _viewModel.StartNewSeason();
+	    }
 	}
 }

@@ -55,6 +55,13 @@ namespace FoosballXamarin.ViewModels
             LoadItemsCommand.Execute(this);
         }
 
+        public async Task StartNewSeason()
+        {
+            await AdministrationService.StartNewSeason();
+
+            LoadItemsCommand.Execute(this);
+        }
+
         private async Task CheckRolesCommand()
         {
             if (Preferences.ContainsKey("UserSettings"))
