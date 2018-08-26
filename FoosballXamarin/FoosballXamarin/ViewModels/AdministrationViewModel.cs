@@ -47,12 +47,15 @@ namespace FoosballXamarin.ViewModels
             UserMappings = new ObservableRangeCollection<UserMapping>();
             Seasons = new ObservableRangeCollection<Season>();
             MessagingCenter.Subscribe<LoginViewModel>(this, "LoginSuccessful",
-                async (sender) => await CheckRolesCommand());
+                async (sender) =>
+                {
+                    await ExecuteLoadCommand();
+                    await CheckRolesCommand();
+                });
             MessagingCenter.Subscribe<LoginViewModel>(this, "LogoutSuccessful",
                 async (sender) => await CheckRolesCommand());
 
             LoadItemsCommand = new Command(async () => await ExecuteLoadCommand());
-            LoadItemsCommand.Execute(this);
         }
 
         public async Task StartNewSeason()

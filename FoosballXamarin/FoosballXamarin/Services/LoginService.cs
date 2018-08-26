@@ -24,7 +24,7 @@ namespace FoosballXamarin.Services
                 DeviceName = deviceName
             };
 
-            RestUrl = App.ApiUrl + "Account/Login";
+            RestUrl = ApiUrl + "Account/Login";
             
             var jsonRequest = JsonConvert.SerializeObject(request);
             var contentType = "application/json";
@@ -53,9 +53,9 @@ namespace FoosballXamarin.Services
         {
             if (!Preferences.ContainsKey("UserSettings")) return false;
 
-            RestUrl = App.ApiUrl + "Account/ValidateLogin";
+            RestUrl = ApiUrl + "Account/ValidateLogin";
 
-            var messageBody = GetRequest(RestUrl, "");
+            var messageBody = GetRequest(RestUrl, "", HttpMethod.Post);
 
             var response = await _client.SendAsync(messageBody);
          
@@ -80,9 +80,9 @@ namespace FoosballXamarin.Services
         {
             if (!Preferences.ContainsKey("UserSettings")) return false;
             
-            RestUrl = App.ApiUrl + "Account/Logout";
+            RestUrl = ApiUrl + "Account/Logout";
 
-            var messageBody = GetRequest(RestUrl, "");
+            var messageBody = GetRequest(RestUrl, "", HttpMethod.Post);
             
             var response = await _client.SendAsync(messageBody);
          

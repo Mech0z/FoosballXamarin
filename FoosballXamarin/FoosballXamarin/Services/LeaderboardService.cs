@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 using FoosballXamarin.Models;
 using FoosballXamarin.Services;
-using Models;
 using Newtonsoft.Json;
 
 [assembly: Xamarin.Forms.Dependency(typeof(LeaderboardService))]
@@ -12,8 +12,9 @@ namespace FoosballXamarin.Services
     {
         public async Task<List<LeaderboardView>> GetDataAsync()
         {
-            RestUrl = App.ApiUrl + "leaderboard/index";
-            var response = await _client.GetAsync(HttpUri);
+            RestUrl = ApiUrl + "leaderboard/index";
+            var messageBody = GetRequest(RestUrl, "", HttpMethod.Get);
+            var response = await _client.SendAsync(messageBody);
 
             if (!response.IsSuccessStatusCode) return new List<LeaderboardView>();
 

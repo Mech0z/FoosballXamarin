@@ -14,6 +14,7 @@ namespace FoosballXamarin.Services
         
         public string RestUrl { get; set; }
         public Uri HttpUri => new Uri(string.Format(RestUrl, string.Empty));
+        public string ApiUrl => Preferences.Get("ApiUrlSettings", "");
 
         public BaseService()
         {
@@ -23,7 +24,7 @@ namespace FoosballXamarin.Services
             };
         }
 
-        public HttpRequestMessage GetRequest(string uri, object bodyContent)
+        public HttpRequestMessage GetRequest(string uri, object bodyContent, HttpMethod httpMethod)
         {
             var serilizedUserSettings = Preferences.Get("UserSettings", "");
             var userSettings = JsonConvert.DeserializeObject<UserSettings>(serilizedUserSettings);
@@ -32,7 +33,7 @@ namespace FoosballXamarin.Services
             var jsonRequest = JsonConvert.SerializeObject(bodyContent);
             var contentType = "application/json";
 
-            var httpRequest = new HttpRequestMessage(HttpMethod.Post, RestUrl)
+            var httpRequest = new HttpRequestMessage(httpMethod, RestUrl)
             {
                 Content = new StringContent(jsonRequest, Encoding.UTF8, contentType)
             };

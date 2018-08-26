@@ -2,6 +2,7 @@
 using Models;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 using FoosballXamarin.Models;
 using FoosballXamarin.Services;
@@ -15,8 +16,10 @@ namespace FoosballXamarin.Services
     {
         public async Task<List<Match>> GetDataAsync()
         {
-            RestUrl = App.ApiUrl + "match/lastgames?numberofmatches=20";
-            var response = await _client.GetAsync(HttpUri);
+            RestUrl = ApiUrl + "match/lastgames?numberofmatches=20"; 
+            
+            var messageBody = GetRequest(RestUrl, "", HttpMethod.Get);
+            var response = await _client.SendAsync(messageBody);
 
             if (!response.IsSuccessStatusCode) return new List<Match>();
 
@@ -27,7 +30,7 @@ namespace FoosballXamarin.Services
 
         public async Task<List<Match>> GetPlayerMatches(string email)
         {
-            RestUrl = App.ApiUrl + $"player/GetPlayerMatches?email={email}";
+            RestUrl = ApiUrl + $"player/GetPlayerMatches?email={email}";
             var response = await _client.GetAsync(HttpUri);
 
             if (!response.IsSuccessStatusCode) return new List<Match>();
@@ -39,11 +42,11 @@ namespace FoosballXamarin.Services
 
         public async Task<bool> SubmitMatches(SaveMatchesRequest request)
         {
-            RestUrl = App.ApiUrl + "match/SaveMatch";
+            RestUrl = ApiUrl + "match/SaveMatch";
             var serilizedUserSettings = Preferences.Get("UserSettings", "");
             var userSettings = JsonConvert.DeserializeObject<UserSettings>(serilizedUserSettings);
             request.Email = userSettings.Email;
-            var httpRequestMessage = GetRequest(RestUrl, request);
+            var httpRequestMessage = GetRequest(RestUrl, request, HttpMethod.Post);
 
             var response = await _client.SendAsync(httpRequestMessage);
 

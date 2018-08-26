@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using FoosballXamarin.Models;
 using FoosballXamarin.Models.Dtos;
@@ -18,9 +19,9 @@ namespace FoosballXamarin.Services
         {
             if (!Preferences.ContainsKey("UserSettings")) return new List<UserMapping>();
             
-            RestUrl = App.ApiUrl + "Administration/GetUserMappings";
+            RestUrl = ApiUrl + "Administration/GetUserMappings";
 
-            var messageBody = GetRequest(RestUrl, "");
+            var messageBody = GetRequest(RestUrl, "", HttpMethod.Post);
 
             var response = await _client.SendAsync(messageBody);
          
@@ -42,9 +43,9 @@ namespace FoosballXamarin.Services
                 UserEmail = userEmail
             };
 
-            RestUrl = App.ApiUrl + "Administration/ChangeUserPassword";
+            RestUrl = ApiUrl + "Administration/ChangeUserPassword";
 
-            var messageBody = GetRequest(RestUrl, request);
+            var messageBody = GetRequest(RestUrl, request, HttpMethod.Post);
 
             var response = await _client.SendAsync(messageBody);
          
@@ -66,9 +67,9 @@ namespace FoosballXamarin.Services
                 Roles = newUserRoles
             };
 
-            RestUrl = App.ApiUrl + "Administration/ChangeUserRoles";
+            RestUrl = ApiUrl + "Administration/ChangeUserRoles";
 
-            var messageBody = GetRequest(RestUrl, request);
+            var messageBody = GetRequest(RestUrl, request, HttpMethod.Post);
 
             var response = await _client.SendAsync(messageBody);
          
@@ -84,9 +85,9 @@ namespace FoosballXamarin.Services
         {
             if (!Preferences.ContainsKey("UserSettings")) return false;
 
-            RestUrl = App.ApiUrl + "SeasonsAdministration/StartNewSeason";
+            RestUrl = ApiUrl + "SeasonsAdministration/StartNewSeason";
 
-            var messageBody = GetRequest(RestUrl, "");
+            var messageBody = GetRequest(RestUrl, "", HttpMethod.Post);
 
             var response = await _client.SendAsync(messageBody);
 
@@ -97,9 +98,9 @@ namespace FoosballXamarin.Services
         {
             if (!Preferences.ContainsKey("UserSettings")) return new List<Season>();
 
-            RestUrl = App.ApiUrl + "SeasonsAdministration/GetSeasons";
+            RestUrl = ApiUrl + "SeasonsAdministration/GetSeasons";
 
-            var messageBody = GetRequest(RestUrl, "");
+            var messageBody = GetRequest(RestUrl, "", HttpMethod.Post);
 
             var response = await _client.SendAsync(messageBody);
 

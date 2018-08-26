@@ -12,7 +12,7 @@ namespace FoosballXamarin.Services
     {
         public async Task<List<User>> GetDataAsync()
         {
-            RestUrl = App.ApiUrl + "player/GetUsers";
+            RestUrl = ApiUrl + "player/GetUsers";
             var response = await _client.GetAsync(RestUrl);
 
             if (!response.IsSuccessStatusCode) return new List<User>();
@@ -24,7 +24,7 @@ namespace FoosballXamarin.Services
 
         public async Task<GetPlayerSeasonHistoryResponse> GetPlayerSeasonHistory(string email)
         {
-            RestUrl = App.ApiUrl + $"player/GetPlayerHistory?email={email}";
+            RestUrl = ApiUrl + $"player/GetPlayerHistory?email={email}";
             var response = await _client.GetAsync(RestUrl);
 
             if(!response.IsSuccessStatusCode) return new GetPlayerSeasonHistoryResponse();
