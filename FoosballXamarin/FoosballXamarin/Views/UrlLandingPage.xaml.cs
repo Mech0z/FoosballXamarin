@@ -37,7 +37,7 @@ namespace FoosballXamarin.Views
             }
             else
             {
-                messageLabel.Text = "Login failed";
+                MessageLabel.Text = "Login failed";
             }
         }
 
@@ -53,6 +53,11 @@ namespace FoosballXamarin.Views
                 Preferences.Remove("ApiUrlSettings");
                 return false;
             }
+        }
+
+        private void Button_GitHubLinkClicked(object sender, EventArgs e)
+        {
+            Device.OpenUri(new Uri("https://github.com/Mech0z/Foosball"));
         }
     }
 }

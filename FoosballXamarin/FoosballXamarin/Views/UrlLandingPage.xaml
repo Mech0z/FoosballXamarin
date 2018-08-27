@@ -1,18 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FoosballXamarin.Views.UrlLandingPage">
+             x:Class="FoosballXamarin.Views.UrlLandingPage"
+             Title="SETUP API ACCESS">
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Enter API Url"
                 VerticalOptions="Start" 
-                HorizontalOptions="CenterAndExpand" />
+                HorizontalOptions="CenterAndExpand"
+                Margin="20" />
+
             <Entry 
                 Text=""
                 x:Name="UrlEntry"
-                HorizontalOptions="Center" />
-            <Button Clicked="Button_OnClicked" />
-            <Label Text="" x:Name="messageLabel"/>
+                HorizontalOptions="FillAndExpand" Margin="20" />
+
+            <Button Text="Submit URL" Clicked="Button_OnClicked" 
+                    Margin="20"/>
+
+            <Label Text="" 
+                   x:Name="MessageLabel" 
+                   Margin="20"/>
+
+            <Label Text="Enter the Url of the API, host your own with" 
+                   HorizontalTextAlignment="Center" />
+
+            <Button Text="https://github.com/Mech0z/Foosball"
+                    HorizontalOptions="Center"
+                    Clicked="Button_GitHubLinkClicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
