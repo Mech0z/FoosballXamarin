@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using FoosballXamarin.Services;
-using FoosballXamarin.ViewModels;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -12,7 +8,7 @@ using Xamarin.Forms.Xaml;
 namespace FoosballXamarin.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class UrlLandingPage : ContentPage
+    public partial class UrlLandingPage
     {
         //private readonly UrlLandingPageViewModel _viewModel;
         public ILeaderboardService LeaderboardService => DependencyService.Get<ILeaderboardService>();
@@ -20,8 +16,6 @@ namespace FoosballXamarin.Views
         public UrlLandingPage()
         {
             InitializeComponent();
-            //BindingContext = _viewModel = new UrlLandingPageViewModel();
-
         }
 
         private async Task Button_OnClicked(object sender, EventArgs e)
@@ -29,11 +23,10 @@ namespace FoosballXamarin.Views
             var apiUrl = UrlEntry.Text;
 
             Preferences.Set("ApiUrlSettings", apiUrl);
-            var isValid = await CanPingLeaderboard(apiUrl);
+            var isValid = await CanPingLeaderboard();
             if (isValid)
             {
-                Navigation.InsertPageBefore(new MainPage(), this);
-                await Navigation.PopAsync();
+                ((App) Application.Current).MainPage = new MainPage();
             }
             else
             {
@@ -41,14 +34,14 @@ namespace FoosballXamarin.Views
             }
         }
 
-        private async Task<bool> CanPingLeaderboard(string apiUrl)
+        private async Task<bool> CanPingLeaderboard()
         {
             try
             {
                 var data = await LeaderboardService.GetDataAsync();
                 return data != null;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 Preferences.Remove("ApiUrlSettings");
                 return false;

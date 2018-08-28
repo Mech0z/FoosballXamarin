@@ -37,9 +37,13 @@ namespace FoosballXamarin.Services
             {
                 Content = new StringContent(jsonRequest, Encoding.UTF8, contentType)
             };
-            httpRequest.Headers.Add("Email", new List<string> { userSettings.Email });
-            httpRequest.Headers.Add("Token", new List<string> { userSettings.Token });
-            httpRequest.Headers.Add("DeviceName", new List<string> { deviceName });
+
+            if (userSettings != null)
+            {
+                httpRequest.Headers.Add("Email", new List<string> {userSettings.Email});
+                httpRequest.Headers.Add("Token", new List<string> {userSettings.Token});
+                httpRequest.Headers.Add("DeviceName", new List<string> {deviceName});
+            }
 
             return httpRequest;
         }
