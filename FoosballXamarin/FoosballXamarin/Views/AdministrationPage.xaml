@@ -7,6 +7,7 @@
              xmlns:viewModels1="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin"
              xmlns:helpers="clr-namespace:FoosballXamarin.Helpers;assembly=FoosballXamarin"
              x:Class="FoosballXamarin.Views.AdministrationPage"
+             Title="Admin"
              mc:Ignorable="d">
     <ContentPage Title="User management">
         <ContentPage.Content>

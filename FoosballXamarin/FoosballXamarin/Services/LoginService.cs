@@ -15,6 +15,8 @@ namespace FoosballXamarin.Services
     {
         public async Task<bool> Login(string email, string password, bool rememberMe)
         {
+            RestUrl = ApiUrl + "Account/Login";
+
             var deviceName = DeviceInfo.Name;
             var request = new LoginRequest
             {
@@ -24,12 +26,9 @@ namespace FoosballXamarin.Services
                 DeviceName = deviceName
             };
 
-            RestUrl = ApiUrl + "Account/Login";
-            
-            var jsonRequest = JsonConvert.SerializeObject(request);
-            var contentType = "application/json";
+            var messageBody = GetRequest(RestUrl, request, HttpMethod.Post);
 
-            var response = await _client.PostAsync(HttpUri, new StringContent(jsonRequest, Encoding.UTF8, contentType));
+            var response = await _client.SendAsync(messageBody);
          
             if (!response.IsSuccessStatusCode) return false;
 
