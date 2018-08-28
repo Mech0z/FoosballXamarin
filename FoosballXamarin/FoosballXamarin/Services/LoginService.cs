@@ -90,7 +90,7 @@ namespace FoosballXamarin.Services
             var content = await response.Content.ReadAsStringAsync();
             var deserializedResponse = JsonConvert.DeserializeObject<bool>(content);
 
-            Preferences.Clear();
+            Preferences.Remove("UserSettings");
 
             return deserializedResponse;
         }

@@ -13,7 +13,6 @@ namespace FoosballXamarin
             InitializeComponent();
             
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MTAzMjBAMzEzNjJlMzIyZTMwaHJPSFdxU01JZnY1VEsxRG1xMG1XODMxWkVtNzVsK1lBTmQzRXRRRkl4MD0=");
-            
             if(!Preferences.ContainsKey("ApiUrlSettings"))
             {
                 MainPage = new NavigationPage(new UrlLandingPage());
