@@ -18,6 +18,9 @@ namespace FoosballXamarin.ViewModels
         public ObservableRangeCollection<UserMapping> UserMappings { get; set; }
         public ObservableRangeCollection<Season> Seasons { get; set; }
         public Command LoadItemsCommand { get; set; }
+        public bool Loaded { get; set; }
+        public bool LoggedIn { get; set; }
+
         bool _isAdmin;
 
         public bool IsAdmin
@@ -65,7 +68,7 @@ namespace FoosballXamarin.ViewModels
             LoadItemsCommand.Execute(this);
         }
 
-        private async Task CheckRolesCommand()
+        public async Task CheckRolesCommand()
         {
             if (Preferences.ContainsKey("UserSettings"))
             {
@@ -92,7 +95,7 @@ namespace FoosballXamarin.ViewModels
             IsAdmin = false;
         }
 
-        async Task ExecuteLoadCommand()
+        public async Task ExecuteLoadCommand()
         {
             IsBusy = true;
             try

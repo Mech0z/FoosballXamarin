@@ -46,8 +46,8 @@
                     <Switch IsToggled="{Binding RememberMe}" />
 
                     <Button Text="Login" Clicked="LoginCommand"/>
-                    <Button Text="Create user" IsEnabled="False"/>
-                    <Button Text="Request password" IsEnabled="False"/>
+                    <Button Text="Create user" x:Name="CreateUserButton" Clicked="CreateUserButton_OnClicked"/>
+                    <Button Text="Request password" x:Name="RequestPasswordButton" Clicked="RequestPasswordButton_Clicked"/>
                 </StackLayout>
                 <StackLayout IsVisible="{Binding IsLoggedIn}">
                     <Label Text="Logged in as:"/>

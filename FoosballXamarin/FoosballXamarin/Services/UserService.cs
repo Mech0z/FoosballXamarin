@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 using FoosballXamarin.Models.Dtos;
 using FoosballXamarin.Services;
@@ -13,7 +14,8 @@ namespace FoosballXamarin.Services
         public async Task<List<User>> GetDataAsync()
         {
             RestUrl = ApiUrl + "player/GetUsers";
-            var response = await _client.GetAsync(RestUrl);
+            var messageBody = GetRequest(RestUrl, "", HttpMethod.Get);
+            var response = await _client.SendAsync(messageBody);
 
             if (!response.IsSuccessStatusCode) return new List<User>();
 

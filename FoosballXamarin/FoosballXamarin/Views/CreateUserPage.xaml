@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoosballXamarin.Views.CreateUserPage"
+             Title="Create new user">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Email"
+                HorizontalOptions="CenterAndExpand" />
+
+            <Entry Text="{Binding Email}" 
+                   HorizontalTextAlignment="Center" 
+                   Margin="10"/>
+
+            <Label Text="Re-enter Email"
+                   HorizontalOptions="CenterAndExpand" />
+
+            <Entry Text="{Binding EmailConfirmation}" 
+                   HorizontalTextAlignment="Center" 
+                   Margin="10"/>
+
+            <Label Text="Password"
+                   HorizontalOptions="CenterAndExpand" />
+
+            <Entry Text="{Binding Password}" 
+                   HorizontalTextAlignment="Center" 
+                   Margin="10"/>
+
+            <Label Text="Re-enter Password"
+                   HorizontalOptions="CenterAndExpand" />
+
+            <Entry Text="{Binding PasswordConfirmation}" 
+                   HorizontalTextAlignment="Center" 
+                   Margin="10"/>
+
+            <Button x:Name="CreateUserButton" 
+                    Text="Create"
+                    HorizontalOptions="Center"
+                    Clicked="CreateUserButton_OnClicked"/>
+
+            <Label Text="" 
+                   HorizontalTextAlignment="Center" 
+                   x:Name="MessageLabel" 
+                   Margin="20"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

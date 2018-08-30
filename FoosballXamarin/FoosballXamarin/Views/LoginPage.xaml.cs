@@ -29,5 +29,15 @@ namespace FoosballXamarin.Views
 	    {
 	        await _viewModel.Logout();
 	    }
+
+        private void RequestPasswordButton_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new RequestPasswordPage());
+        }
+
+	    private void CreateUserButton_OnClicked(object sender, EventArgs e)
+	    {
+	        Navigation.PushAsync(new CreateUserPage());
+	    }
 	}
 }
