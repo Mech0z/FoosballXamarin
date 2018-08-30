@@ -5,43 +5,67 @@
              Title="Create new user">
     <ContentPage.Content>
         <StackLayout>
+            <Label Text="Display name"
+                   HorizontalTextAlignment="Center"
+                   VerticalOptions="Start"
+                   Margin="10"/>
+
+            <Entry Text="{Binding DisplayName}"
+                   HorizontalTextAlignment="Center"
+                   VerticalOptions="Start"
+                   Margin="5"/>
+
             <Label Text="Email"
-                HorizontalOptions="CenterAndExpand" />
+                   HorizontalOptions="Center"
+                   VerticalOptions="Start"
+                   Margin="5"/>
 
             <Entry Text="{Binding Email}" 
-                   HorizontalTextAlignment="Center" 
-                   Margin="10"/>
+                   HorizontalTextAlignment="Center"
+                   VerticalOptions="Start" 
+                   Margin="5"/>
 
             <Label Text="Re-enter Email"
-                   HorizontalOptions="CenterAndExpand" />
+                   HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="Start"
+                   Margin="5"/>
 
             <Entry Text="{Binding EmailConfirmation}" 
-                   HorizontalTextAlignment="Center" 
-                   Margin="10"/>
+                   HorizontalTextAlignment="Center"
+                   VerticalOptions="Start" 
+                   Margin="5"/>
 
             <Label Text="Password"
-                   HorizontalOptions="CenterAndExpand" />
+                   HorizontalOptions="CenterAndExpand"
+                   Margin="5"/>
 
             <Entry Text="{Binding Password}" 
                    HorizontalTextAlignment="Center" 
-                   Margin="10"/>
+                   VerticalOptions="Start"
+                   Margin="5"/>
 
             <Label Text="Re-enter Password"
-                   HorizontalOptions="CenterAndExpand" />
+                   HorizontalOptions="Center"
+                   VerticalOptions="Start"
+                   Margin="5"/>
 
             <Entry Text="{Binding PasswordConfirmation}" 
                    HorizontalTextAlignment="Center" 
-                   Margin="10"/>
+                   VerticalOptions="Start"
+                   Margin="5"/>
 
             <Button x:Name="CreateUserButton" 
                     Text="Create"
                     HorizontalOptions="Center"
-                    Clicked="CreateUserButton_OnClicked"/>
+                    VerticalOptions="Start"
+                    Margin="5"
+                    Command="{Binding CreateUserCommand}"/>
 
             <Label Text="" 
-                   HorizontalTextAlignment="Center" 
+                   HorizontalTextAlignment="Center"
+                   VerticalOptions="Start" 
                    x:Name="MessageLabel" 
-                   Margin="20"/>
+                   Margin="5"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

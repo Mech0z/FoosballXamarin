@@ -35,5 +35,21 @@ namespace FoosballXamarin.Services
             var item = JsonConvert.DeserializeObject<GetPlayerSeasonHistoryResponse>(content);
             return item;
         }
+
+        public async Task<bool> CreateUser(string email, string displayName, string password)
+        {
+            var request = new CreateUserRequest
+            {
+                Email = email,
+                Username = displayName,
+                Password = password
+            };
+
+            RestUrl = ApiUrl + $"player/CreateUser";
+            var messageBody = GetRequest(RestUrl, request, HttpMethod.Post);
+            var response = await _client.SendAsync(messageBody);
+
+            return response.IsSuccessStatusCode;
+        }
     }
 }

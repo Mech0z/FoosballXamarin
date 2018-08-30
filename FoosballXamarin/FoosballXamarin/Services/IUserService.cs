@@ -9,5 +9,6 @@ namespace FoosballXamarin.Services
     {
         Task<List<User>> GetDataAsync();
         Task<GetPlayerSeasonHistoryResponse> GetPlayerSeasonHistory(string email);
+        Task<bool> CreateUser(string email, string displayName, string password);
     }
 }

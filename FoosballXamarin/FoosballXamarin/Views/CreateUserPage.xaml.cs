@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading.Tasks;
+using FoosballXamarin.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -7,14 +9,20 @@ namespace FoosballXamarin.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class CreateUserPage : ContentPage
 	{
-		public CreateUserPage ()
+        public CreateUserPage ()
 		{
 			InitializeComponent ();
+            
+            MessagingCenter.Subscribe<CreateUserViewModel, string>(this, "CreateUserFailedMessage",
+		        (sender, message) => { MessageLabel.Text = message; });
+		    MessagingCenter.Subscribe<CreateUserViewModel>(this, "CreateUserSuccessMessage",
+		        sender => { HandleSuccess(); });
 		}
 
-	    private void CreateUserButton_OnClicked(object sender, EventArgs e)
+	    private async void HandleSuccess()
 	    {
-	        throw new NotImplementedException();
+	        await DisplayAlert("Success", "User created", "OK");
+	        await Navigation.PopAsync(true);
 	    }
 	}
 }
