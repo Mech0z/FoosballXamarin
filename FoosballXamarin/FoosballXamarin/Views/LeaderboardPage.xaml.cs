@@ -30,24 +30,11 @@ namespace FoosballXamarin.Views
             ItemsListView.SelectedItem = null;
         }
 
-        void Refresh_Clicked(object sender, EventArgs e)
-        {
-            _viewModel.LoadItemsCommand.Execute(this);
-        }
-
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
             _viewModel.LoadItemsCommand.Execute(null);
-        }
-
-        private void OrientationChangedEvent(object sender, EventArgs e)
-        {
-            if (sender is Page page)
-            {
-                _viewModel.UpdateOrientationCommand(page.Height, page.Width);
-            }
         }
     }
 }

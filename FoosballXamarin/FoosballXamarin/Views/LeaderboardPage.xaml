@@ -6,7 +6,7 @@
              Title="{Binding Title}"
              x:Name="BrowseItemsPage">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Refresh" Clicked="Refresh_Clicked" />
+        <ToolbarItem Text="Refresh" Command="{Binding LoadItemsCommand}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>

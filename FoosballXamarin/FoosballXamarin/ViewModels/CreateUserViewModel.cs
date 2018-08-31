@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace FoosballXamarin.ViewModels
 {
-    public class CreateUserViewModel
+    public class CreateUserViewModel :BaseViewModel
     {
         public IUserService UserService => DependencyService.Get<IUserService>();
 
@@ -14,6 +14,12 @@ namespace FoosballXamarin.ViewModels
         public string EmailConfirmation { get; set; }
         public string Password { get; set; }
         public string PasswordConfirmation { get; set; }
+        private string _errorMessageText;
+        public string ErrorMessageText
+        {
+            get => _errorMessageText;
+            set => SetProperty(ref _errorMessageText, value);
+        }
 
         public ICommand CreateUserCommand { get; set; }
 
@@ -26,31 +32,31 @@ namespace FoosballXamarin.ViewModels
         {
             if (DisplayName.Length < 6)
             {
-                MessagingCenter.Send(this, "CreateUserFailedMessage", "Username must be at least 6 characters long");
+                ErrorMessageText = "Username must be at least 6 characters long";
                 return;
             }
 
             if (Email != EmailConfirmation)
             {
-                MessagingCenter.Send(this, "CreateUserFailedMessage", "Emails are not identical");
+                ErrorMessageText = "Emails are not identical";
                 return;
             }
 
             if (string.IsNullOrEmpty(Email) || !Email.Contains("@"))
             {
-                MessagingCenter.Send(this, "CreateUserFailedMessage", "Invalid email");
+                ErrorMessageText = "Invalid email";
                 return;
             }
 
             if (Password != PasswordConfirmation)
             {
-                MessagingCenter.Send(this, "CreateUserFailedMessage", "Passwords are not identical");
+                ErrorMessageText = "Passwords are not identical";
                 return;
             }
 
             if (Password.Length < 6)
             {
-                MessagingCenter.Send(this, "CreateUserFailedMessage", "Password must be at least 6 characters long");
+                ErrorMessageText = "Password must be at least 6 characters long";
                 return;
             }
 
@@ -59,7 +65,7 @@ namespace FoosballXamarin.ViewModels
             if (result)
                 MessagingCenter.Send(this, "CreateUserSuccessMessage");
                     else
-                MessagingCenter.Send(this, "CreateUserFailedMessage", "User creation failed ;(");
+                ErrorMessageText = "User creation failed ;(";
         }
     }
 }

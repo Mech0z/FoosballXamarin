@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using FoosballXamarin.ViewModels;
+﻿using FoosballXamarin.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,10 +10,10 @@ namespace FoosballXamarin.Views
         public CreateUserPage ()
 		{
 			InitializeComponent ();
-            
-            MessagingCenter.Subscribe<CreateUserViewModel, string>(this, "CreateUserFailedMessage",
-		        (sender, message) => { MessageLabel.Text = message; });
-		    MessagingCenter.Subscribe<CreateUserViewModel>(this, "CreateUserSuccessMessage",
+
+		    BindingContext = new CreateUserViewModel();
+
+            MessagingCenter.Subscribe<CreateUserViewModel>(this, "CreateUserSuccessMessage",
 		        sender => { HandleSuccess(); });
 		}
 

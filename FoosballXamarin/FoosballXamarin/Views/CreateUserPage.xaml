@@ -61,10 +61,10 @@
                     Margin="5"
                     Command="{Binding CreateUserCommand}"/>
 
-            <Label Text="" 
+            <Label Text="{Binding ErrorMessageText}" 
                    HorizontalTextAlignment="Center"
                    VerticalOptions="Start" 
-                   x:Name="MessageLabel" 
+                   TextColor="Red"
                    Margin="5"/>
         </StackLayout>
     </ContentPage.Content>

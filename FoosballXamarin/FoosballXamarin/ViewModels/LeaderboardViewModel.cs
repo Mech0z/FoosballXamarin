@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using FoosballXamarin.Helpers;
 using FoosballXamarin.Models;
 using Xamarin.Forms;
@@ -32,7 +33,7 @@ namespace FoosballXamarin.ViewModels
             set => SetProperty(ref _isLandscapeMode, value);
         }
 
-        public Command LoadItemsCommand { get; set; }
+        public ICommand LoadItemsCommand { get; set; }
 
         public LeaderBoardViewModel()
         {
