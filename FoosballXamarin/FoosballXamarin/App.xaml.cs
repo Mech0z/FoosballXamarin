@@ -12,7 +12,7 @@ namespace FoosballXamarin
         {
             InitializeComponent();
             
-            Preferences.Clear();
+            //Preferences.Clear();
 
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MTAzMjBAMzEzNjJlMzIyZTMwaHJPSFdxU01JZnY1VEsxRG1xMG1XODMxWkVtNzVsK1lBTmQzRXRRRkl4MD0=");
             if(!Preferences.ContainsKey("ApiUrlSettings"))
