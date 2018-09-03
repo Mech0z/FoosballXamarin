@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace FoosballXamarin.Models
 {
-    public class LeaderboardView
+    public class LeaderboardView : ICloneable
     {
         public LeaderboardView()
         {
@@ -16,5 +16,16 @@ namespace FoosballXamarin.Models
         public List<LeaderboardViewEntry> Entries { get; set; }
         public string SeasonName { get; set; }
         public DateTime? Timestamp { get; set; }
+
+        public object Clone()
+        {
+            return new LeaderboardView
+            {
+                Entries = Entries,
+                Id = Id,
+                SeasonName = SeasonName,
+                Timestamp = Timestamp
+            };
+        }
     }
 }

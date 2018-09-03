@@ -44,14 +44,14 @@
                            HorizontalTextAlignment="Center" />
                     <Switch IsToggled="{Binding RememberMe}" />
 
-                    <Button Text="Login" Command="LoginCommand"/>
+                    <Button Text="Login" Command="{Binding LoginCommand}"/>
                     <Button Text="Create user" x:Name="CreateUserButton" Clicked="CreateUserButton_OnClicked"/>
                     <Button Text="Request password" x:Name="RequestPasswordButton" Clicked="RequestPasswordButton_Clicked"/>
                 </StackLayout>
                 <StackLayout IsVisible="{Binding IsLoggedIn}">
                     <Label Text="Logged in as:"/>
                     <Label Text="{Binding Email}"/>
-                    <Button Text="Logout" Command="LogoutCommand"/>
+                    <Button Text="Logout" Command="{Binding LogoutCommand}"/>
                 </StackLayout>
 
             </StackLayout>
