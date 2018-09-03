@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace FoosballXamarin.ViewModels
 {
-    public class CreateUserViewModel :BaseViewModel
+    public class CreateUserViewModel : BaseViewModel
     {
         public IUserService UserService => DependencyService.Get<IUserService>();
 

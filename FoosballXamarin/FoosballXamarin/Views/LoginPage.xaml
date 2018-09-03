@@ -3,13 +3,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FoosballXamarin.Views.LoginPage"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             d:DataContext="{d:DesignInstance viewModels:LoginViewModel, IsDesignTimeCreatable=True}"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin"
              xmlns:helpers="clr-namespace:FoosballXamarin.Helpers;assembly=FoosballXamarin"
-             IsBusy="{Binding IsBusy}"
-             mc:Ignorable="d">
+             IsBusy="{Binding IsBusy}">
+    <ContentPage.BindingContext>
+        <viewModels:LoginViewModel />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 
@@ -45,14 +44,14 @@
                            HorizontalTextAlignment="Center" />
                     <Switch IsToggled="{Binding RememberMe}" />
 
-                    <Button Text="Login" Clicked="LoginCommand"/>
+                    <Button Text="Login" Command="LoginCommand"/>
                     <Button Text="Create user" x:Name="CreateUserButton" Clicked="CreateUserButton_OnClicked"/>
                     <Button Text="Request password" x:Name="RequestPasswordButton" Clicked="RequestPasswordButton_Clicked"/>
                 </StackLayout>
                 <StackLayout IsVisible="{Binding IsLoggedIn}">
                     <Label Text="Logged in as:"/>
                     <Label Text="{Binding Email}"/>
-                    <Button Text="Logout" Clicked="LogoutCommand"/>
+                    <Button Text="Logout" Command="LogoutCommand"/>
                 </StackLayout>
 
             </StackLayout>
