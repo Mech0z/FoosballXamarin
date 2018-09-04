@@ -1,8 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin"
+             xmlns:helpers="clr-namespace:FoosballXamarin.Helpers;assembly=FoosballXamarin"
              x:Class="FoosballXamarin.Views.UrlLandingPage"
              Title="SETUP API ACCESS">
+    <ContentPage.BindingContext>
+        <viewModels:UrlLandingViewModel />
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Enter API Url"
@@ -11,14 +16,17 @@
                 Margin="20" />
 
             <Entry 
-                Text=""
+                Text="{Binding ApiEntry}"
                 x:Name="UrlEntry"
                 HorizontalOptions="FillAndExpand" Margin="20" />
 
-            <Button Text="Submit URL" Clicked="Button_OnClicked" 
+            <Button Text="Submit URL" 
+                    Command="{Binding SubmitApiUrlCommand}"
+                    IsEnabled="{Binding IsBusy, Converter={helpers:BoolToOppositeBoolConverter}}"
+                    x:Name="SubmitButton"
                     Margin="20"/>
 
-            <Label Text="" 
+            <Label Text="{Binding MessageLabelText}" 
                    x:Name="MessageLabel" 
                    Margin="20"/>
 
@@ -27,7 +35,7 @@
 
             <Button Text="https://github.com/Mech0z/Foosball"
                     HorizontalOptions="Center"
-                    Clicked="Button_GitHubLinkClicked"/>
+                    Command="{Binding OpenGitHubLinkCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
