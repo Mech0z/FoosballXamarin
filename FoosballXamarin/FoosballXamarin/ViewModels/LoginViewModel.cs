@@ -16,9 +16,6 @@ namespace FoosballXamarin.ViewModels
 
         public LoginViewModel()
         {
-            Email = "madsskipper@gmail.com";
-            Password = "Super123!";
-
             LoadItemsCommand = new Command(async () => await ExecuteLoadCommand());
             LoadItemsCommand.Execute(this);
             
