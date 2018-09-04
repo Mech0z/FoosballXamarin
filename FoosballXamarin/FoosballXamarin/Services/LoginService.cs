@@ -27,7 +27,7 @@ namespace FoosballXamarin.Services
 
             var messageBody = GetRequest(RestUrl, request, HttpMethod.Post);
 
-            var response = await _client.SendAsync(messageBody);
+            var response = await Client.SendAsync(messageBody);
          
             if (!response.IsSuccessStatusCode) return false;
 
@@ -53,9 +53,9 @@ namespace FoosballXamarin.Services
 
             RestUrl = ApiUrl + "Account/ValidateLogin";
 
-            var messageBody = GetRequest(RestUrl, "", HttpMethod.Post);
+            var messageBody = GetRequest(RestUrl, null, HttpMethod.Post);
 
-            var response = await _client.SendAsync(messageBody);
+            var response = await Client.SendAsync(messageBody);
          
             if (!response.IsSuccessStatusCode) return false;
 
@@ -80,9 +80,9 @@ namespace FoosballXamarin.Services
             
             RestUrl = ApiUrl + "Account/Logout";
 
-            var messageBody = GetRequest(RestUrl, "", HttpMethod.Post);
+            var messageBody = GetRequest(RestUrl, null, HttpMethod.Post);
             
-            var response = await _client.SendAsync(messageBody);
+            var response = await Client.SendAsync(messageBody);
          
             if (!response.IsSuccessStatusCode) return false;
 

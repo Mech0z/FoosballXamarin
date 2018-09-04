@@ -21,9 +21,9 @@ namespace FoosballXamarin.Services
             
             RestUrl = ApiUrl + "Administration/GetUserMappings";
 
-            var messageBody = GetRequest(RestUrl, "", HttpMethod.Post);
+            var messageBody = GetRequest(RestUrl, null, HttpMethod.Post);
 
-            var response = await _client.SendAsync(messageBody);
+            var response = await Client.SendAsync(messageBody);
          
             if (!response.IsSuccessStatusCode) return new List<UserMapping>();
 
@@ -47,7 +47,7 @@ namespace FoosballXamarin.Services
 
             var messageBody = GetRequest(RestUrl, request, HttpMethod.Post);
 
-            var response = await _client.SendAsync(messageBody);
+            var response = await Client.SendAsync(messageBody);
          
             if (!response.IsSuccessStatusCode) return false;
 
@@ -71,7 +71,7 @@ namespace FoosballXamarin.Services
 
             var messageBody = GetRequest(RestUrl, request, HttpMethod.Post);
 
-            var response = await _client.SendAsync(messageBody);
+            var response = await Client.SendAsync(messageBody);
          
             if (!response.IsSuccessStatusCode) return false;
 
@@ -87,9 +87,9 @@ namespace FoosballXamarin.Services
 
             RestUrl = ApiUrl + "SeasonsAdministration/StartNewSeason";
 
-            var messageBody = GetRequest(RestUrl, "", HttpMethod.Post);
+            var messageBody = GetRequest(RestUrl, null, HttpMethod.Post);
 
-            var response = await _client.SendAsync(messageBody);
+            var response = await Client.SendAsync(messageBody);
 
             return response.IsSuccessStatusCode;
         }
@@ -100,9 +100,9 @@ namespace FoosballXamarin.Services
 
             RestUrl = ApiUrl + "SeasonsAdministration/GetSeasons";
 
-            var messageBody = GetRequest(RestUrl, "", HttpMethod.Post);
+            var messageBody = GetRequest(RestUrl, null, HttpMethod.Post);
 
-            var response = await _client.SendAsync(messageBody);
+            var response = await Client.SendAsync(messageBody);
 
             if (!response.IsSuccessStatusCode) return new List<Season>();
 

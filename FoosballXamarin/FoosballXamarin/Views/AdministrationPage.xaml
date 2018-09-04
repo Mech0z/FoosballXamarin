@@ -61,7 +61,7 @@
             </StackLayout>
         </ContentPage.Content>
     </ContentPage>
-    <ContentPage Title="Season management">
+    <ContentPage Title="Season management" IsVisible="{Binding Path=IsAdmin}">
         <StackLayout>
             <Button Text="Start new season tomorrow" Clicked="StartNewSeasonClicked"/>
             <ListView x:Name="ItemsListViewSeasons"

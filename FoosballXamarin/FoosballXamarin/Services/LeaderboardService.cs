@@ -13,10 +13,10 @@ namespace FoosballXamarin.Services
         public async Task<List<LeaderboardView>> GetDataAsync()
         {
             RestUrl = ApiUrl + "leaderboard/index";
-            var messageBody = GetRequest(RestUrl, "", HttpMethod.Get);
-            var response = await _client.SendAsync(messageBody);
+            var messageBody = GetRequest(RestUrl, null, HttpMethod.Get);
+            var response = await Client.SendAsync(messageBody);
 
-            if (!response.IsSuccessStatusCode) return new List<LeaderboardView>();
+            if (!response.IsSuccessStatusCode) return null;
 
             var content = await response.Content.ReadAsStringAsync();
             var items = JsonConvert.DeserializeObject<List<LeaderboardView>>(content);

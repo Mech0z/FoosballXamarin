@@ -10,7 +10,7 @@ namespace FoosballXamarin.Services
 {
     public class BaseService
     {
-        protected readonly HttpClientWrapper _client;
+        protected readonly HttpClientWrapper Client;
         
         public string RestUrl { get; set; }
         public Uri HttpUri => new Uri(string.Format(RestUrl, string.Empty));
@@ -18,7 +18,7 @@ namespace FoosballXamarin.Services
 
         public BaseService()
         {
-            _client = new HttpClientWrapper
+            Client = new HttpClientWrapper
             {
                 //MaxResponseContentBufferSize = 256000
             };
@@ -29,14 +29,24 @@ namespace FoosballXamarin.Services
             var serilizedUserSettings = Preferences.Get("UserSettings", "");
             var userSettings = JsonConvert.DeserializeObject<UserSettings>(serilizedUserSettings);
             var deviceName = DeviceInfo.Name;
-
+            
             var jsonRequest = JsonConvert.SerializeObject(bodyContent);
             var contentType = "application/json";
 
-            var httpRequest = new HttpRequestMessage(httpMethod, RestUrl)
+            HttpRequestMessage httpRequest;
+            if (bodyContent != null)
             {
-                Content = new StringContent(jsonRequest, Encoding.UTF8, contentType)
-            };
+                httpRequest = new HttpRequestMessage(httpMethod, RestUrl)
+                {
+                    Content = new StringContent(jsonRequest, Encoding.UTF8, contentType)
+                };
+            }
+            else
+            {
+                httpRequest = new HttpRequestMessage(httpMethod, RestUrl)
+                {
+                };
+            }
 
             if (userSettings != null)
             {

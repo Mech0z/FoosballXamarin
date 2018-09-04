@@ -14,8 +14,8 @@ namespace FoosballXamarin.Services
         public async Task<List<User>> GetDataAsync()
         {
             RestUrl = ApiUrl + "player/GetUsers";
-            var messageBody = GetRequest(RestUrl, "", HttpMethod.Get);
-            var response = await _client.SendAsync(messageBody);
+            var messageBody = GetRequest(RestUrl, null, HttpMethod.Get);
+            var response = await Client.SendAsync(messageBody);
 
             if (!response.IsSuccessStatusCode) return new List<User>();
 
@@ -27,7 +27,7 @@ namespace FoosballXamarin.Services
         public async Task<GetPlayerSeasonHistoryResponse> GetPlayerSeasonHistory(string email)
         {
             RestUrl = ApiUrl + $"player/GetPlayerHistory?email={email}";
-            var response = await _client.GetAsync(RestUrl);
+            var response = await Client.GetAsync(RestUrl);
 
             if(!response.IsSuccessStatusCode) return new GetPlayerSeasonHistoryResponse();
 
@@ -47,7 +47,7 @@ namespace FoosballXamarin.Services
 
             RestUrl = ApiUrl + $"player/CreateUser";
             var messageBody = GetRequest(RestUrl, request, HttpMethod.Post);
-            var response = await _client.SendAsync(messageBody);
+            var response = await Client.SendAsync(messageBody);
 
             return response.IsSuccessStatusCode;
         }

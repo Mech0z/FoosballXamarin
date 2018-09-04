@@ -18,8 +18,8 @@ namespace FoosballXamarin.Services
         {
             RestUrl = ApiUrl + "match/lastgames?numberofmatches=20"; 
             
-            var messageBody = GetRequest(RestUrl, "", HttpMethod.Get);
-            var response = await _client.SendAsync(messageBody);
+            var messageBody = GetRequest(RestUrl, null, HttpMethod.Get);
+            var response = await Client.SendAsync(messageBody);
 
             if (!response.IsSuccessStatusCode) return new List<Match>();
 
@@ -31,7 +31,7 @@ namespace FoosballXamarin.Services
         public async Task<List<Match>> GetPlayerMatches(string email)
         {
             RestUrl = ApiUrl + $"player/GetPlayerMatches?email={email}";
-            var response = await _client.GetAsync(HttpUri);
+            var response = await Client.GetAsync(HttpUri);
 
             if (!response.IsSuccessStatusCode) return new List<Match>();
 
@@ -48,7 +48,7 @@ namespace FoosballXamarin.Services
             request.Email = userSettings.Email;
             var httpRequestMessage = GetRequest(RestUrl, request, HttpMethod.Post);
 
-            var response = await _client.SendAsync(httpRequestMessage);
+            var response = await Client.SendAsync(httpRequestMessage);
 
             if (!response.IsSuccessStatusCode)
             {
