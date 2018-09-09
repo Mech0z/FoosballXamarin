@@ -56,7 +56,8 @@ namespace FoosballXamarin.Views
 
 	    private async void ChangeUserPassWordClicked(object sender, EventArgs e)
 	    {
-	        var newPasswordPromptResult = await UserDialogs.Instance.PromptAsync("", "New Password", "Save", null);
+	        var newPasswordPromptResult =
+	            await UserDialogs.Instance.PromptAsync("", "New Password", "Save", null, inputType: InputType.Password);
 
 	        if (newPasswordPromptResult.Ok)
 	        {

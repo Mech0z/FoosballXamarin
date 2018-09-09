@@ -41,6 +41,7 @@
                            HorizontalOptions="CenterAndExpand" />
 
                     <Entry Text="{Binding Password}" 
+                           IsPassword="True"
                            HorizontalTextAlignment="Center" />
                     <Switch IsToggled="{Binding RememberMe}" />
 

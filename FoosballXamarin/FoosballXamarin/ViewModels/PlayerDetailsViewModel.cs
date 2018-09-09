@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using FoosballXamarin.Helpers;
 using FoosballXamarin.Models;
 using FoosballXamarin.Models.Dtos;
@@ -16,7 +17,7 @@ namespace FoosballXamarin.ViewModels
 	    public IUserService UserService => DependencyService.Get<IUserService>();
 	    public IMatchService MatchService => DependencyService.Get<IMatchService>();
 
-	    public Command LoadItemsCommand { get; set; }
+	    public ICommand LoadItemsCommand { get; set; }
         public LeaderboardViewEntry Item { get; set; }
 	    public ObservableRangeCollection<Match> LatestMatches { get; set; }
 
