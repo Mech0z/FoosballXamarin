@@ -64,16 +64,16 @@
       <Version>11.0.2</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Licensing">
-      <Version>16.2.0.46</Version>
+      <Version>16.2.0.50</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfNumericTextBox">
-      <Version>16.2.0.46</Version>
+      <Version>16.2.0.50</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown">
-      <Version>16.2.0.46</Version>
+      <Version>16.2.0.50</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfSparkline">
-      <Version>16.2.0.46</Version>
+      <Version>16.2.0.50</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Core.Utils">
       <Version>27.0.2.1</Version>
