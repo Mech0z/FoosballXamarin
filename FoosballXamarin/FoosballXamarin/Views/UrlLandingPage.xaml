@@ -4,7 +4,8 @@
              xmlns:viewModels="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin"
              xmlns:helpers="clr-namespace:FoosballXamarin.Helpers;assembly=FoosballXamarin"
              x:Class="FoosballXamarin.Views.UrlLandingPage"
-             Title="SETUP API ACCESS">
+             Title="SETUP API ACCESS"
+             IsBusy="{Binding IsBusy}">
     <ContentPage.BindingContext>
         <viewModels:UrlLandingViewModel />
     </ContentPage.BindingContext>
@@ -26,16 +27,27 @@
                     x:Name="SubmitButton"
                     Margin="20"/>
 
+            <Label Text="Example url: https://yourhostedapi.azurewebsites.net/api/"
+                   HorizontalTextAlignment="Center"
+                   FontAttributes="Italic"/>
+
             <Label Text="{Binding MessageLabelText}" 
                    x:Name="MessageLabel" 
                    Margin="20"/>
 
-            <Label Text="Enter the Url of the API, host your own with" 
+            <Label Text="Enter the Url of the API you want to connect to or host your own API with" 
                    HorizontalTextAlignment="Center" />
 
             <Button Text="https://github.com/Mech0z/Foosball"
                     HorizontalOptions="Center"
                     Command="{Binding OpenGitHubLinkCommand}"/>
+
+            <Label Text="This APPs source code can be found here"
+                   HorizontalTextAlignment="Center"/>
+
+            <Button Text="https://github.com/Mech0z/FoosballXamarin"
+                    HorizontalOptions="Center"
+                    Command="{Binding OpenGitHubAppLinkCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -9,13 +9,6 @@ namespace FoosballXamarin.ViewModels
 {
     public class UrlLandingViewModel : BaseViewModel
     {
-        bool _isBusy;
-        public bool IsBusy
-        {
-            get => _isBusy;
-            set => SetProperty(ref _isBusy, value);
-        }
-
         private string _apiEntry;
         public string ApiEntry
         {
@@ -32,11 +25,13 @@ namespace FoosballXamarin.ViewModels
 
         public ICommand SubmitApiUrlCommand { get; set; }
         public ICommand OpenGitHubLinkCommand { get; set; }
+        public ICommand OpenGitHubAppLinkCommand { get; set; }
         public ILeaderboardService LeaderboardService => DependencyService.Get<ILeaderboardService>();
 
         public UrlLandingViewModel()
         {
             OpenGitHubLinkCommand = new Command(() => Device.OpenUri(new Uri("https://github.com/Mech0z/Foosball")));
+            OpenGitHubAppLinkCommand = new Command(() => Device.OpenUri(new Uri("https://github.com/Mech0z/FoosballXamarin")));
 
             SubmitApiUrlCommand = new Command(async () =>
             {
