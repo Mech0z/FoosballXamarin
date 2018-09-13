@@ -48,7 +48,7 @@ namespace FoosballXamarin.ViewModels
                 List<LeaderboardView> leaderboardViews = await LeaderboardService.GetDataAsync();
                 Users.ReplaceRange(await UserService.GetDataAsync());
                 Leaderboards.ReplaceRange(leaderboardViews);
-                SelectedLeaderboardView = Leaderboards.OrderByDescending(x => x.Timestamp).FirstOrDefault();
+                SelectedLeaderboardView = Leaderboards.OrderByDescending(x => x.StartDate).FirstOrDefault();
 
                 foreach (var leaderboard in Leaderboards)
                 {
