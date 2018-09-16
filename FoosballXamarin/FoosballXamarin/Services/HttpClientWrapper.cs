@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace FoosballXamarin.Services
 {
@@ -13,7 +14,13 @@ namespace FoosballXamarin.Services
         {
             try
             {
-                return await SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None);
+                var httpResponseMessage = await SendAsync(request, HttpCompletionOption.ResponseContentRead, CancellationToken.None);
+                if ((int)httpResponseMessage.StatusCode == 419)
+                {
+                    MessagingCenter.Send(this, "TokenExpired");
+                    Preferences.Remove("UserSettings");
+                }
+                return httpResponseMessage;
             }
             catch (Exception e)
             {

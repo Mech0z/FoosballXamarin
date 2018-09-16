@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using FoosballXamarin.Helpers;
+using Models;
 
-namespace Models
+namespace FoosballXamarin.Models
 {
     public class Match : ObservableObject
     {
-        public bool ScoreIsHighEnough => MatchResult.Team1Score >= 8 || MatchResult.Team2Score >= 8;
-
         public Match()
         {
             UserList = new List<User>();
@@ -25,7 +24,7 @@ namespace Models
 
         public int? Points { get; set; }
 
-        public String SeasonName { get; set; }
+        public string SeasonName { get; set; }
 
         public bool HaveScore => MatchResult.Team1Score != 0 || MatchResult.Team2Score != 0;
 

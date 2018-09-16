@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using FoosballXamarin.Helpers;
+using FoosballXamarin.Models;
 using FoosballXamarin.Services;
 using Models;
 using Xamarin.Forms;

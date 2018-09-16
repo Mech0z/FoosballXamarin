@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using FoosballXamarin.Models;
+using FoosballXamarin.Models.Dtos;
 using FoosballXamarin.Services;
 using FoosballXamarin.UWP.Models.Dtos;
 using Xamarin.Essentials;

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FoosballXamarin.Helpers;
 using FoosballXamarin.Models;
+using FoosballXamarin.Models.Dtos;
 using FoosballXamarin.Services;
 using FoosballXamarin.UWP.Models.Dtos;
 using Models;

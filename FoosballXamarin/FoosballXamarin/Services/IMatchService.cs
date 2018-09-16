@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using FoosballXamarin.Models;
+using FoosballXamarin.Models.Dtos;
 using FoosballXamarin.UWP.Models.Dtos;
 using Models;
 
