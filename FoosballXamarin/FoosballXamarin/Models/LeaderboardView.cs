@@ -16,6 +16,7 @@ namespace FoosballXamarin.Models
         public List<LeaderboardViewEntry> Entries { get; set; }
         public string SeasonName { get; set; }
         public DateTime? Timestamp { get; set; }
+        public DateTime StartDate { get; set; }
 
         public object Clone()
         {
