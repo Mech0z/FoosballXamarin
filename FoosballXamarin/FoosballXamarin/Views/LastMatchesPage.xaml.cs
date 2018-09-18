@@ -16,7 +16,7 @@ namespace FoosballXamarin.Views
 
 	    protected override void OnAppearing()
 	    {
-            _viewModel.LoadItemsCommand.Execute(this);
+            //_viewModel.LoadItemsCommand.Execute(this);
 	        base.OnAppearing();
 	    }
 	}
