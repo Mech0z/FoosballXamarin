@@ -38,7 +38,7 @@ namespace FoosballXamarin.ViewModels
             Leaderboards = new ObservableRangeCollection<LeaderboardView>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             HubConnection = new HubConnectionBuilder()
-                .WithUrl("http://localhost:5000/matchAddedHub")
+                .WithUrl("http://betafoosballapi.azurewebsites.net/matchAddedHub")
                 .Build();
             HubConnection.On<string, string>("test", async (user, message) =>
             {
