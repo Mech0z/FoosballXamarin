@@ -122,7 +122,7 @@ namespace FoosballXamarin.ViewModels
             {
                 var leaderboardViews = await LeaderboardService.GetDataAsync();
 
-                var newest = leaderboardViews.OrderByDescending(x => x.Timestamp).FirstOrDefault();
+                var newest = leaderboardViews.OrderByDescending(x => x.StartDate).FirstOrDefault();
 
                 var users = await UserService.GetDataAsync();
 
@@ -167,7 +167,7 @@ namespace FoosballXamarin.ViewModels
             {
                 var leaderboardViews = await LeaderboardService.GetDataAsync();
 
-                var newest = leaderboardViews.OrderByDescending(x => x.Timestamp).FirstOrDefault();
+                var newest = leaderboardViews.OrderByDescending(x => x.StartDate).FirstOrDefault();
 
                 var users = await UserService.GetDataAsync();
 
