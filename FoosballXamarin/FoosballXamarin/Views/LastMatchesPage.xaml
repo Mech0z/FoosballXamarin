@@ -5,6 +5,9 @@
              xmlns:viewModels="clr-namespace:FoosballXamarin.ViewModels;assembly=FoosballXamarin"
              x:Class="FoosballXamarin.Views.LastMatchesPage"
              Title="{Binding Title}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Refresh" Command="{Binding LoadItemsCommand}" />
+    </ContentPage.ToolbarItems>
     <ContentPage.BindingContext>
         <viewModels:LastMatchesViewModel />
     </ContentPage.BindingContext>

@@ -20,7 +20,6 @@ namespace FoosballXamarin.ViewModels
         public ILeaderboardService LeaderboardService => DependencyService.Get<ILeaderboardService>();
         public ObservableRangeCollection<User> Users { get; set; }
         public ObservableRangeCollection<LeaderboardView> Leaderboards { get; set; }
-        public HubConnection HubConnection { get; set; }
         private bool FirstLoad = true;
 
         public LeaderboardView SelectedLeaderboardView
@@ -37,13 +36,7 @@ namespace FoosballXamarin.ViewModels
             Users = new ObservableRangeCollection<User>();
             Leaderboards = new ObservableRangeCollection<LeaderboardView>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-            HubConnection = new HubConnectionBuilder()
-                .WithUrl("http://betafoosballapi.azurewebsites.net/matchAddedHub")
-                .Build();
-            HubConnection.On<string, string>("test", async (user, message) =>
-            {
-                MessagingCenter.Send(this, "SignalR-MatchAdded");
-            });
+            
             MessagingCenter.Subscribe<LeaderBoardViewModel>(this, "SignalR-MatchAdded",
                 (sender) => Device.BeginInvokeOnMainThread(async () => { await ExecuteLoadItemsCommand(); }));
             
@@ -56,8 +49,6 @@ namespace FoosballXamarin.ViewModels
             if (FirstLoad)
             {
                 FirstLoad = false;
-                
-                await HubConnection.StartAsync();
             }
 
             if (IsBusy)

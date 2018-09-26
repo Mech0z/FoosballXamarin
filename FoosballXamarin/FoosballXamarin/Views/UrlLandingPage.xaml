@@ -27,12 +27,13 @@
                     x:Name="SubmitButton"
                     Margin="20"/>
 
-            <Label Text="Example url: https://yourhostedapi.azurewebsites.net/api/"
+            <Label Text="Example url: yourhostedapi.azurewebsites.net"
                    HorizontalTextAlignment="Center"
                    FontAttributes="Italic"/>
 
             <Label Text="{Binding MessageLabelText}" 
                    x:Name="MessageLabel" 
+                   TextColor="Red"
                    Margin="20"/>
 
             <Label Text="Enter the Url of the API you want to connect to or host your own API with" 

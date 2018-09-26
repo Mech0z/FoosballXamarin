@@ -35,6 +35,7 @@ namespace FoosballXamarin.ViewModels
 
             SubmitApiUrlCommand = new Command(async () =>
             {
+                ApiEntry = ApiEntry.Trim();
                 Preferences.Set("ApiUrlSettings", ApiEntry);
                 IsBusy = true;
                 var isValid = await CanPingLeaderboard();
@@ -44,7 +45,7 @@ namespace FoosballXamarin.ViewModels
                 }
                 else
                 {
-                    MessageLabelText = "Could not ping api successfully, remember http(s):// in the front and /api/ in the end";
+                    MessageLabelText = "Could not ping API successfully!";
                 }
             });
         }
