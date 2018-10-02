@@ -8,6 +8,7 @@ using FoosballXamarin.Helpers;
 using FoosballXamarin.Models;
 using Xamarin.Forms;
 using FoosballXamarin.Services;
+using Microsoft.AspNetCore.SignalR.Client;
 using Models;
 
 namespace FoosballXamarin.ViewModels
@@ -19,6 +20,7 @@ namespace FoosballXamarin.ViewModels
         public ILeaderboardService LeaderboardService => DependencyService.Get<ILeaderboardService>();
         public ObservableRangeCollection<User> Users { get; set; }
         public ObservableRangeCollection<LeaderboardView> Leaderboards { get; set; }
+        private bool FirstLoad = true;
 
         public LeaderboardView SelectedLeaderboardView
         {
@@ -34,10 +36,21 @@ namespace FoosballXamarin.ViewModels
             Users = new ObservableRangeCollection<User>();
             Leaderboards = new ObservableRangeCollection<LeaderboardView>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            
+            MessagingCenter.Subscribe<LeaderBoardViewModel>(this, "SignalR-MatchAdded",
+                (sender) => Device.BeginInvokeOnMainThread(async () => { await ExecuteLoadItemsCommand(); }));
+            
+
+            LoadItemsCommand.Execute(this);
         }
 
         async Task ExecuteLoadItemsCommand()
         {
+            if (FirstLoad)
+            {
+                FirstLoad = false;
+            }
+
             if (IsBusy)
                 return;
 

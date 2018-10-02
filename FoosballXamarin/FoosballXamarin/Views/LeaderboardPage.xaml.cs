@@ -34,7 +34,7 @@ namespace FoosballXamarin.Views
         {
             base.OnAppearing();
 
-            _viewModel.LoadItemsCommand.Execute(null);
+            //_viewModel.LoadItemsCommand.Execute(null);
         }
     }
 }

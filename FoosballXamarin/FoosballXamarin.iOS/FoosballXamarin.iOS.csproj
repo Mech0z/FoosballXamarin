@@ -140,6 +140,9 @@
     <PackageReference Include="CaveBirdLabs.Xamarin.Essentials">
       <Version>1.0.2</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client">
+      <Version>1.0.3</Version>
+    </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>11.0.2</Version>
     </PackageReference>

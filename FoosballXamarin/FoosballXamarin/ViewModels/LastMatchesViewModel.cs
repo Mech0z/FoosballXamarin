@@ -26,9 +26,13 @@ namespace FoosballXamarin.ViewModels
 
             Matches = new ObservableRangeCollection<Match>();
 		    LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-            
-		    MessagingCenter.Subscribe<AddMatchViewModel>(this, "MatchAddedSuccessfully", async (sender) => await ExecuteLoadItemsCommand());
-        }
+
+		    MessagingCenter.Subscribe<LeaderBoardViewModel>(this, "SignalR-MatchAdded",
+		        (sender) => Device.BeginInvokeOnMainThread(async () => { await ExecuteLoadItemsCommand(); }));
+            //MessagingCenter.Subscribe<AddMatchViewModel>(this, "MatchAddedSuccessfully", async (sender) => await ExecuteLoadItemsCommand());
+
+            LoadItemsCommand.Execute(this);
+		}
 
         /// <summary>
         /// Command to open browser to xamarin.com

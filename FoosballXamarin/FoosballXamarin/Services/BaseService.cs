@@ -14,7 +14,7 @@ namespace FoosballXamarin.Services
         
         public string RestUrl { get; set; }
         public Uri HttpUri => new Uri(string.Format(RestUrl, string.Empty));
-        public string ApiUrl => Preferences.Get("ApiUrlSettings", "");
+        public string ApiUrl => "https://" + Preferences.Get("ApiUrlSettings", "") + "/api/";
 
         public BaseService()
         {

@@ -4,6 +4,7 @@ using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using FoosballXamarin.Services;
 
 namespace FoosballXamarin.UWP
 {
@@ -41,6 +42,12 @@ namespace FoosballXamarin.UWP
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
                 Xamarin.Forms.Forms.Init(e);
+
+                Xamarin.Forms.DependencyService.Register<MatchService>();
+                Xamarin.Forms.DependencyService.Register<AdministrationService>();
+                Xamarin.Forms.DependencyService.Register<LoginService>();
+                Xamarin.Forms.DependencyService.Register<UserService>();
+                Xamarin.Forms.DependencyService.Register<LeaderboardService>();
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
