@@ -1,4 +1,4 @@
-﻿namespace Models
+﻿namespace FoosballXamarin.Models
 {
     public class PartnerPercentResult
     {

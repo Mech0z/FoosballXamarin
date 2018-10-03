@@ -7,7 +7,7 @@ namespace FoosballXamarin.ViewModels
 {
     public class CreateUserViewModel : BaseViewModel
     {
-        public IUserService UserService => DependencyService.Get<IUserService>();
+        public IPlayerService UserService => DependencyService.Get<IPlayerService>();
 
         public string DisplayName { get; set; }
         public string Email { get; set; }

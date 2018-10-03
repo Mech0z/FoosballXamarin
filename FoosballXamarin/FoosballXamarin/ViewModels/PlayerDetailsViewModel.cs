@@ -14,7 +14,7 @@ namespace FoosballXamarin.ViewModels
 {
 	public class PlayerDetailsViewModel : BaseViewModel
 	{
-	    public IUserService UserService => DependencyService.Get<IUserService>();
+	    public IPlayerService UserService => DependencyService.Get<IPlayerService>();
 	    public IMatchService MatchService => DependencyService.Get<IMatchService>();
 
 	    public ICommand LoadItemsCommand { get; set; }

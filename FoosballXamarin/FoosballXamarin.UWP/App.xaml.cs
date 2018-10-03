@@ -46,7 +46,7 @@ namespace FoosballXamarin.UWP
                 Xamarin.Forms.DependencyService.Register<MatchService>();
                 Xamarin.Forms.DependencyService.Register<AdministrationService>();
                 Xamarin.Forms.DependencyService.Register<LoginService>();
-                Xamarin.Forms.DependencyService.Register<UserService>();
+                Xamarin.Forms.DependencyService.Register<PlayerService>();
                 Xamarin.Forms.DependencyService.Register<LeaderboardService>();
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)

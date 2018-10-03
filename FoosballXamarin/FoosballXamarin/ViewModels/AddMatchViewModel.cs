@@ -15,7 +15,7 @@ namespace FoosballXamarin.ViewModels
     public class AddMatchViewModel : BaseViewModel
     {
         private readonly ObservableRangeCollection<LeaderboardViewEntry> _viewModelAddedPlayers;
-        public IUserService UserService => DependencyService.Get<IUserService>();
+        public IPlayerService UserService => DependencyService.Get<IPlayerService>();
         public ILeaderboardService LeaderboardService => DependencyService.Get<ILeaderboardService>();
         public IMatchService MatchService => DependencyService.Get<IMatchService>();
 

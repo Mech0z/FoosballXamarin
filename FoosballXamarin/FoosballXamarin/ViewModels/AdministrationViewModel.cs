@@ -13,7 +13,7 @@ namespace FoosballXamarin.ViewModels
     public class AdministrationViewModel : BaseViewModel
     {
         public IAdministrationService AdministrationService => DependencyService.Get<IAdministrationService>();
-        public IUserService UserService => DependencyService.Get<IUserService>();
+        public IPlayerService UserService => DependencyService.Get<IPlayerService>();
 
         public ObservableRangeCollection<UserMapping> UserMappings { get; set; }
         public ObservableRangeCollection<Season> Seasons { get; set; }

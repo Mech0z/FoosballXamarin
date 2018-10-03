@@ -16,7 +16,7 @@ namespace FoosballXamarin.ViewModels
     public class LeaderBoardViewModel : BaseViewModel
     {
         private LeaderboardView _selectedLeaderboardView;
-        public IUserService UserService => DependencyService.Get<IUserService>();
+        public IPlayerService UserService => DependencyService.Get<IPlayerService>();
         public ILeaderboardService LeaderboardService => DependencyService.Get<ILeaderboardService>();
         public ObservableRangeCollection<User> Users { get; set; }
         public ObservableRangeCollection<LeaderboardView> Leaderboards { get; set; }

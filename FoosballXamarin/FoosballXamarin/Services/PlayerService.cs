@@ -1,15 +1,16 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using FoosballXamarin.Models;
 using FoosballXamarin.Models.Dtos;
 using FoosballXamarin.Services;
 using Models;
 using Newtonsoft.Json;
 
-[assembly: Xamarin.Forms.Dependency(typeof(UserService))]
+[assembly: Xamarin.Forms.Dependency(typeof(PlayerService))]
 namespace FoosballXamarin.Services
 {
-    public class UserService : BaseService, IUserService
+    public class PlayerService : BaseService, IPlayerService
     {
         public async Task<List<User>> GetDataAsync()
         {
@@ -33,6 +34,18 @@ namespace FoosballXamarin.Services
 
             var content = await response.Content.ReadAsStringAsync();
             var item = JsonConvert.DeserializeObject<GetPlayerSeasonHistoryResponse>(content);
+            return item;
+        }
+
+        public async Task<List<PartnerPercentResult>> GetPartnerPercentResult(string email)
+        {
+            RestUrl = ApiUrl + $"player/GetPlayerPartnerResults?email={email}";
+            var response = await Client.GetAsync(RestUrl);
+
+            if (!response.IsSuccessStatusCode) return new List<PartnerPercentResult>();
+
+            var content = await response.Content.ReadAsStringAsync();
+            var item = JsonConvert.DeserializeObject<List<PartnerPercentResult>> (content);
             return item;
         }
 

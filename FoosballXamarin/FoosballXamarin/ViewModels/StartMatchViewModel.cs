@@ -12,7 +12,7 @@ namespace FoosballXamarin.ViewModels
 {
     public class StartMatchViewModel : BaseViewModel
     {
-        public IUserService UserService => DependencyService.Get<IUserService>();
+        public IPlayerService UserService => DependencyService.Get<IPlayerService>();
         public ILeaderboardService LeaderboardService => DependencyService.Get<ILeaderboardService>();
         public ObservableRangeCollection<LeaderboardViewEntry> LeaderboardViewEntries { get; set; }
         public ObservableRangeCollection<User> Users { get; set; }

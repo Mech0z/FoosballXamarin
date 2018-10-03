@@ -14,7 +14,7 @@ namespace FoosballXamarin.ViewModels
 	public class LastMatchesViewModel : BaseViewModel
 	{
 	    public IMatchService MatchService => DependencyService.Get<IMatchService>();
-	    public IUserService UserService => DependencyService.Get<IUserService>();
+	    public IPlayerService UserService => DependencyService.Get<IPlayerService>();
 	    public ObservableRangeCollection<Match> Matches{ get; set; }
 	    public Command LoadItemsCommand { get; set; }
 
