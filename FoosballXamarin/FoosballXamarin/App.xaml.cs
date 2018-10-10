@@ -28,8 +28,10 @@ namespace FoosballXamarin
             else
             {
                 var api = Preferences.Get(Apiurlsettings, "");
-                MigrateUrl(api);
-                
+                var migrated = MigrateUrl(api);
+
+                Preferences.Set(Apiurlsettings, migrated);
+
                 MainPage = new MainPage();
             }
 
@@ -38,16 +40,17 @@ namespace FoosballXamarin
             MessagingCenter.Subscribe<UrlLandingViewModel>(this, "ApiPingSuccess", (sender) => SetupSignalRHubs());
         }
 
-        private void MigrateUrl(string currentSetting)
+        public static string MigrateUrl(string currentSetting)
         {
             currentSetting = Trim(currentSetting, "http://");
             currentSetting = Trim(currentSetting, "https://");
             currentSetting = Trim(currentSetting, "/api/");
+            currentSetting = Trim(currentSetting, "/");
 
-            Preferences.Set(Apiurlsettings, currentSetting);
+            return currentSetting;
         }
 
-        private string Trim(string stringToTrim, string trimText)
+        private static string Trim(string stringToTrim, string trimText)
         {
             return stringToTrim.Contains(trimText)
                 ? stringToTrim.Remove(stringToTrim.IndexOf(trimText, StringComparison.Ordinal), trimText.Length)
@@ -61,7 +64,7 @@ namespace FoosballXamarin
                 var url = Preferences.Get(Apiurlsettings, "");
 
                 HubConnection = new HubConnectionBuilder()
-                    .WithUrl("https://" + url + "/matchAddedHub")
+                    .WithUrl(GetHttp() + "://" + url + "/matchAddedHub")
                     .Build();
 
                 HubConnection?.On<string, string>("matchAdded",
@@ -69,7 +72,16 @@ namespace FoosballXamarin
             }
         }
 
-        protected override void OnStart()
+        public static string GetHttp()
+        {
+            #if DEBUG
+                return "http";
+            #else
+                return "https";
+            #endif
+        }
+
+    protected override void OnStart()
         {
             // Handle when your app starts
             

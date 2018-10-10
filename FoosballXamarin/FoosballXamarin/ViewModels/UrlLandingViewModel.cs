@@ -36,6 +36,7 @@ namespace FoosballXamarin.ViewModels
             SubmitApiUrlCommand = new Command(async () =>
             {
                 ApiEntry = ApiEntry.Trim();
+                ApiEntry = App.MigrateUrl(ApiEntry);
                 Preferences.Set("ApiUrlSettings", ApiEntry);
                 IsBusy = true;
                 var isValid = await CanPingLeaderboard();
